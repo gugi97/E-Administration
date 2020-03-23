@@ -58,19 +58,22 @@
                             </div> --}}
 
                             {{-- BUTTON LOGIN --}}
-                            <div class="text-center mb-2">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    {{ __('Login') }}
-                                </button>
+                            <div class="form-group mb-0">
+                                <div class="text-center mb-2">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        {{ __('Login') }}
+                                    </button>
+    
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}" style="padding: 0px !important;">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" style="padding: 0px !important;" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif
                             {{-- END BUTTON LOGIN --}}
+                        </form>  
                     </div>
-                        </form>
                 </div>
                 {{-- End Card --}}
     </div>
