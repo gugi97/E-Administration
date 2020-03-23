@@ -63,13 +63,12 @@
                                     <button type="submit" class="btn btn-primary btn-block">
                                         {{ __('Login') }}
                                     </button>
-    
+                                </div>
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}" style="padding: 0px !important;">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
-                                </div>
                             </div>
                             {{-- END BUTTON LOGIN --}}
                         </form>  
