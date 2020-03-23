@@ -22,7 +22,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-info shadow-sm">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left navbar links -->
                 <ul class="navbar-nav">
@@ -120,7 +120,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4  sidebar-no-expand">
             <!-- Brand Logo -->
             <a href="{{ url('/home') }}" class="brand-link">
                 <img src="/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
