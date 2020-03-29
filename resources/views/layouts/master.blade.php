@@ -172,7 +172,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{ url('/suratkeluar') }}" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keluar</p>
                                     </a>
