@@ -15,6 +15,14 @@ class SuratMasukControllerk extends Controller
 
     public function index()
     {
-        return view('suratmasuk');
+        $alljenis = $this->modeljenis->getalluser();
+        $alljabatan = $this->modeljabatan->getalluser();
+        $nama = $this->session->nama;
+        $nip = $this->modeluser->ambiladmin($nama);
+            $data['nama'] = $nama;
+        $data['jabatan'] = $alljabatan;
+        $data['coba'] = $nip;
+        $data['jenis'] = $alljenis;
+        return view('suratmasuk', $data);
     }
 }
