@@ -40,7 +40,7 @@
                                     <label>Kode Jenis Surat</label>
                                     <select class="form-control" name="jenis" required>
                                         <option>--------</option>
-                                        @foreach ($jenis as  $ambil)
+                                        @foreach ($alljenis as  $ambil)
                                             <option value="{{$ambil->kode_jenissurat}}">{{$ambil->nama_jenissurat}}</option>
                                         @endforeach
                                     </select>
@@ -50,11 +50,11 @@
                                     <label>Kode Jenjang Jabatan</label>
                                     <select class="form-control" name="jabat" required>
                                         <option>--------</option>
-                                        @foreach ($jabatan as  $ambil)
+                                        {{-- @foreach ($jabatan as  $ambil)
                                             <option value="{{$ambil->kd_unit}}/{{$ambil->kode_unitsurat}}/{{$ambil->kd_jenjang}}">
                                                 {{$ambil->kd_unit}}/{{$ambil->kode_unitsurat}}/{{$ambil->kd_jenjang}}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
 

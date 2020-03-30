@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SuratMasuk;
+use App\Jenis;
 
 class SuratMasukControllerk extends Controller
 {
@@ -15,14 +16,10 @@ class SuratMasukControllerk extends Controller
 
     public function index()
     {
-        $alljenis = $this->modeljenis->getalluser();
-        $alljabatan = $this->modeljabatan->getalluser();
-        $nama = $this->session->nama;
-        $nip = $this->modeluser->ambiladmin($nama);
-            $data['nama'] = $nama;
-        $data['jabatan'] = $alljabatan;
-        $data['coba'] = $nip;
-        $data['jenis'] = $alljenis;
-        return view('suratmasuk', $data);
+        $alljenis = Jenis::getalluser();
+        // $alljabatan = $this->modeljabatan->getalluser();
+        // $nama = $this->session->nama;
+        // $nip = $this->modeluser->ambiladmin($nama);
+        return view('suratmasuk', ['alljenis' => $alljenis]);
     }
 }
