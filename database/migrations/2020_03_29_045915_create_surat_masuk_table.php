@@ -21,7 +21,7 @@ class CreateSuratMasukTable extends Migration
             $table->string('pengirim', 30);
             $table->string('perihal', 30);
             $table->text('keterangan');
-            $table->text('gambar');
+            $table->text('gambar')->nullable();
             $table->char('nip', 9);
             $table->string('kode_jenissurat', 30);
             $table->string('kode_jenjang', 30);

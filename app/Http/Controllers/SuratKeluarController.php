@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class SuratKeluarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 		// mengambil data dari table pegawai
-    	$suratkeluar = DB::table('suratkeluar')->get();
- 
+        $suratkeluar = DB::table('suratkeluar')->get();
+
     	// mengirim data pegawai ke view index
 		return view('suratkeluar',['suratkeluar' => $suratkeluar]);
 	}
@@ -21,7 +26,7 @@ class SuratKeluarController extends Controller
     {
     	return view('suratkeluar_tambah');
 	}
-	
+
 	public function store(Request $request)
     {
 		// insert data ke table pegawai
@@ -38,7 +43,7 @@ class SuratKeluarController extends Controller
 		// alihkan halaman ke halaman pegawai
     	return redirect('/suratkeluar');
 	}
-	
+
 	public function edit($id_suratkeluar)
 	{
 		// mengambil data suratkeluar berdasarkan id yang dipilih
@@ -69,7 +74,7 @@ class SuratKeluarController extends Controller
 	{
 		// menghapus data pegawai berdasarkan id yang dipilih
 		DB::table('suratkeluar')->where('id_suratkeluar',$id_suratkeluar)->delete();
-			
+
 		// alihkan halaman ke halaman pegawai
 		return redirect('/suratkeluar');
 	}

@@ -31,11 +31,12 @@
                         </div>
                         <!-- End Card Header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" method="post" action="suratmasuk/store" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="form-group">
                                     {{-- TEST PENGGUNA --}}
-                                    <input type="hidden" value="" name="nip">
+                                        {{-- <input type="hidden" value="" name="nip"> --}}
                                     {{-- END TEST PENGGUNA --}}
                                     <label>Kode Jenis Surat</label>
                                     <select class="form-control" name="jenis" required>
@@ -50,22 +51,22 @@
                                     <label>Kode Jenjang Jabatan</label>
                                     <select class="form-control" name="jabat" required>
                                         <option>--------</option>
-                                        {{-- @foreach ($jabatan as  $ambil)
+                                        @foreach ($alljabatan as  $ambil)
                                             <option value="{{$ambil->kd_unit}}/{{$ambil->kode_unitsurat}}/{{$ambil->kd_jenjang}}">
                                                 {{$ambil->kd_unit}}/{{$ambil->kode_unitsurat}}/{{$ambil->kd_jenjang}}
                                             </option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>No Urut</label>
-                                    <input type="text" class="form-control" placeholder="Sesuai surat yang diterima">
+                                    <input type="text" class="form-control" placeholder="Sesuai surat yang diterima" name="urut" value="" id="urut" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Bulan</label>
-                                    <select class="form-control" name="bulan"required>
+                                    <select class="form-control" name="bulan" required>
                                         <option>--------</option>
                                         @for ($i = 01; $i <= 12; $i++)
                                             <option>{{$i}}</option>
@@ -107,7 +108,7 @@
                                     <label for="exampleInputFile">Upload Scan</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                     </div>
