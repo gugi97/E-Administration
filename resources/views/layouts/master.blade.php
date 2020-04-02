@@ -418,10 +418,17 @@
     <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminlte/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/adminlte/js/demo.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+    </script>
 </body>
 
 </html>

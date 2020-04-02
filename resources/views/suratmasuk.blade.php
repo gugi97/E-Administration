@@ -31,12 +31,12 @@
                         </div>
                         <!-- End Card Header -->
                         <!-- form start -->
-                        <form role="form" method="post" action="suratmasuk/store" enctype="multipart/form-data">
+                        <form role="form" method="post" action="suratmasuk" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="form-group">
                                     {{-- TEST PENGGUNA --}}
-                                        {{-- <input type="hidden" value="" name="nip"> --}}
+                                <input type="hidden" value="{{$nip->nip}}" name="nip">
                                     {{-- END TEST PENGGUNA --}}
                                     <label>Kode Jenis Surat</label>
                                     <select class="form-control" name="jenis" required>
@@ -46,7 +46,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-
+                            <h1></h1>
                                 <div class="form-group">
                                     <label>Kode Jenjang Jabatan</label>
                                     <select class="form-control" name="jabat" required>

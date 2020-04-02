@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\SuratMasuk;
 use App\Jenis;
 use App\Jabatan;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class SuratMasukControllerk extends Controller
 {
@@ -19,28 +21,24 @@ class SuratMasukControllerk extends Controller
     {
         $alljenis = Jenis::getalluser();
         $alljabatan = Jabatan::getalluser();
-        // $nama = $this->session->nama;
-        // $nip = $this->modeluser->ambiladmin($nama);
-        return view('suratmasuk', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan]);
+        $nama = Auth::user()->name;
+        $nip = User::where('name',$nama)->first();
+        return view('suratmasuk', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip]);
     }
 
     public function store(Request $request)
     {
-        // $this->load->helper(array('form', 'url'));
-        // $nama_file = md5(uniqid(rand(), true));
-        // $this->load->library('upload');
-        // $config = [
-        //     'upload_path' => './assets/img/',
-        //     'allowed_types' => 'gif|jpg|png|jpeg|bmp',
-        //     'file_name' => $nama_file
-        // ];
-        // $this->upload->initialize($config);
-
-        // if (!$this->upload->do_upload('gambar')) {
-        //     $gambar = "";
-        // } else {
-        //     $gambar = $this->upload->file_name;
-        // }
+        if ($request->hasFile('gambar'))
+        {
+            $file = $request->file('gambar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $file->getClientOriginalName() . '.' . $extension;
+            $file->move('uploads/suratmasuk/', $filename);
+            $gambar = $filename;
+        }else {
+            return $request;
+            $gambar = '';
+        }
 
         $urut = $request->input('urut');
         $bulan = $request->input('bulan');
@@ -52,9 +50,8 @@ class SuratMasukControllerk extends Controller
         $pengirim = $request->input('pengirim');
         $perihal = $request->input('perihal');
         $keterangan = $request->input('ket');
-        $nip = $request->input('nip', '171150074');
+        $nip = $request->input('nip');
         $nosurat = $jenis . '/' . $jabat . '/' . $urut . '/' . $bulan . '/' . $tahun;
-
 
         SuratMasuk::create([
             'no_surat' => $nosurat,
@@ -63,7 +60,7 @@ class SuratMasukControllerk extends Controller
             'pengirim' => $pengirim,
             'perihal' => $perihal,
             'keterangan' => $keterangan,
-            // 'gambar' => $gambar,
+            'gambar' => $gambar,
             'nip' => $nip,
             'kode_jenissurat' => $jenis,
             'kode_jenjang' => $jabat
