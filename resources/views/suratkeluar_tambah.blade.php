@@ -1,21 +1,37 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-        <title>Tutorial</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="card mt-5">
-                <div class="card-header text-center">
-                    CRUD Data Surat Keluar - <strong>TAMBAH DATA</strong>
+@extends('layouts.master')
+<!-- Header END -->
+
+<!-- PAGE CONTENT BEGIN -->
+@section('content')
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Surat Keluar</h1>
                 </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Surat Keluar</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            {{-- General Form Elements --}}
+            <div class="card">
+                <!-- Card Header -->
+                <div class="card-header">
+                    <h3 class="card-title"><a href="/suratkeluar" class="btn btn-primary">Kembali</a></h3>
+                    <h3 align="center">Tambah Data Surat Keluar</h3>
+                </div>
+                <!-- End Card Header -->
+                <!-- form start -->
                 <div class="card-body">
-                    <a href="/suratkeluar" class="btn btn-primary">Kembali</a>
-                    <br/>
-                    <br/>
                     @if(count($errors) > 0)
                     <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
@@ -23,7 +39,7 @@
                         @endforeach
                     </div>
                     @endif
-                    <form method="post" action="/suratkeluar/store">
+                    <form method="post" action="/suratkeluar/store" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <?php
@@ -90,6 +106,15 @@
                             <input type="date" name="tgl_catat" id="tgl_catat" class="form-control" required="">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputFile">Upload File</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="file" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>Keterangan</label>
                             <input type="text" name="keterangan" class="form-control" placeholder="Keterangan">
                             @if($errors->has('keterangan'))
@@ -99,11 +124,18 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Simpan">
+                            <button type="submit" class="btn btn-primary" value="Simpan">Submit</button>
+                            <a href="{{url('/suratkeluar/tambah')}}" class="btn btn-danger" style="margin-left: 20px;">Cancel</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+        <!-- Footer -->
+        <div class="card-footer">
+        </div>
+        <!-- End Footer -->
+    {{-- End General Form --}}
+    </section>
+    <!-- /.content -->
+@endsection
