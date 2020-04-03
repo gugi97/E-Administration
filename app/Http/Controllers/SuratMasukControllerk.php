@@ -8,6 +8,7 @@ use App\Jenis;
 use App\Jabatan;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SuratMasukControllerk extends Controller
 {
@@ -19,11 +20,21 @@ class SuratMasukControllerk extends Controller
 
     public function index()
     {
+        // mengambil data dari table pegawai
+        $suratmasuk = DB::table('suratmasuk')->get();
+
+    	// mengirim data pegawai ke view index
+		return view('suratmasuk',['suratmasuk' => $suratmasuk]);
+    }
+
+    public function tambah()
+    {
         $alljenis = Jenis::getalluser();
         $alljabatan = Jabatan::getalluser();
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
-        return view('suratmasuk', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip]);
+
+        return view('suratmasuk_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip]);
     }
 
     public function store(Request $request)
@@ -31,9 +42,9 @@ class SuratMasukControllerk extends Controller
         if ($request->hasFile('gambar'))
         {
             $file = $request->file('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $file->getClientOriginalName() . '.' . $extension;
-            $file->move('uploads/suratmasuk/', $filename);
+            // $extension = $file->getClientOriginalExtension();
+            $filename = $file->getClientOriginalName();
+            $file->move('uploads/suratmasuk', $filename);
             $gambar = $filename;
         }else {
             return $request;
@@ -66,6 +77,6 @@ class SuratMasukControllerk extends Controller
             'kode_jenjang' => $jabat
         ]);
 
-        return redirect()->back();
+        return redirect('/suratmasuk');
     }
 }

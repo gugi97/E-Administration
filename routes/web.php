@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('suratmasuk', 'SuratMasukControllerk@index');
-Route::post('suratmasuk', 'SuratMasukControllerk@store');
+Route::get('suratmasuk/tambah', 'SuratMasukControllerk@tambah');
+Route::post('suratmasuk/store', 'SuratMasukControllerk@store');
 
 Route::get('suratkeluar', 'SuratKeluarController@index');
 Route::get('suratkeluar/tambah', 'SuratKeluarController@tambah');
