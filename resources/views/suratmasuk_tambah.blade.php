@@ -21,13 +21,14 @@
     </section>
 
     <!-- Main content -->
-    <section class="content" style="min-height: 1110px;">
+    <section class="content" style="min-height: 1135px;">
             <div class="container-fluid">
                     {{-- General Form Elements --}}
                     <div class="card">
                         <!-- Card Header -->
                         <div class="card-header">
-                            <h3 class="card-title">Input Surat Masuk</h3>
+                            <h3 class="card-title"><a href="/suratmasuk" class="btn btn-primary">Kembali</a></h3>
+                            <h3 align="center">Input Surat Masuk</h3>
                         </div>
                         <!-- End Card Header -->
                         <!-- form start -->

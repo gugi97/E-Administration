@@ -48,7 +48,7 @@
                         <tbody>
                             @foreach($suratmasuk as $sms)
                             <tr>
-                                <td>{{ $sms->id_suratmasuk }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $sms->no_surat }}</td>
                                 <td>{{ $sms->tgl_surat }}</td>
                                 <td>{{ $sms->tgl_terima }}</td>
@@ -56,8 +56,8 @@
                                 <td>{{ $sms->perihal }}</td>
                                 <td>{{ $sms->keterangan }}</td>
                                 <td>
-                                    <a href="suratkeluar/edit/{{ $sms->id_suratmasuk }}" class="btn btn-warning">Sunting</a>
-                                    <a href="suratkeluar/hapus/{{ $sms->id_suratmasuk }}" class="btn btn-danger">Hapus</a>
+                                    <a href="suratmasuk/edit/{{ $sms->id_suratmasuk }}" class="btn btn-warning">Sunting</a>
+                                    <a href="suratmasuk/hapus/{{ $sms->id_suratmasuk }}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -65,6 +65,9 @@
                     </table>
                 <!-- Footer -->
                 <div class="card-footer">
+                    <div class="row small text-muted">
+                        Last Updated at  <?php date_default_timezone_set("Asia/Jakarta"); echo date("h:i:s a")?>
+                    </div>
                 </div>
                 <!-- End Footer -->
             </div>

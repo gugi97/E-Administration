@@ -32,8 +32,8 @@ class SuratKeluarController extends Controller
 		if ($request->hasFile('file'))
         {
             $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $file->getClientOriginalName() . '.' . $extension;
+            // $extension = $file->getClientOriginalExtension();
+            $filename = $file->getClientOriginalName();
             $file->move('uploads/suratkeluar/', $filename);
             $file = $filename;
         }else {

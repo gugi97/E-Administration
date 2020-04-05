@@ -24,7 +24,7 @@ class CreateSuratKeluarsTable extends Migration
             $table->date('tgl_catat');
             $table->string('file');
             $table->string('keterangan');
-            $table->bigInteger('id');
+            $table->bigInteger('id')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -8,7 +8,6 @@ use App\Jenis;
 use App\Jabatan;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class SuratMasukControllerk extends Controller
 {
@@ -21,7 +20,7 @@ class SuratMasukControllerk extends Controller
     public function index()
     {
         // mengambil data dari table pegawai
-        $suratmasuk = DB::table('suratmasuk')->get();
+        $suratmasuk = SuratMasuk::getallsuratmasuk();
 
     	// mengirim data pegawai ke view index
 		return view('suratmasuk',['suratmasuk' => $suratmasuk]);
@@ -79,4 +78,35 @@ class SuratMasukControllerk extends Controller
 
         return redirect('/suratmasuk');
     }
+
+    public function edit($id_suratmasuk)
+	{
+		// mengambil data suratmasuk berdasarkan id yang dipilih
+        $surat = SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->get();
+		// passing data surat masuk yang didapat ke view suratmasuk_edit.blade.php
+		return view('suratmasuk_edit', ['suratmasuk' => $surat]);
+    }
+    
+    public function update($id_suratmasuk, Request $request)
+    {
+        // update data surat masuk
+        SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->update([
+			'tgl_surat' => $request->tglsurat,
+			'tgl_terima' => $request->tglterima,
+			'pengirim' => $request->pengirim,
+			'perihal' => $request->perihal,
+			'keterangan' => $request->ket,
+			'gambar' => $request->gambar,
+		]);
+        // alihkan halaman ke halaman suratmasuk
+        return redirect('/suratmasuk');
+    }
+
+    public function delete($id_suratmasuk)
+	{
+		// menghapus data suratkeluar berdasarkan id yang dipilih
+        SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
+		// alihkan halaman ke halaman suratkeluar
+		return redirect()->back();
+	}
 }

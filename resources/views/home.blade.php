@@ -21,12 +21,82 @@
     <!-- Main content -->
     <section class="content">
 
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Content</h3>
+        <div class="callout callout-info">
+            <h5 style="margin-bottom: 0px;">Selamat Datang <b>{{Auth::user()->name}}</b></h5>
+        </div>
+
+        <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{$sm_count}}</h3>
+                
+                            <p>Surat Masuk</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <a href="suratmasuk" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{$sk_count}}</h3>
+                
+                            <p>Surat Keluar</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <a href="suratkeluar" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>44</h3>
+                
+                            <p>User Registrations</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>65</h3>
+                
+                            <p>Unique Visitors</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
+        <!-- Default box -->
+        <div class="card">
             <div class="card-body">
                 @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -34,9 +104,7 @@
                 </div>
                 @endif
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum provident laudantium vitae asperiores doloribus odit porro, quaerat aliquam exercitationem dicta nobis quod dolores ipsum! Ea libero nam repellat porro rem.
-                <br><br>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, ea. Quam autem vitae reprehenderit iusto delectus ex inventore sunt eaque tempore cum, deleniti provident dolores beatae soluta voluptatum quis! Nobis?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo harum, voluptatibus sunt quod a neque eum, itaque impedit, quasi quaerat porro veritatis qui saepe magnam mollitia. Quaerat cumque fugit aliquid.
             </div>
             <!-- /.card-body -->
 
