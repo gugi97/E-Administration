@@ -40,17 +40,15 @@ class SuratKeluarController extends Controller
 
 	public function store(Request $request)
     {
-		if ($request->hasFile('gambar'))
-        {
-            $file = $request->file('gambar');
-            // $extension = $file->getClientOriginalExtension();
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads/suratkeluar', $filename);
-            $gambar = $filename;
-        }else {
-            return $request;
-            $gambar = '';
-        }
+		$input=$request->all();
+		$gambar=array();
+		if($files = $request->file('gambar')){
+			foreach($files as $file){
+				$name=$file->getClientOriginalName();
+				$file->move('uploads/suratkeluar',$name);
+				$gambar[]=$name;
+			}
+		}
 		
 		$urut = $request->input('urut');
         $bulan = $request->input('bulan');
@@ -72,7 +70,7 @@ class SuratKeluarController extends Controller
             'lampiran' => $lampiran,
             'tujuan_surat' => $tujuan_surat,
             'keterangan' => $keterangan,
-            'gambar' => $gambar,
+            'gambar'=>  implode(",",$gambar),
             'nip' => $nip,
             'kode_jenissurat' => $jenis,
             'kode_jenjang' => $jabat

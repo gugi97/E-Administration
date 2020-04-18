@@ -9,7 +9,7 @@ class SuratKeluar extends Model
 {
     protected $table = "suratkeluar";
 
-    protected $fillable = ['no_suratkeluar','tgl_suratkeluar','perihal','lampiran','tujuan_surat','keterangan','file','nip','kode_jenissurat','kode_jenjang'];
+    protected $fillable = ['no_suratkeluar','tgl_suratkeluar','perihal','lampiran','tujuan_surat','keterangan','gambar','nip','kode_jenissurat','kode_jenjang'];
     
     public $timestamps = false;
 

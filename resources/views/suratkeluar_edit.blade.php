@@ -67,15 +67,27 @@
                                 <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" value="{{ $ske->keterangan }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Upload Scan</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile" value="{{ $ske->gambar }}">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                </div>
+                                <label for="exampleInputFile">Edit Gambar</label>
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        @php $allImages = explode(',', $ske->gambar); @endphp
+                                        @foreach($allImages as $Image)
+                                        <td align="center">
+                                            <a class="image-popup-vertical-fit" href="/uploads/suratkeluar/{{$Image}}">
+                                                <img width="150px" src="/uploads/suratkeluar/{{$Image}}">
+                                            </a>
+                                        </td>
+                                        @endforeach
+                                        <td style="vertical-align:middle"><div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile">
+                                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                            </div>
+                        </div>
                         <!-- Footer -->
                         <div class="card-footer">
                                 <div class="row">

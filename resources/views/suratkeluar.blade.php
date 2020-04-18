@@ -41,6 +41,7 @@
                                 <th>Lampiran</th>
                                 <th>Perihal</th>
                                 <th>Tujuan Surat</th>
+                                <!-- <th>File</th> -->
                                 <th>Opsi</th>
                             </tr>
                         </thead>
@@ -52,6 +53,7 @@
                                 <td>{{ $ske->tgl_suratkeluar }}</td>
                                 <td>{{ $ske->lampiran }}</td>
                                 <td>{{ $ske->perihal }}</td>
+                                <!-- <td><img width="150px" src="{{ url('uploads/suratkeluar/'.$ske->gambar) }}"></td> -->
                                 <td>{{ $ske->tujuan_surat }}</td>
                                 <td>
                                     <a href="suratkeluar/edit/{{ $ske->id_suratkeluar }}" class="btn btn-warning">Sunting</a>

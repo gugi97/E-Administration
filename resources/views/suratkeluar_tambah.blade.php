@@ -6,6 +6,21 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+        </div>
+        @endif
+        @if(session('success'))
+        <div class="alert alert-success">
+          {{ session('success') }}
+        </div> 
+        @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Tambah Surat Keluar</h1>
@@ -85,7 +100,7 @@
                         </div>
                         <div class="form-group">
                             <label>Lampiran</label>
-                            <input type="text" class="form-control" placeholder="Lampiran" name="lampiran" id="lampiran"required>
+                            <input type="text" class="form-control" placeholder="Lampiran" name="lampiran" id="lampiran" required>
                         </div>
                         <div class="form-group">
                             <label>Tujuan</label>
@@ -96,13 +111,11 @@
                             <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputFile">Upload File</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
+                            <label for="exampleInputFile">Upload Gambar</label>
+                            <div class="input-group control-group increment" >
+                                <input type="file" name="gambar[]" class="form-control" style="padding:3px;" id="gambar" multiple/>
                             </div>
+                        </div>
                         </div>
                     </div>
                 <div class="card-footer">
