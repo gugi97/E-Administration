@@ -7,6 +7,7 @@ use App\SuratMasuk;
 use App\Jenis;
 use App\Jabatan;
 use App\User;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 class SuratMasukControllerk extends Controller
@@ -19,10 +20,10 @@ class SuratMasukControllerk extends Controller
 
     public function index()
     {
-        // mengambil data dari table pegawai
+        // mengambil data dari table suratmasuk
         $suratmasuk = SuratMasuk::getallsuratmasuk();
 
-    	// mengirim data pegawai ke view index
+    	// mengirim data suratmasuk ke view index
 		return view('suratmasuk',['suratmasuk' => $suratmasuk]);
     }
 
@@ -30,10 +31,12 @@ class SuratMasukControllerk extends Controller
     {
         $alljenis = Jenis::getalluser();
         $alljabatan = Jabatan::getalluser();
+        $sm_count = DB::table('suratmasuk')->count();
+		$no_urut = $sm_count + 1;
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
 
-        return view('suratmasuk_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip]);
+        return view('suratmasuk_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip, 'no_urut' => $no_urut]);
     }
 
     public function store(Request $request)

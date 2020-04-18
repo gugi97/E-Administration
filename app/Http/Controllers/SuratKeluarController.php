@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\SuratKeluar;
+use App\Jenis;
+use App\Jabatan;
+use App\User;
+use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SuratKeluarController extends Controller
 {
@@ -16,7 +20,7 @@ class SuratKeluarController extends Controller
     public function index()
     {
 		// mengambil data dari table suratkeluar
-        $suratkeluar = DB::table('suratkeluar')->get();
+        $suratkeluar = SuratKeluar::getallsuratkeluar();
 
     	// mengirim data suratkeluar ke view index
 		return view('suratkeluar',['suratkeluar' => $suratkeluar]);
@@ -24,35 +28,56 @@ class SuratKeluarController extends Controller
 
 	public function tambah()
     {
-    	return view('suratkeluar_tambah');
+		$alljenis = Jenis::getalluser();
+		$alljabatan = Jabatan::getalluser();
+		$sk_count = DB::table('suratkeluar')->count();
+		$no_urut = $sk_count + 1;
+        $nama = Auth::user()->name;
+        $nip = User::where('name',$nama)->first();
+
+        return view('suratkeluar_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip, 'no_urut' => $no_urut]);
 	}
 
 	public function store(Request $request)
     {
-		if ($request->hasFile('file'))
+		if ($request->hasFile('gambar'))
         {
-            $file = $request->file('file');
+            $file = $request->file('gambar');
             // $extension = $file->getClientOriginalExtension();
             $filename = $file->getClientOriginalName();
-            $file->move('uploads/suratkeluar/', $filename);
-            $file = $filename;
+            $file->move('uploads/suratkeluar', $filename);
+            $gambar = $filename;
         }else {
             return $request;
-            $file = '';
-		}
+            $gambar = '';
+        }
 		
-		// insert data ke table suratkeluar
-		DB::table('suratkeluar')->insert([
-			'no_agenda' => $request->no_agenda,
-			'kode_klasifikasi' => $request->kode_klasifikasi,
-			'isi' => $request->isi,
-			'tujuan' => $request->tujuan,
-			'no_suratkeluar' => $request->no_suratkeluar,
-			'tgl_surat' => $request->tgl_surat,
-			'tgl_catat' => $request->tgl_catat,
-			'file' => $request->file,
-			'keterangan' => $request->keterangan
+		$urut = $request->input('urut');
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+        $jenis = $request->input('jenis');
+        $jabat = $request->input('jabat');
+		$tgl_suratkeluar = $request->input('tgl_suratkeluar');
+		$perihal = $request->input('perihal');
+		$lampiran = $request->input('lampiran');
+		$tujuan_surat = $request->input('tujuan_surat');
+		$keterangan = $request->input('keterangan');
+        $nip = $request->input('nip');
+		$no_suratkeluar = $jenis . '/' . $jabat . '/' . $urut . '/' . $bulan . '/' . $tahun;
+
+        SuratKeluar::create([
+            'no_suratkeluar' => $no_suratkeluar,
+            'tgl_suratkeluar' => $tgl_suratkeluar,
+            'perihal' => $perihal,
+            'lampiran' => $lampiran,
+            'tujuan_surat' => $tujuan_surat,
+            'keterangan' => $keterangan,
+            'gambar' => $gambar,
+            'nip' => $nip,
+            'kode_jenissurat' => $jenis,
+            'kode_jenjang' => $jabat
 		]);
+		
 		// alihkan halaman ke halaman suratkeluar
     	return redirect('/suratkeluar');
 	}
@@ -60,24 +85,21 @@ class SuratKeluarController extends Controller
 	public function edit($id_suratkeluar)
 	{
 		// mengambil data suratkeluar berdasarkan id yang dipilih
-		$suratkeluar = DB::table('suratkeluar')->where('id_suratkeluar',$id_suratkeluar)->get();
+		$suratkeluar = SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->get();
 		// passing data surat keluar yang didapat ke view suratkeluar_edit.blade.php
 		return view('suratkeluar_edit', ['suratkeluar' => $suratkeluar]);
 	}
 
-	public function update(Request $request)
-	{
-
+	public function update($id_suratkeluar, Request $request)
+	{	
 		// update data surat keluar
-		DB::table('suratkeluar')->where('id_suratkeluar',$request->id_suratkeluar)->update([
-			'no_agenda' => $request->no_agenda,
-			'kode_klasifikasi' => $request->kode_klasifikasi,
-			'isi' => $request->isi,
-			'tujuan' => $request->tujuan,
-			'no_suratkeluar' => $request->no_suratkeluar,
-			'tgl_surat' => $request->tgl_surat,
-			'tgl_catat' => $request->tgl_catat,
-			'keterangan' => $request->keterangan
+		SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->update([
+			'tgl_suratkeluar' => $request->tgl_suratkeluar,
+			'perihal' => $request->perihal,
+			'lampiran' => $request->lampiran,
+			'tujuan_surat' => $request->tujuan_surat,
+			'keterangan' => $request->keterangan,
+			'gambar' => $request->gambar
 		]);
 		// alihkan halaman ke halaman suratkeluar
 		return redirect('/suratkeluar');
@@ -86,7 +108,7 @@ class SuratKeluarController extends Controller
 	public function delete($id_suratkeluar)
 	{
 		// menghapus data suratkeluar berdasarkan id yang dipilih
-		DB::table('suratkeluar')->where('id_suratkeluar',$id_suratkeluar)->delete();
+		SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->delete();
 
 		// alihkan halaman ke halaman suratkeluar
 		return redirect('/suratkeluar');

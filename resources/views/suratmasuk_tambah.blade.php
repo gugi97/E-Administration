@@ -62,7 +62,7 @@
 
                                 <div class="form-group">
                                     <label>No Urut</label>
-                                    <input type="text" class="form-control" placeholder="Sesuai surat yang diterima" name="urut" value="" id="urut" required>
+                                    <input type="text" class="form-control" placeholder="Sesuai surat yang diterima" name="urut" value="{{$no_urut}}" id="urut" required>
                                 </div>
 
                                 <div class="form-group">
