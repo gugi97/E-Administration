@@ -150,13 +150,14 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/" class="nav-link">
+                            <a href="{{ url('/') }}" class="nav-link {{ set_active('home') }}">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Beranda
                                 </p>
                             </a>
                         </li>
+                        {{-- Transaksi Surat --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-envelope"></i>
@@ -165,14 +166,14 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('/suratmasuk') }}" class="nav-link">
+                            <li class="nav-item">
+                                    <a href="{{ url('/suratmasuk') }}" class="nav-link {{ set_active('suratmasuk') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Masuk</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/suratkeluar') }}" class="nav-link">
+                                    <a href="{{ url('/suratkeluar') }}" class="nav-link {{ set_active('suratkeluar') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keluar</p>
                                     </a>
@@ -185,6 +186,8 @@
                                 </li>
                             </ul>
                         </li>
+                        {{-- END Transaksi Surat --}}
+                        {{-- BUKU AGENDA --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-inbox"></i>
@@ -213,6 +216,8 @@
                                 </li>
                             </ul>
                         </li>
+                        {{-- END BUKU AGENDA --}}
+                        {{-- Galeri --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-folder-open"></i>
@@ -241,14 +246,26 @@
                                 </li>
                             </ul>
                         </li>
+                        {{-- END Galeri --}}
+                        {{-- Klasifikasi --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Klasifikasi
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/jenissurat')}}" class="nav-link {{ set_active('jenissurat') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Entry Jenis Surat</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+                        {{-- END Klasifikasi --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>

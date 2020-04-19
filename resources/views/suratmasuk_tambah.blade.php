@@ -47,7 +47,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            <h1></h1>
+
                                 <div class="form-group">
                                     <label>Kode Jenjang Jabatan</label>
                                     <select class="form-control" name="jabat" required>

@@ -9,7 +9,7 @@ use App\Jabatan;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class SuratMasukControllerk extends Controller
+class SuratMasukController extends Controller
 {
 
     public function __construct()

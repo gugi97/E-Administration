@@ -10,6 +10,8 @@ class Jenis extends Model
 {
     protected $table = "jenis_surat";
 
+    public $timestamps = false;
+
     public function scopegetalluser(){
         $result = DB::table('jenis_surat')->get();
         return $result;
@@ -29,5 +31,16 @@ class Jenis extends Model
 			$checkinsert = false;
 		}
 		return $checkinsert;
+    }
+    
+    public function DeleteUser($id){
+		$checkupdate = false;
+		try{
+			DB::table('jenis_surat')->where('kode_jenissurat',$id)->delete('jenis_surat');
+			$checkupdate = true;
+		}catch (Exception $e) {
+			$checkupdate = false;
+		}
+		return $checkupdate;
 	}
 }

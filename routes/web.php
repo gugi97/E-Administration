@@ -1,19 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('suratmasuk', 'SuratMasukControllerk@index');
-Route::get('suratmasuk/tambah', 'SuratMasukControllerk@tambah');
-Route::post('suratmasuk/store', 'SuratMasukControllerk@store');
-Route::get('suratmasuk/edit/{id_suratmasuk}', 'SuratMasukControllerk@edit');
-Route::put('suratmasuk/update/{id_suratmasuk}', 'SuratMasukControllerk@update');
-Route::get('suratmasuk/hapus/{id_suratmasuk}', 'SuratMasukControllerk@delete');
+Route::get('suratmasuk', 'SuratMasukController@index')->name('suratmasuk');
+Route::get('suratmasuk/tambah', 'SuratMasukController@tambah');
+Route::post('suratmasuk/store', 'SuratMasukController@store');
+Route::get('suratmasuk/edit/{id_suratmasuk}', 'SuratMasukController@edit');
+Route::put('suratmasuk/update/{id_suratmasuk}', 'SuratMasukController@update');
+Route::get('suratmasuk/hapus/{id_suratmasuk}', 'SuratMasukController@delete');
 
-Route::get('suratkeluar', 'SuratKeluarController@index');
+Route::get('jenissurat', 'JenisSuratController@index')->name('jenissurat');
+Route::post('jenissurat/edit/{kode}', 'JenisSuratController@edit');
+Route::get('jenissurat/hapus/{id}', 'JenisSuratController@delete');
+
+Route::get('suratkeluar', 'SuratKeluarController@index')->name('suratkeluar');
 Route::get('suratkeluar/tambah', 'SuratKeluarController@tambah');
 Route::post('/suratkeluar/store', 'SuratKeluarController@store');
 Route::get('suratkeluar/edit/{id_suratkeluar}', 'SuratKeluarController@edit');
