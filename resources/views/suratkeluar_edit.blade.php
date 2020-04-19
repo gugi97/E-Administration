@@ -1,92 +1,106 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-        <title>Tutorial</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="card mt-5">
-                <div class="card-header text-center">
-                    CRUD Data Surat Keluar - <strong>TAMBAH DATA</strong>
+@extends('layouts.master')
+<!-- Header END -->
+
+<!-- PAGE CONTENT BEGIN -->
+@section('content')
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Edit Surat Keluar</h1>
                 </div>
-                <div class="card-body">
-                    <a href="/suratkeluar" class="btn btn-primary">Kembali</a>
-                    <br/>
-                    <br/>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{url('/suratkeluar')}}">Surat Keluar</a></li>
+                        <li class="breadcrumb-item active">Edit Surat Keluar</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content" style="min-height: 800px;">
+        <div class="container-fluid">
+            {{-- General Form Elements --}}
+            <div class="card">
+                <!-- Card Header -->
+                <div class="card-header">
+                    <h3 class="card-title"><a href="/suratkeluar" class="btn btn-primary">Kembali</a></h3>
+                    <h3 align="center">Edit Surat Keluar</h3>
+                </div>
+                <!-- End Card Header -->
+                <!-- form start -->
                     @foreach($suratkeluar as $ske)
-                    <form method="post" action="/suratkeluar/update">
+                    <form role="form" method="post" action="{{url('suratkeluar/update')}}/{{$ske->id_suratkeluar}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Id Surat Keluar</label>
-                            <input type="text" name="id_suratkeluar" value="{{ $ske->id_suratkeluar }}" class="form-control" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Nomor Agenda</label>
-                            <input type="number" name="no_agenda" class="form-control" value="{{ $ske->no_agenda }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Kode_Klasifikasi</label>
-                            <input type="text" name="kode_klasifikasi" class="form-control" placeholder="Kode Klasifikasi" value="{{ $ske->kode_klasifikasi }}">
-                            @if($errors->has('kode_klasifikasi'))
-                                <div class="text-danger">
-                                    {{ $errors->first('kode_klasifikasi')}}
-                                </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Isi</label>
-                            <textarea name="isi" class="form-control" placeholder="Isi Surat">{{ $ske->isi }}</textarea>
-                            @if($errors->has('isi'))
-                                <div class="text-danger">
-                                    {{ $errors->first('isi')}}
-                                </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Tujuan</label>
-                            <input type="text" name="tujuan" class="form-control" placeholder="Tujuan" value="{{ $ske->tujuan }}">
-                            @if($errors->has('tujuan'))
-                                <div class="text-danger">
-                                    {{ $errors->first('tujuan')}}
-                                </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Nomor Surat</label>
-                            <input type="text" name="no_suratkeluar" class="form-control" placeholder="Nomor Surat" value="{{ $ske->no_suratkeluar }}">
-                            @if($errors->has('no_suratkeluar'))
+                        {{ method_field('PUT') }}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Nomor Surat Keluar</label>
+                                <input type="text" name="no_suratkeluar" class="form-control" value="{{ $ske->no_suratkeluar }}" disabled>
+                                @if($errors->has('no_suratkeluar'))
                                 <div class="text-danger">
                                     {{ $errors->first('no_suratkeluar')}}
                                 </div>
-                            @endif
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Surat Keluar</label>
+                                <input type="date" class="form-control" name="tgl_suratkeluar" id="tgl_suratkeluar" value="{{ $ske->tgl_suratkeluar }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Perihal</label>
+                                <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal" value="{{ $ske->perihal }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran</label>
+                                <input type="text" class="form-control" placeholder="lampiran" name="lampiran" id="lampiran" value="{{ $ske->lampiran }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tujuan Surat</label>
+                                <input type="text" name="tujuan_surat" class="form-control" placeholder="Tujuan Surat" value="{{ $ske->tujuan_surat }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Keterangan</label>
+                                <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" value="{{ $ske->keterangan }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Edit Gambar</label>
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        @php $allImages = explode(',', $ske->gambar); @endphp
+                                        @foreach($allImages as $Image)
+                                        <td align="center">
+                                            <a class="image-popup-vertical-fit" href="/uploads/suratkeluar/{{$Image}}">
+                                                <img width="150px" src="/uploads/suratkeluar/{{$Image}}">
+                                            </a>
+                                        </td>
+                                        @endforeach
+                                        <td style="vertical-align:middle"><div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile">
+                                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tanggal Surat</label>
-                            <input type="date" name="tgl_surat" class="form-control" value="{{ $ske->tgl_surat }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Tanggal Input Surat</label>
-                            <input type="date" name="tgl_catat" class="form-control" value="{{ $ske->tgl_catat }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Keterangan</label>
-                            <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" value="{{ $ske->keterangan }}">
-                            @if($errors->has('keterangan'))
-                                <div class="text-danger">
-                                    {{ $errors->first('keterangan')}}
+                        <!-- Footer -->
+                        <div class="card-footer">
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <a href="{{url('suratkeluar')}}" class="btn btn-danger" style="margin-left: 20px;">Batal</a>
                                 </div>
-                            @endif
                         </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Simpan">
-                        </div>
-                    </form>
+                        <!-- End Footer -->
+                </form>
                     @endforeach
-                </div>
             </div>
         </div>
-    </body>
-</html>
+    </section>
+    <!-- /.content -->
+
+@endsection

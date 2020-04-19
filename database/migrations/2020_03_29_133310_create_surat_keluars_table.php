@@ -15,16 +15,16 @@ class CreateSuratKeluarsTable extends Migration
     {
         Schema::create('suratkeluar', function (Blueprint $table) {
             $table->increments('id_suratkeluar',10);
-            $table->integer('no_agenda');
-            $table->string('tujuan',100);
-            $table->string('no_suratkeluar',50);
-            $table->longtext('isi');
-            $table->string('kode_klasifikasi',30);
-            $table->date('tgl_surat');
-            $table->date('tgl_catat');
-            $table->string('file');
-            $table->string('keterangan');
-            $table->bigInteger('id')->nullable()->default(null);
+            $table->string('no_suratkeluar',30);
+            $table->date('tgl_suratkeluar');
+            $table->string('perihal', 30);
+            $table->string('lampiran', 10);
+            $table->string('tujuan_surat',100);
+            $table->text('keterangan');
+            $table->string('gambar')->nullable();
+            $table->char('nip', 9);
+            $table->string('kode_jenissurat', 30);
+            $table->string('kode_jenjang', 30);
             $table->timestamps();
         });
     }

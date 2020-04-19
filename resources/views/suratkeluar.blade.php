@@ -35,26 +35,26 @@
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>No.Agenda</th>
-                                <th>Kode Klasifikasi</th>
-                                <th>Isi Ringkas</th>
-                                <th>File</th>
-                                <th>Tujuan</th>
-                                <th>No.Surat</th>
-                                <th>Tanggal Surat</th>
+                                <th>No</th>
+                                <th>No. Surat Keluar</th>
+                                <th>Tgl. Surat Keluar</th>
+                                <th>Lampiran</th>
+                                <th>Perihal</th>
+                                <th>Tujuan Surat</th>
+                                <!-- <th>File</th> -->
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($suratkeluar as $ske)
                             <tr>
-                                <td>{{ $ske->no_agenda }}</td>
-                                <td>{{ $ske->kode_klasifikasi }}</td>
-                                <td>{{ $ske->isi }}</td>
-                                <td>{{ $ske->file }}</td>
-                                <td>{{ $ske->tujuan }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $ske->no_suratkeluar }}</td>
-                                <td>{{ $ske->tgl_surat }}</td>
+                                <td>{{ $ske->tgl_suratkeluar }}</td>
+                                <td>{{ $ske->lampiran }}</td>
+                                <td>{{ $ske->perihal }}</td>
+                                <!-- <td><img width="150px" src="{{ url('uploads/suratkeluar/'.$ske->gambar) }}"></td> -->
+                                <td>{{ $ske->tujuan_surat }}</td>
                                 <td>
                                     <a href="suratkeluar/edit/{{ $ske->id_suratkeluar }}" class="btn btn-warning">Sunting</a>
                                     <a href="suratkeluar/hapus/{{ $ske->id_suratkeluar }}" class="btn btn-danger">Hapus</a>
