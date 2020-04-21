@@ -16,14 +16,6 @@ class JenisSuratController extends Controller
 
     public function index()
     {
-        // $alluser = Jenis::getalluser();
-        // $nama = Auth::user()->name;
-        // // $admin = $this->modeluser->ambiladmin($nama);
-  	    // // $data['coba'] = $admin;
-        // $data['nama'] = $nama;
-        // $data['jenissurat'] = $alluser;
-        // return view('jenis_surat', ['inputjenis' => $data]);
-
         $jns = Jenis::all();
         return view('jenis_surat')->with('jenis', $jns);
     }
@@ -80,24 +72,7 @@ class JenisSuratController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $kode = $id;
-        $nama = $request->input('nama');
-
-        $result = Jenis::where('kode_jenissurat',$kode)->update([
-            'kode_jenissurat' => $kode,
-            'nama_jenissurat' => $nama
-        ]);
-
-        $data = NULL;
-        if($result){
-            return view('jenis_surat');
-        }else{
-
-            $nama = Auth::user()->name;
-            $data['nama'] = $nama;
-            $data['result'] = "Gagal";
-            return view('jenis_surat', ['inputjenis' => $data]);
-        }
+        
     }
 
     /**
@@ -107,15 +82,15 @@ class JenisSuratController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode)
     {
         $this->validate($request,[
             'kodejns' => 'required',
             'namajns' => 'required',
         ]);
 
-        $jns = Jenis::find($id);
-
+        $jns = Jenis::where('kode_jenissurat',$kode)->first();
+        
         $jns->kode_jenissurat = $request->input('kodejns');
         $jns->nama_jenissurat = $request->input('namajns');
 
@@ -130,17 +105,11 @@ class JenisSuratController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
-        $result = Jenis::DeleteUser($id);
+        $jns = Jenis::where('kode_jenissurat',$kode)->first();
+        $jns->delete();
 
-        if($result){
-            return redirect()->back();
-        }else{
-            $nama = Auth::user()->name;
-            $data['nama'] = $nama;
-            $data['result'] = "Gagal";
-            return view('jenis_surat', ['inputjenis' => $data]);
-        }
+        return redirect('jenissurat')->with('success', 'Data Deleted');
     }
 }

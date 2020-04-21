@@ -73,7 +73,7 @@
                                 <td>{{ $jnsdata->nama_jenissurat }}</td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="btn btn-success edit">Edit</a>
-                                    <a href="#" data-toggle="modal" class="btn btn-danger">Delete</a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -85,7 +85,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Jenis Surat</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
@@ -120,7 +120,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Jenis Surat</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -151,68 +151,34 @@
                         </div>
                         {{-- End Edit Modal --}}
 
-                    {{-- 
-                    <div>
-                        <table class="table table-bordered table-hover table-striped" id="dataTable1">
-                            <thead>
-                                <tr style="text-align: center;">
-                                    <th>No</th>
-                                    <th>Kode Jenis</th>
-                                    <th>Nama Jenis</th>
-                                    <th colspan="2">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($inputjenis as $ambil)
-                                    <tr style="text-align: center;">
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ambil->kode_jenissurat }}</td>
-                                        <td>{{ $ambil->nama_jenissurat }}</td>
-                                        <td width="20px;"><a href="#edit-data{{$ambil->kode_jenissurat}}" data-toggle="modal" class="btn btn-warning">Edit</a></td>
-                                        <td width="20px;"><a href="jenissurat/hapus/{{ $ambil->kode_jenissurat }}" class="btn btn-danger">Delete</a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div> --}}
-                </div>
-
-                {{-- @foreach ($inputjenis as $ambil) 
-                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-                    id="edit-data{{$ambil->kode_jenissurat}}" width="75%" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                <h4 class="modal-title">Ubah Data</h4>
+                        <!-- Start Delete Modal -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Jenis Surat</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    <form role="Insertform" action="/jenissurat" method="post" id="deleteForm" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                                
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <p>Apa yakin ingin menghapus data?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Ya, Hapus Data</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <form class="form-horizontal" action="{{url('jenissurat/edit')}}/{{$ambil->kode_jenissurat}}"
-                                method="post" enctype="multipart/form-data" role="form">
-                                {{ csrf_field() }}
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label class="col-lg-3 col-sm-1">Kode Jenis Surat</label>
-                                        <div class="col-lg-12">
-                                            <input type="text" class="form-control" id="jenjang" name="kode" placeholder="Kode Jenis Surat" value="{{$ambil->kode_jenissurat}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 col-sm-1">Nama Jenis Surat</label>
-                                        <div class="col-lg-12">
-                                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Jenis Surat"
-                                                value="{{$ambil->nama_jenissurat}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
-                                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
-                                </div>
-                            </form>
                         </div>
-                    </div>
+                        {{-- End Delete Modal --}}
                 </div>
-                @endforeach --}}
 
                 <!-- Footer -->
                 <div class="card-footer">
@@ -251,10 +217,27 @@
                 $('#kodejns').val(data[1]);
                 $('#namajns').val(data[2]);
                 
-                $('#editForm').attr('action', '/jenissurat/'+data[0]);
+                $('#editForm').attr('action', '/jenissurat/'+data[1]);
                 $('#editModal').modal('show');
             });
             //End Edit Record
+
+            //Start Delete Record
+            table.on('click', '.delete', function() {
+                
+                $tr = $(this).closest('tr');
+                if($($tr).hasClass('child')) 
+                {
+                    $tr = $tr.prev('.parent');
+                }
+
+                var data = table.row($tr).data();
+                console.log(data);
+                
+                $('#deleteForm').attr('action', '/jenissurat/'+data[1]);
+                $('#deleteModal').modal('show');
+            });
+            //End Delete Record
         });
     </script>
 @endsection
