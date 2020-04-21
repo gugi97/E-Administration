@@ -23,7 +23,24 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            {{-- General Form Elements --}}
+            {{-- ALERT MESSAGE --}}
+            @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            @if(Session::has('success'))
+            <div class="alert alert-success">
+                <p style="margin-bottom: 0px;">{{ Session::get('success') }}</p>
+            </div>
+            @endif
+            {{-- END ALERT MESSAGE --}}
+            
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
@@ -33,27 +50,108 @@
 
                 <!-- form start -->
                 <div class="card-body">
-                    <form role="Insertform" method="post" action="{{url('jenissurat/insert')}}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                    <!-- Button trigger Add modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Tambah Data
+                    </button>
+                    {{-- End Trigger Button --}}
+                    <br><br>
+                    <table id="datatable" class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th scope="col">No</th>
+                                <th scope="col">Kode Jenis</th>
+                                <th scope="col">Nama Jenis</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($jenis as $jnsdata)
+                            <tr style="text-align: center;">    
+                                <th>{{ $loop->iteration }}</th>
+                                <td>{{ $jnsdata->kode_jenissurat }}</td>
+                                <td>{{ $jnsdata->nama_jenissurat }}</td>
+                                <td>
+                                    <a href="#" data-toggle="modal" class="btn btn-success edit">Edit</a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                        <div class="form-group">
-                            <label>Kode Jenis</label>
-                            <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kdjns" value="" id="kdjns" required>
-                        </div>
+                    <!-- Start Add Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <form role="Insertform" action="{{ action('JenisSuratController@store') }}" method="post" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        {{ csrf_field() }}
 
-                        <div class="form-group">
-                            <label>Nama Jenis</label>
-                            <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" value="" id="namajns" required>
+                                        <div class="form-group">
+                                            <label>Kode Jenis</label>
+                                            <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nama Jenis</label>
+                                            <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" required>
+                                        </div>
+                                            
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="form-actions">
-                            <center>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="{{url('jenissurat')}}" class="btn btn-danger" style="margin-left: 20px;">Cancel</a>
-                            </center>
+                    </div>
+                    {{-- End Add Modal --}}
+
+                    <!-- Start Edit Modal -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    <form role="Insertform" action="/jenissurat" method="post" id="editForm" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            {{ csrf_field() }}
+                                            {{ method_field('PUT') }}
+    
+                                            <div class="form-group">
+                                                <label>Kode Jenis</label>
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" id="kodejns" required>
+                                                </div>
+    
+                                            <div class="form-group">
+                                                <label>Nama Jenis</label>
+                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" id="namajns" required>
+                                            </div>
+                                                
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Update Data</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                    <br>
-                    
+                        {{-- End Edit Modal --}}
+
+                    {{-- 
                     <div>
                         <table class="table table-bordered table-hover table-striped" id="dataTable1">
                             <thead>
@@ -76,10 +174,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
                 </div>
 
-                @foreach ($inputjenis as $ambil) 
+                {{-- @foreach ($inputjenis as $ambil) 
                 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
                     id="edit-data{{$ambil->kode_jenissurat}}" width="75%" class="modal fade">
                     <div class="modal-dialog">
@@ -114,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @endforeach --}}
 
                 <!-- Footer -->
                 <div class="card-footer">
@@ -122,8 +220,41 @@
                 </div>
                 <!-- End Footer -->
             </div>
-            {{-- End General Form --}}
         </div>
     </section>
     <!-- /.content -->
+
+    <script src="/adminlte/plugins/jquery/jquery.slim.min.js"></script>
+    <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
+    <script src="/adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js" defer></script>
+    <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            
+            var table = $('#datatable').DataTable();
+
+            //Start Edit Record
+            table.on('click', '.edit', function() {
+                
+                $tr = $(this).closest('tr');
+                if($($tr).hasClass('child')) {
+                    $tr = $tr.prev('.parent');
+                }
+
+                var data = table.row($tr).data();
+                console.log(data);
+
+                $('#kodejns').val(data[1]);
+                $('#namajns').val(data[2]);
+                
+                $('#editForm').attr('action', '/jenissurat/'+data[0]);
+                $('#editModal').modal('show');
+            });
+            //End Edit Record
+        });
+    </script>
 @endsection

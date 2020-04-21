@@ -16,13 +16,16 @@ class JenisSuratController extends Controller
 
     public function index()
     {
-        $alluser = Jenis::getalluser();
-        $nama = Auth::user()->name;
-        // $admin = $this->modeluser->ambiladmin($nama);
-  	    // $data['coba'] = $admin;
-        $data['nama'] = $nama;
-        $data['jenissurat'] = $alluser;
-        return view('jenis_surat', ['inputjenis' => $data]);
+        // $alluser = Jenis::getalluser();
+        // $nama = Auth::user()->name;
+        // // $admin = $this->modeluser->ambiladmin($nama);
+  	    // // $data['coba'] = $admin;
+        // $data['nama'] = $nama;
+        // $data['jenissurat'] = $alluser;
+        // return view('jenis_surat', ['inputjenis' => $data]);
+
+        $jns = Jenis::all();
+        return view('jenis_surat')->with('jenis', $jns);
     }
 
     /**
@@ -32,7 +35,7 @@ class JenisSuratController extends Controller
      */
     public function create()
     {
-        //
+         //
     }
 
     /**
@@ -43,7 +46,19 @@ class JenisSuratController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'kodejns' => 'required',
+            'namajns' => 'required',
+        ]);
+
+        $jns = new Jenis;
+
+        $jns->kode_jenissurat = $request->input('kodejns');
+        $jns->nama_jenissurat = $request->input('namajns');
+
+        $jns->save();
+
+        return redirect('jenissurat')->with('success', 'Data Saved');
     }
 
     /**
@@ -54,7 +69,7 @@ class JenisSuratController extends Controller
      */
     public function show($id)
     {
-        //
+         //
     }
 
     /**
@@ -94,7 +109,19 @@ class JenisSuratController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'kodejns' => 'required',
+            'namajns' => 'required',
+        ]);
+
+        $jns = Jenis::find($id);
+
+        $jns->kode_jenissurat = $request->input('kodejns');
+        $jns->nama_jenissurat = $request->input('namajns');
+
+        $jns->save();
+
+        return redirect('jenissurat')->with('success', 'Data Update');
     }
 
     /**
@@ -103,7 +130,7 @@ class JenisSuratController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $result = Jenis::DeleteUser($id);
 

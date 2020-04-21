@@ -8,6 +8,10 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="/adminlte/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- DataTables CDN -->
+    <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -16,6 +20,9 @@
     <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -258,7 +265,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('/jenissurat')}}" class="nav-link {{ set_active('jenissurat') }}">
+                                    <a href="{{url('/jenissurat')}}" class="nav-link {{ set_active('jenissurat.index') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Entry Jenis Surat</p>
                                     </a>
@@ -430,7 +437,7 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+    
     <!-- jQuery -->
     <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -441,10 +448,11 @@
     <script src="/adminlte/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/adminlte/js/demo.js"></script>
+    
     <script type="text/javascript">
-    $(document).ready(function () {
-        bsCustomFileInput.init();
-    });
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
     </script>
 </body>
 

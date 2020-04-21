@@ -16,7 +16,7 @@ class CreateJenisSuratTable extends Migration
         Schema::create('jenis_surat', function (Blueprint $table) {
             $table->string('kode_jenissurat', 1)->unique();
             $table->string('nama_jenissurat', 50);
-            $table->string('kd_histori', 3);
+            $table->string('kd_histori', 3)->nullable();
         });
     }
 

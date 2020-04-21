@@ -14,9 +14,7 @@ Route::get('suratmasuk/edit/{id_suratmasuk}', 'SuratMasukController@edit');
 Route::put('suratmasuk/update/{id_suratmasuk}', 'SuratMasukController@update');
 Route::get('suratmasuk/hapus/{id_suratmasuk}', 'SuratMasukController@delete');
 
-Route::get('jenissurat', 'JenisSuratController@index')->name('jenissurat');
-Route::post('jenissurat/edit/{kode}', 'JenisSuratController@edit');
-Route::get('jenissurat/hapus/{id}', 'JenisSuratController@delete');
+Route::resource('jenissurat', 'JenisSuratController');
 
 Route::get('suratkeluar', 'SuratKeluarController@index')->name('suratkeluar');
 Route::get('suratkeluar/tambah', 'SuratKeluarController@tambah');
