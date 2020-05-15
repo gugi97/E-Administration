@@ -184,6 +184,14 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/unitsurat')}}" class="nav-link {{ set_active('unitsurat.index') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Entry Unit Surat</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         {{-- END Klasifikasi --}}
                         <li class="nav-item has-treeview">

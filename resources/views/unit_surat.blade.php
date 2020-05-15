@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Unit Induk</h1>
+                    <h1>Unit Surat</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Unit Induk</li>
+                        <li class="breadcrumb-item active">Unit Surat</li>
                     </ol>
                 </div>
             </div>
@@ -44,7 +44,7 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Input Unit Induk</h3>
+                    <h3 class="card-title">Input Unit Surat</h3>
                 </div>
                 <!-- End Card Header -->
 
@@ -60,17 +60,17 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col">Kode Unit Induk</th>
+                                <th scope="col">Kode Unit Surat</th>
                                 <th scope="col">Nama Unit</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($induk as $untinduk)
+                            @foreach ($surat as $untsurat)
                             <tr style="text-align: center;">    
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $untinduk->kd_unit }}</td>
-                                <td>{{ $untinduk->nama_unit }}</td>
+                                <td>{{ $untsurat->kode_unitsurat }}</td>
+                                <td>{{ $untsurat->nama_unitsurat }}</td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="btn btn-success edit">Edit</a>
                                     <a href="#" data-toggle="modal" class="btn btn-danger delete">Delete</a>
@@ -85,23 +85,23 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Unit Induk</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Unit Surat</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                <form role="Insertform" action="{{ action('UnitIndukController@store') }}" method="post" enctype="multipart/form-data">
+                                <form role="Insertform" action="{{ action('UnitSuratController@store') }}" method="post" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
 
                                         <div class="form-group">
-                                            <label>Kode Unit Induk</label>
-                                            <input type="text" class="form-control" placeholder="Kode Unit Induk" name="untinduk" required>
+                                            <label>Kode Unit Surat</label>
+                                            <input type="text" class="form-control" placeholder="Kode Unit Surat" name="unitsurat" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Nama Unit Induk</label>
-                                            <input type="text" class="form-control" placeholder="Nama Unit Induk" name="nminduk" required>
+                                            <label>Nama Unit Surat</label>
+                                            <input type="text" class="form-control" placeholder="Nama Unit Surat" name="namasurat" required>
                                         </div>
                                             
                                     </div>
@@ -120,24 +120,24 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Unit Induk</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Unit Surat</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                    <form role="Insertform" action="/unitinduk" method="post" id="editForm" enctype="multipart/form-data">
+                                    <form role="Insertform" action="/unitsurat" method="post" id="editForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('PUT') }}
     
                                             <div class="form-group">
-                                                <label>Kode Unit Induk</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="untinduk" id="untinduk" required>
+                                                <label>Kode Unit Surat</label>
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="unitsurat" id="unitsurat" required>
                                                 </div>
     
                                             <div class="form-group">
-                                                <label>Nama Unit Induk</label>
-                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="nminduk" id="nminduk" required>
+                                                <label>Nama Unit Surat</label>
+                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namasurat" id="namasurat" required>
                                             </div>
                                                 
                                         </div>
@@ -156,12 +156,12 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Unit Induk</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Unit Surat</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                    <form role="Insertform" action="/unitinduk" method="post" id="deleteForm" enctype="multipart/form-data">
+                                    <form role="Insertform" action="/unitsurat" method="post" id="deleteForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
@@ -214,10 +214,10 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#untinduk').val(data[1]);
-                $('#nminduk').val(data[2]);
+                $('#unitsurat').val(data[1]);
+                $('#namasurat').val(data[2]);
                 
-                $('#editForm').attr('action', '/unitinduk/'+data[1]);
+                $('#editForm').attr('action', '/unitsurat/'+data[1]);
                 $('#editModal').modal('show');
             });
             //End Edit Record
@@ -234,7 +234,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
                 
-                $('#deleteForm').attr('action', '/unitinduk/'+data[1]);
+                $('#deleteForm').attr('action', '/unitsurat/'+data[1]);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record
