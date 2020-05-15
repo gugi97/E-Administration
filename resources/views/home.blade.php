@@ -31,7 +31,7 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{$sm_count}}</h3>
-                
+
                             <p>Surat Masuk</p>
                         </div>
                         <div class="icon">
@@ -48,7 +48,7 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>{{$sk_count}}</h3>
-                
+
                             <p>Surat Keluar</p>
                         </div>
                         <div class="icon">
@@ -65,7 +65,6 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>44</h3>
-                
                             <p>User Registrations</p>
                         </div>
                         <div class="icon">
@@ -82,7 +81,7 @@
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>65</h3>
-                
+
                             <p>Unique Visitors</p>
                         </div>
                         <div class="icon">
@@ -103,7 +102,6 @@
                     {{ session('status') }}
                 </div>
                 @endif
-
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo harum, voluptatibus sunt quod a neque eum, itaque impedit, quasi quaerat porro veritatis qui saepe magnam mollitia. Quaerat cumque fugit aliquid.
             </div>
             <!-- /.card-body -->
@@ -117,4 +115,5 @@
 
     </section>
     <!-- /.content -->
+
 @endsection
