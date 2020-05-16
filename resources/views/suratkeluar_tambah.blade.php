@@ -67,8 +67,8 @@
                             <select class="form-control" name="jabat" required>
                                 <option>--------</option>
                                 @foreach ($alljabatan as  $ambil)
-                                    <option value="{{$ambil->kd_unit}}/{{$ambil->kode_unitsurat}}/{{$ambil->kd_jenjang}}">
-                                        {{$ambil->kd_unit}}/{{$ambil->kode_unitsurat}}/{{$ambil->kd_jenjang}}
+                                    <option value="{{$ambil->kode_unitinduk}}/{{$ambil->kode_unitsurat}}/{{$ambil->kode_jenjang}}">
+                                        {{$ambil->kode_unitinduk}}/{{$ambil->kode_unitsurat}}/{{$ambil->kode_jenjang}}
                                     </option>
                                 @endforeach
                             </select>
