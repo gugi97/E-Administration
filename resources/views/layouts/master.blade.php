@@ -152,7 +152,7 @@
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-header">MASTER</li>
                         <li class="nav-item">
-                            <a href="{{ url('/') }}" class="nav-link {{ set_active('home') }}">
+                            <a href="{{ url('/') }}" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Beranda
@@ -170,7 +170,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('/jenissurat')}}" class="nav-link {{ set_active('jenissurat.index') }}">
+                                    <a href="{{url('/jenissurat')}}" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Entry Jenis Surat</p>
                                     </a>
@@ -178,7 +178,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('/unitinduk')}}" class="nav-link {{ set_active('unitinduk.index') }}">
+                                    <a href="{{url('/unitinduk')}}" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Entry Unit Induk</p>
                                     </a>
@@ -186,7 +186,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('/unitsurat')}}" class="nav-link {{ set_active('unitsurat.index') }}">
+                                    <a href="{{url('/unitsurat')}}" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Entry Unit Surat</p>
                                     </a>
@@ -236,13 +236,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                    <a href="{{ url('/suratmasuk') }}" class="nav-link {{ set_active('suratmasuk') }}">
+                                    <a href="{{ url('/suratmasuk') }}" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Masuk</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/suratkeluar') }}" class="nav-link {{ set_active('suratkeluar') }}">
+                                    <a href="{{ url('/suratkeluar') }}" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keluar</p>
                                     </a>
