@@ -17,6 +17,7 @@ Route::get('suratmasuk/hapus/{id_suratmasuk}', 'SuratMasukController@delete');
 Route::resource('jenissurat', 'JenisSuratController');
 Route::resource('unitinduk', 'UnitIndukController');
 Route::resource('unitsurat', 'UnitSuratController');
+Route::resource('jenjangjabatan', 'JenjangJabatanController');
 
 Route::get('suratkeluar', 'SuratKeluarController@index')->name('suratkeluar');
 Route::get('suratkeluar/tambah', 'SuratKeluarController@tambah');

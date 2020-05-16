@@ -192,6 +192,14 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/jenjangjabatan')}}" class="nav-link {{ set_active('jenjangjabatan.index') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Entry Jenjang Jabatan</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         {{-- END Klasifikasi --}}
                         <li class="nav-item has-treeview">

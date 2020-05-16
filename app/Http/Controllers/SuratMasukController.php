@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SuratMasuk;
 use App\Jenis;
-use App\Jabatan;
+use App\JenjangJabatan;
 use App\User;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +30,7 @@ class SuratMasukController extends Controller
     public function tambah()
     {
         $alljenis = Jenis::getalluser();
-        $alljabatan = Jabatan::getalluser();
+        $alljabatan = JenjangJabatan::getalluser();
         $sm_count = DB::table('suratmasuk')->count();
 		$no_urut = $sm_count + 1;
         $nama = Auth::user()->name;
