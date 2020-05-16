@@ -21,11 +21,10 @@ class CreateSuratKeluarsTable extends Migration
             $table->string('lampiran', 10);
             $table->string('tujuan_surat',100);
             $table->text('keterangan');
-            $table->string('gambar')->nullable();
+            $table->text('gambar')->nullable();
             $table->char('nip', 9);
             $table->string('kode_jenissurat', 30);
             $table->string('kode_jenjang', 30);
-            $table->timestamps();
         });
     }
 
