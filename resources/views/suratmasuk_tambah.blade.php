@@ -31,6 +31,18 @@
                             <h3 align="center">Input Surat Masuk</h3>
                         </div>
                         <!-- End Card Header -->
+                        <!-- Menampilkan error validasi -->
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Peringatan!</strong> Ada yang bermasalah dengan inputan anda.<br><br>
+                                <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                        <!-- Akhir Validasi -->
                         <!-- form start -->
                         <form role="form" method="post" action="{{url('suratmasuk/store')}}" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -62,7 +74,7 @@
 
                                 <div class="form-group">
                                     <label>No Urut</label>
-                                    <input type="text" class="form-control" placeholder="Sesuai surat yang diterima" name="urut" value="{{$no_urut}}" id="urut" required>
+                                    <input type="text" class="form-control" placeholder="Sesuai surat yang diterima" name="urut" value="{{$no_urut}}" id="urut">
                                 </div>
 
                                 <div class="form-group">
@@ -77,49 +89,46 @@
 
                                 <div class="form-group">
                                     <label>Tahun</label>
-                                    <input type="text" class="form-control" placeholder="Dua Digit Terakhir, ex : 2020(20)" required name="tahun" value="" id="tahun">
+                                    <input type="text" class="form-control" placeholder="Dua Digit Terakhir, ex : 2020(20)" name="tahun" value="{{ old('tahun') }}" id="tahun" maxlength="2">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tanggal Surat</label>
-                                    <input type="date" class="form-control" required name="tglsurat" id="tglsurat">
+                                    <input type="date" class="form-control" name="tglsurat" id="tglsurat" value="{{ old('tglsurat') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tanggal Terima</label>
-                                    <input type="date" class="form-control" required name="tglterima" id="tglterima">
+                                    <input type="date" class="form-control" name="tglterima" id="tglterima" value="{{ old('tglterima') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Pengirim</label>
-                                    <input type="text" class="form-control" placeholder="Pengirim" required name="pengirim" id="pengirim">
+                                    <input type="text" class="form-control" placeholder="Pengirim" name="pengirim" id="pengirim" value="{{ old('pengirim') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Perihal</label>
-                                    <input type="text" class="form-control" placeholder="Perihal" required name="perihal" id="perihal">
+                                    <input type="text" class="form-control" placeholder="Perihal" name="perihal" id="perihal" value="{{ old('perihal') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Keterangan</label>
-                                    <input type="text" class="form-control" placeholder="Keterangan" required name="ket" id="ket">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="ket" id="ket" value="{{ old('ket') }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Upload Scan</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
+                                    <label for="exampleInputFile">Upload Gambar</label>
+                                    <div class="input-group control-group increment" >
+                                        <input type="file" name="gambar[]" class="form-control" style="padding:3px;" id="gambar" multiple/>
                                     </div>
                                 </div>
                             </div>
                             <!-- Footer -->
                             <div class="card-footer">
                                     <div class="row">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="{{url('suratmasuk/tambah')}}" class="btn btn-danger" style="margin-left: 20px;">Cancel</a>
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                                        <a href="{{url('suratmasuk/tambah')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
                             <!-- End Footer -->

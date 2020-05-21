@@ -27,10 +27,22 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title"><a href="/suratmasuk" class="btn btn-primary">Kembali</a></h3>
+                    <h3 class="card-title"><a href="/suratmasuk" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a></h3>
                     <h3 align="center">Edit Surat Masuk</h3>
                 </div>
                 <!-- End Card Header -->
+                <!-- Menampilkan error validasi -->
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Peringatan!</strong> Ada yang bermasalah dengan inputan anda.<br><br>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                <!-- Akhir Validasi -->
                 <!-- form start -->
                 @foreach($suratmasuk as $sms)
                 <form role="form" method="post" action="{{url('suratmasuk/update')}}/{{$sms->id_suratmasuk}}" enctype="multipart/form-data">
@@ -38,7 +50,7 @@
                     {{ method_field('PUT') }}
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Nomor Surat</label>
+                            <label>Nomor Surat Masuk</label>
                             <input type="text" name="no_surat" class="form-control" placeholder="Nomor Surat" value="{{ $sms->no_surat }}" disabled>
                             @if($errors->has('no_surat'))
                             <div class="text-danger">
@@ -49,45 +61,61 @@
                 
                         <div class="form-group">
                             <label>Tanggal Surat</label>
-                            <input type="date" class="form-control" required name="tglsurat" id="tglsurat" value="{{ $sms->tgl_surat }}">
+                            <input type="date" class="form-control" name="tglsurat" id="tglsurat" value="{{ $sms->tgl_surat }}">
                         </div>
                 
                         <div class="form-group">
                             <label>Tanggal Terima</label>
-                            <input type="date" class="form-control" required name="tglterima" id="tglterima" value="{{ $sms->tgl_terima }}">
+                            <input type="date" class="form-control" name="tglterima" id="tglterima" value="{{ $sms->tgl_terima }}">
                         </div>
                 
                         <div class="form-group">
                             <label>Pengirim</label>
-                            <input type="text" class="form-control" placeholder="Pengirim" required name="pengirim" id="pengirim" value="{{ $sms->pengirim }}">
+                            <input type="text" class="form-control"  name="pengirim" id="pengirim" value="{{ $sms->pengirim }}">
                         </div>
                 
                         <div class="form-group">
                             <label>Perihal</label>
-                            <input type="text" class="form-control" placeholder="Perihal" required name="perihal" id="perihal" value="{{ $sms->perihal }}">
+                            <input type="text" class="form-control"  name="perihal" id="perihal" value="{{ $sms->perihal }}">
                         </div>
                 
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <input type="text" class="form-control" placeholder="Keterangan" required name="ket" id="ket" value="{{ $sms->keterangan }}">
+                            <input type="text" class="form-control"  name="ket" id="ket" value="{{ $sms->keterangan }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputFile">Upload Scan</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="gambar" id="exampleInputFile" value="{{ $sms->gambar }}">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                            </div>
+                            <label for="exampleInputFile">Edit Gambar</label>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    @php $allImages = explode(',', $sms->gambar); @endphp
+                                    @foreach($allImages as $Image)
+                                    <input type="hidden" name="hidden_name[]" value="{{ $Image }}" multiple/>
+                                    <td align="center">
+                                        <a class="image-popup-vertical-fit" href="/{{$sms->lokasi}}/{{$Image}}">
+                                            <img width="150px" src="/{{$sms->lokasi}}/{{$Image}}">
+                                        </a>
+                                    </td>
+                                    @endforeach
+                                    <td style="vertical-align:middle">
+                                    <div class="input-group">
+                                        <label for="exampleInputFile">Update Gambar</label>
+                                        <div class="input-group control-group increment">
+                                        <input type="file" name="gambarbaru[]" class="form-control" style="padding:3px;" id="gambarbaru" multiple/>
+                                        <input type="hidden" name="hidden_tujuan" value="{{ $sms->lokasi }}" />
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                         <!-- Footer -->
                         <div class="card-footer">
-                                <div class="row">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{url('suratmasuk')}}" class="btn btn-danger" style="margin-left: 20px;">Batal</a>
-                                </div>
+                            <div class="row">
+                                <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                                <a href="{{url('suratmasuk')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
+                            </div>
                         </div>
                         <!-- End Footer -->
                 </form>

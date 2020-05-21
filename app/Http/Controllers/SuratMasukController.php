@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\SuratMasuk;
 use App\Jenis;
 use App\JenjangJabatan;
 use App\User;
+use File;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SuratMasukController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,21 +41,37 @@ class SuratMasukController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->hasFile('gambar'))
-        {
-            $file = $request->file('gambar');
-            // $extension = $file->getClientOriginalExtension();
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads/suratmasuk', $filename);
-            $gambar = $filename;
-        }else {
-            return $request;
-            $gambar = '';
-        }
+        $messages = [
+			'required' => ':attribute Wajib di isi!',
+			'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
+			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
+		];
 
-        $urut = $request->input('urut');
+		$this->validate($request,[
+			'urut' => 'required|numeric',
+			'tahun' => 'required|numeric',
+            'tglsurat' => 'required',
+            'tglterima' => 'required',
+			'pengirim' => 'required',
+			'perihal' => 'required',
+			'ket' => 'required',
+			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+        ],$messages);
+        
+        $input=$request->all();
+		$urut = $request->input('urut');
+		$tahun = $request->input('tahun');
+		$gambar=array();
+        if($files = $request->file('gambar')){
+			foreach($files as $file){
+				$name=$file->getClientOriginalName();
+				$tujuan_upload = 'uploads/suratmasuk/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun;
+				$file->move($tujuan_upload,$name);
+				$gambar[]=$name;
+			}
+		}
+
         $bulan = $request->input('bulan');
-        $tahun = $request->input('tahun');
         $jenis = $request->input('jenis');
         $jabat = $request->input('jabat');
         $tglsurat = $request->input('tglsurat');
@@ -73,10 +89,11 @@ class SuratMasukController extends Controller
             'pengirim' => $pengirim,
             'perihal' => $perihal,
             'keterangan' => $keterangan,
-            'gambar' => $gambar,
+            'gambar' => implode(",",$gambar),
             'nip' => $nip,
             'kode_jenissurat' => $jenis,
-            'kode_jenjang' => $jabat
+            'kode_jenjang' => $jabat,
+            'lokasi' => $tujuan_upload
         ]);
 
         return redirect('/suratmasuk');
@@ -92,6 +109,47 @@ class SuratMasukController extends Controller
     
     public function update($id_suratmasuk, Request $request)
     {
+        $messages = [
+			'required' => ':attribute Wajib di isi!',
+			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
+		];
+
+		$this->validate($request,[
+            'tglsurat' => 'required',
+            'tglterima' => 'required',
+			'pengirim' => 'required',
+			'perihal' => 'required',
+			'ket' => 'required',
+			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+        ],$messages);
+
+        $input=$request->all();
+		$hidden_name=array();
+		$gambarbaru=array();
+		if($files = $request->file('gambarbaru')){
+			//Hapus File
+			$gambar_surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
+			$hidden_tujuan = $gambar_surat->lokasi;
+			$lokasifile = $gambar_surat->lokasi;
+			$filename = $lokasifile;
+			File::deleteDirectory($filename);
+			foreach($files as $file){
+				$name=$file->getClientOriginalName();
+				$tujuan_upload=$hidden_tujuan;
+				$file->move($tujuan_upload,$name);
+				$gambarbaru[]=$name;
+			}
+		}else{
+			$gambar_surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
+			$hidden_tujuan = $gambar_surat->lokasi;
+			if($files = $request->input('hidden_name')){
+				foreach($files as $hiddenname){
+					$gambarbaru[] = $hiddenname;
+					$tujuan_upload = $hidden_tujuan;
+				}
+			}
+        }
+
         // update data surat masuk
         SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->update([
 			'tgl_surat' => $request->tglsurat,
@@ -99,7 +157,8 @@ class SuratMasukController extends Controller
 			'pengirim' => $request->pengirim,
 			'perihal' => $request->perihal,
 			'keterangan' => $request->ket,
-			'gambar' => $request->gambar,
+			'gambar' => implode(",",$gambarbaru),
+			'lokasi' => $hidden_tujuan
 		]);
         // alihkan halaman ke halaman suratmasuk
         return redirect('/suratmasuk');
@@ -107,9 +166,17 @@ class SuratMasukController extends Controller
 
     public function delete($id_suratmasuk)
 	{
-		// menghapus data suratkeluar berdasarkan id yang dipilih
+        //Hapus File
+		$gambar_surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
+		$backuplokasi = $gambar_surat->lokasi;
+		$lokasifile = $gambar_surat->lokasi;
+		$filename = $lokasifile.'/';
+		File::deleteDirectory($filename);
+        File::makeDirectory($backuplokasi);
+        
+		// menghapus data suratmasuk berdasarkan id yang dipilih
         SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
-		// alihkan halaman ke halaman suratkeluar
+		// alihkan halaman ke halaman suratmasuk
 		return redirect()->back();
 	}
 }

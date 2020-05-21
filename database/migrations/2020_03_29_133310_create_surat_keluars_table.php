@@ -25,6 +25,7 @@ class CreateSuratKeluarsTable extends Migration
             $table->char('nip', 9);
             $table->string('kode_jenissurat', 30);
             $table->string('kode_jenjang', 30);
+            $table->string('lokasi', 255)->nullable();
         });
     }
 

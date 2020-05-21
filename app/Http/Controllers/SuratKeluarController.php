@@ -6,6 +6,7 @@ use App\SuratKeluar;
 use App\Jenis;
 use App\JenjangJabatan;
 use App\User;
+use File;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,19 +41,37 @@ class SuratKeluarController extends Controller
 
 	public function store(Request $request)
     {
+		$messages = [
+			'required' => ':attribute Wajib di isi!',
+			'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
+			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
+		];
+
+		$this->validate($request,[
+			'urut' => 'required|numeric',
+			'tahun' => 'required|numeric',
+			'tgl_suratkeluar' => 'required',
+			'perihal' => 'required',
+			'lampiran' => 'required',
+			'tujuan_surat' => 'required',
+			'keterangan' => 'required',
+			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+		],$messages);
+
 		$input=$request->all();
+		$urut = $request->input('urut');
+		$tahun = $request->input('tahun');
 		$gambar=array();
 		if($files = $request->file('gambar')){
 			foreach($files as $file){
 				$name=$file->getClientOriginalName();
-				$file->move('uploads/suratkeluar',$name);
+				$tujuan_upload = 'uploads/suratkeluar/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun;
+				$file->move($tujuan_upload,$name);
 				$gambar[]=$name;
 			}
 		}
-		
-		$urut = $request->input('urut');
+
         $bulan = $request->input('bulan');
-        $tahun = $request->input('tahun');
         $jenis = $request->input('jenis');
         $jabat = $request->input('jabat');
 		$tgl_suratkeluar = $request->input('tgl_suratkeluar');
@@ -73,7 +92,8 @@ class SuratKeluarController extends Controller
             'gambar'=>  implode(",",$gambar),
             'nip' => $nip,
             'kode_jenissurat' => $jenis,
-            'kode_jenjang' => $jabat
+			'kode_jenjang' => $jabat,
+			'lokasi' => $tujuan_upload
 		]);
 		
 		// alihkan halaman ke halaman suratkeluar
@@ -90,6 +110,47 @@ class SuratKeluarController extends Controller
 
 	public function update($id_suratkeluar, Request $request)
 	{	
+		$messages = [
+			'required' => ':attribute Wajib di isi!',
+			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
+		];
+
+		$this->validate($request,[
+			'tgl_suratkeluar' => 'required',
+			'perihal' => 'required',
+			'lampiran' => 'required',
+			'tujuan_surat' => 'required',
+			'keterangan' => 'required',
+			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+		],$messages);
+
+		$input=$request->all();
+		$hidden_name=array();
+		$gambarbaru=array();
+		if($files = $request->file('gambarbaru')){
+			//Hapus File
+			$gambar_surat = SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->first();
+			$hidden_tujuan = $gambar_surat->lokasi;
+			$lokasifile = $gambar_surat->lokasi;
+			$filename = $lokasifile;
+			File::deleteDirectory($filename);
+			foreach($files as $file){
+				$name=$file->getClientOriginalName();
+				$tujuan_upload=$hidden_tujuan;
+				$file->move($tujuan_upload,$name);
+				$gambarbaru[]=$name;
+			}
+		}else{
+			$gambar_surat = SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->first();
+			$hidden_tujuan = $gambar_surat->lokasi;
+			if($files = $request->input('hidden_name')){
+				foreach($files as $hiddenname){
+					$gambarbaru[] = $hiddenname;
+					$tujuan_upload = $hidden_tujuan;
+				}
+			}
+        }
+
 		// update data surat keluar
 		SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->update([
 			'tgl_suratkeluar' => $request->tgl_suratkeluar,
@@ -97,7 +158,8 @@ class SuratKeluarController extends Controller
 			'lampiran' => $request->lampiran,
 			'tujuan_surat' => $request->tujuan_surat,
 			'keterangan' => $request->keterangan,
-			'gambar' => $request->gambar
+			'gambar' => implode(",",$gambarbaru),
+			'lokasi' => $hidden_tujuan
 		]);
 		// alihkan halaman ke halaman suratkeluar
 		return redirect('/suratkeluar');
@@ -105,6 +167,14 @@ class SuratKeluarController extends Controller
 
 	public function delete($id_suratkeluar)
 	{
+		//Hapus File
+		$gambar_surat = SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->first();
+		$backuplokasi = $gambar_surat->lokasi;
+		$lokasifile = $gambar_surat->lokasi;
+		$filename = $lokasifile.'/';
+		File::deleteDirectory($filename);
+		File::makeDirectory($backuplokasi);
+
 		// menghapus data suratkeluar berdasarkan id yang dipilih
 		SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->delete();
 

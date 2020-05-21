@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <!-- Button trigger Add modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Tambah Data
+                    <i class="fas fa-plus-circle"></i> Tambah Data
                     </button>
                     {{-- End Trigger Button --}}
                     <br><br>
@@ -62,7 +62,7 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Kode Unit Induk</th>
                                 <th scope="col">Nama Unit</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,8 +72,8 @@
                                 <td>{{ $untinduk->kd_unit }}</td>
                                 <td>{{ $untinduk->nama_unit }}</td>
                                 <td>
-                                    <a href="#" data-toggle="modal" class="btn btn-success edit">Edit</a>
-                                    <a href="#" data-toggle="modal" class="btn btn-danger delete">Delete</a>
+                                    <a href="#" data-toggle="modal" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -96,18 +96,18 @@
 
                                         <div class="form-group">
                                             <label>Kode Unit Induk</label>
-                                            <input type="text" class="form-control" placeholder="Kode Unit Induk" name="untinduk" required>
+                                            <input type="text" class="form-control" placeholder="Kode Unit Induk" name="untinduk" value="{{ old('untinduk') }}" maxlength="3">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Nama Unit Induk</label>
-                                            <input type="text" class="form-control" placeholder="Nama Unit Induk" name="nminduk" required>
+                                            <input type="text" class="form-control" placeholder="Nama Unit Induk" name="nminduk" value="{{ old('nminduk') }}">
                                         </div>
                                             
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -132,18 +132,18 @@
     
                                             <div class="form-group">
                                                 <label>Kode Unit Induk</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="untinduk" id="untinduk" required>
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="untinduk" id="untinduk" maxlength="3" value="{{ old('untinduk') }}">
                                                 </div>
     
                                             <div class="form-group">
                                                 <label>Nama Unit Induk</label>
-                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="nminduk" id="nminduk" required>
+                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="nminduk" id="nminduk" value="{{ old('nminduk') }}">
                                             </div>
                                                 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Update Data</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
                                         </div>
                                     </form>
                                 </div>
@@ -170,8 +170,8 @@
                                             <p>Apa yakin ingin menghapus data?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Ya, Hapus Data</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Ya, Hapus Data</button>
                                         </div>
                                     </form>
                                 </div>

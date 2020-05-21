@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <!-- Button trigger Add modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Tambah Data
+                    <i class="fas fa-plus-circle"></i> Tambah Data
                     </button>
                     {{-- End Trigger Button --}}
                     <br><br>
@@ -62,7 +62,7 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Kode Jenis</th>
                                 <th scope="col">Nama Jenis</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,8 +72,8 @@
                                 <td>{{ $jnsdata->kode_jenissurat }}</td>
                                 <td>{{ $jnsdata->nama_jenissurat }}</td>
                                 <td>
-                                    <a href="#" data-toggle="modal" class="btn btn-success edit">Edit</a>
-                                    <a href="#" data-toggle="modal" class="btn btn-danger delete">Delete</a>
+                                    <a href="#" data-toggle="modal" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -96,18 +96,18 @@
 
                                         <div class="form-group">
                                             <label>Kode Jenis</label>
-                                            <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" required>
+                                            <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" value="{{ old('kodejns') }}" maxlength="1">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Nama Jenis</label>
-                                            <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" required>
+                                            <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" value="{{ old('namajns') }}">
                                         </div>
                                             
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -132,18 +132,18 @@
     
                                             <div class="form-group">
                                                 <label>Kode Jenis</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" id="kodejns" required>
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" id="kodejns" maxlength="1" value="{{ old('kodejns') }}">
                                                 </div>
     
                                             <div class="form-group">
                                                 <label>Nama Jenis</label>
-                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" id="namajns" required>
+                                                <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" id="namajns" value="{{ old('namajns') }}">
                                             </div>
                                                 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Update Data</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
                                         </div>
                                     </form>
                                 </div>
@@ -170,8 +170,8 @@
                                             <p>Apa yakin ingin menghapus data?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Ya, Hapus Data</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Ya, Hapus Data</button>
                                         </div>
                                     </form>
                                 </div>

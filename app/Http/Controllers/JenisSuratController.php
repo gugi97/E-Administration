@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Jenis;
 use App\User;
+use App\Rules\HurufBesar;
 
 class JenisSuratController extends Controller
 {
@@ -39,7 +40,7 @@ class JenisSuratController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'kodejns' => 'required',
+            'kodejns' => ['required', new HurufBesar],
             'namajns' => 'required',
         ]);
 
@@ -85,7 +86,7 @@ class JenisSuratController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'kodejns' => 'required',
+            'kodejns' => ['required', new HurufBesar],
             'namajns' => 'required',
         ]);
 

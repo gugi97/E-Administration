@@ -47,8 +47,12 @@ class JenjangJabatanController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+			'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
+        ];
+        
         $this->validate($request,[
-            'kdjabatan' => 'required',
+            'kdjabatan' => 'required,numeric',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',
@@ -97,8 +101,12 @@ class JenjangJabatanController extends Controller
      */
     public function update(Request $request, $kode)
     {
+        $messages = [
+			'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
+        ];
+
         $this->validate($request,[
-            'kdjabatan' => 'required',
+            'kdjabatan' => 'required,numeric',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',

@@ -27,7 +27,7 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title"><a href="/suratmasuk/tambah" class="btn btn-primary"> + Tambah Data</a></h3>
+                    <h3 class="card-title"><a href="/suratmasuk/tambah" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Data</a></h3>
                     <h3 align="center">Data Surat Masuk</h3>
                 </div>
                 <!-- End Card Header -->
@@ -42,7 +42,7 @@
                                 <th>Pengirim</th>
                                 <th>Perihal</th>
                                 <th>Keterangan</th>
-                                <th>Opsi</th>
+                                <th colspan="2">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,9 +55,11 @@
                                 <td>{{ $sms->pengirim }}</td>
                                 <td>{{ $sms->perihal }}</td>
                                 <td>{{ $sms->keterangan }}</td>
-                                <td>
-                                    <a href="suratmasuk/edit/{{ $sms->id_suratmasuk }}" class="btn btn-warning">Sunting</a>
-                                    <a href="suratmasuk/hapus/{{ $sms->id_suratmasuk }}" class="btn btn-danger">Hapus</a>
+                                <td align="center">
+                                    <a href="suratmasuk/edit/{{ $sms->id_suratmasuk }}"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td align="center">
+                                    <a href="suratmasuk/hapus/{{ $sms->id_suratmasuk }}"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             @endforeach

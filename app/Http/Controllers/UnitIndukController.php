@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\UnitInduk;
 use App\User;
+use App\Rules\HurufBesar;
 
 class UnitIndukController extends Controller
 {
@@ -44,7 +45,7 @@ class UnitIndukController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'untinduk' => 'required',
+            'untinduk' => ['required', new HurufBesar],
             'nminduk' => 'required',
         ]);
 
@@ -90,7 +91,7 @@ class UnitIndukController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'untinduk' => 'required',
+            'untinduk' => ['required', new HurufBesar],
             'nminduk' => 'required',
         ]);
 

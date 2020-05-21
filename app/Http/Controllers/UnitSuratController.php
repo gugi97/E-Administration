@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\UnitSurat;
 use App\User;
+use App\Rules\HurufBesar;
 
 class UnitSuratController extends Controller
 {
@@ -44,7 +45,7 @@ class UnitSuratController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'unitsurat' => 'required',
+            'unitsurat' => ['required', new HurufBesar],
             'namasurat' => 'required',
         ]);
 
@@ -90,7 +91,7 @@ class UnitSuratController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'unitsurat' => 'required',
+            'unitsurat' => ['required', new HurufBesar],
             'namasurat' => 'required',
         ]);
 

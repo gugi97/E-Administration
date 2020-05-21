@@ -10,7 +10,7 @@ class SuratMasuk extends Model
     protected $table = "suratmasuk";
 
     // protected $guarded = [];
-    protected $fillable = ['no_surat', 'tgl_surat', 'tgl_terima', 'pengirim', 'perihal', 'keterangan', 'kode_jenissurat', 'kode_jenjang', 'gambar', 'nip'];
+    protected $fillable = ['no_surat', 'tgl_surat', 'tgl_terima', 'pengirim', 'perihal', 'keterangan', 'kode_jenissurat', 'kode_jenjang', 'gambar', 'nip', 'lokasi'];
     public $timestamps = false;
 
     public function scopegetallsuratmasuk(){
