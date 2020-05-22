@@ -172,8 +172,15 @@ class SuratKeluarController extends Controller
 		$backuplokasi = $gambar_surat->lokasi;
 		$lokasifile = $gambar_surat->lokasi;
 		$filename = $lokasifile.'/';
-		File::deleteDirectory($filename);
-		File::makeDirectory($backuplokasi);
+
+		if(File::exists($lokasifile)){
+			File::deleteDirectory($filename);
+			File::makeDirectory($backuplokasi, 0775, true, true);
+		}
+		else{
+			File::makeDirectory($backuplokasi, 0775, true, true);
+		}
+		
 
 		// menghapus data suratkeluar berdasarkan id yang dipilih
 		SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->delete();
