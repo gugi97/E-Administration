@@ -52,7 +52,7 @@ class JenjangJabatanController extends Controller
         ];
         
         $this->validate($request,[
-            'kdjabatan' => 'required,numeric',
+            'kdjabatan' => 'required|numeric',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',
@@ -106,7 +106,7 @@ class JenjangJabatanController extends Controller
         ];
 
         $this->validate($request,[
-            'kdjabatan' => 'required,numeric',
+            'kdjabatan' => 'required|numeric',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',
