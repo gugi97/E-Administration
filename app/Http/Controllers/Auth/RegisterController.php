@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'nip' => ['required', 'string', 'min:9', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'status' => ['required'],
         ]);
     }
 
@@ -70,6 +71,7 @@ class RegisterController extends Controller
             'nip' => $data['nip'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'status' => $data['status'],
         ]);
     }
 }

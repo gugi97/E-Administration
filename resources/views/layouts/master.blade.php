@@ -159,6 +159,7 @@
                                 </p>
                             </a>
                         </li>
+                        @if(auth()->user()->status == 'Admin')
                         {{-- Klasifikasi --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -224,7 +225,7 @@
                                 </li>
                             </ul>
                         </li>
-
+                        @endif
                         <li class="nav-header">TRANSAKSI</li>
                         {{-- Transaksi Surat --}}
                         <li class="nav-item has-treeview">

@@ -12,7 +12,7 @@
                             {{-- NIP --}}
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" required autocomplete="nip" placeholder="NIP" autofocus>
+                                    <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" required autocomplete="nip" placeholder="NIP" autofocus maxlength="9">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-id-badge"></span>

@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <input id="nip" type="nip" class="form-control @error('nip') is-invalid @enderror" name="nip"
-                                value="{{ old('nip') }}" placeholder="NIP" required autocomplete="nip">
+                                value="{{ old('nip') }}" placeholder="NIP" required autocomplete="nip" maxlength="9">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-id-badge"></span>
@@ -99,6 +99,28 @@
                         </div>
                     </div>
                     {{-- End Password Confirm --}}
+
+                    {{-- Status --}}
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <select id="status" type="status" class="form-control @error('status') is-invalid @enderror" name="status" required>
+                                <option value="">--------</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Karyawan">Karyawan</option>
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                <span class="fas fa-user-cog"></span>
+                                </div>
+                            </div>
+                            @error('status')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    {{-- End NIP --}}
                     
                     {{-- Button Register --}}
                     <div class="form-group">
