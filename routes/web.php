@@ -10,18 +10,19 @@ Route::group(['middleware' => ['auth','checkStatus:Admin']],function(){
     Route::resource('unitinduk', 'UnitIndukController');
     Route::resource('unitsurat', 'UnitSuratController');
     Route::resource('jenjangjabatan', 'JenjangJabatanController');
+    Route::resource('jenissk', 'JenisSKController');
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Admin,Karyawan']],function(){
     Route::get('/', 'HomeController@index')->name('home');
-    
+
     Route::get('suratkeluar', 'SuratKeluarController@index')->name('suratkeluar');
     Route::get('suratkeluar/tambah', 'SuratKeluarController@tambah');
     Route::post('suratkeluar/store', 'SuratKeluarController@store');
     Route::get('suratkeluar/edit/{id_suratkeluar}', 'SuratKeluarController@edit');
     Route::put('suratkeluar/update/{id_suratkeluar}', 'SuratKeluarController@update');
     Route::get('suratkeluar/hapus/{id_suratkeluar}', 'SuratKeluarController@delete');
-    
+
     Route::get('suratmasuk', 'SuratMasukController@index')->name('suratmasuk');
     Route::get('suratmasuk/tambah', 'SuratMasukController@tambah');
     Route::post('suratmasuk/store', 'SuratMasukController@store');

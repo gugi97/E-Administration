@@ -6,8 +6,8 @@ use App\SuratKeluar;
 use App\Jenis;
 use App\JenjangJabatan;
 use App\User;
-use File;
-use DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -95,7 +95,7 @@ class SuratKeluarController extends Controller
 			'kode_jenjang' => $jabat,
 			'lokasi' => $tujuan_upload
 		]);
-		
+
 		// alihkan halaman ke halaman suratkeluar
     	return redirect('/suratkeluar');
 	}
@@ -109,7 +109,7 @@ class SuratKeluarController extends Controller
 	}
 
 	public function update($id_suratkeluar, Request $request)
-	{	
+	{
 		$messages = [
 			'required' => ':attribute Wajib di isi!',
 			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
@@ -180,7 +180,7 @@ class SuratKeluarController extends Controller
 		else{
 			File::makeDirectory($backuplokasi, 0775, true, true);
 		}
-		
+
 
 		// menghapus data suratkeluar berdasarkan id yang dipilih
 		SuratKeluar::where('id_suratkeluar',$id_suratkeluar)->delete();

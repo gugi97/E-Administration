@@ -10,7 +10,7 @@ class Jenis extends Model
 {
     protected $table = "jenis_surat";
 
-		public $timestamps = false;
+	public $timestamps = false;
 
     public function scopegetalluser(){
         $result = DB::table('jenis_surat')->get();
@@ -32,7 +32,7 @@ class Jenis extends Model
 		}
 		return $checkinsert;
     }
-    
+
     public function DeleteUser($id){
 		$checkupdate = false;
 		try{

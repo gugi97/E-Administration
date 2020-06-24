@@ -62,10 +62,10 @@
 
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box bg-warning">
+                    <div class="small-box" style="color: white !important; background-color: #FFC107;">
                         <div class="inner">
                             <h3>44</h3>
-                            <p>User Registrations</p>
+                            <p>User</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user-plus"></i>

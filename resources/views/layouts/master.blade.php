@@ -34,22 +34,9 @@
                 <!-- Left navbar links -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                        <a class="nav-link" data-widget="pushmenu" id="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                     </li>
                 </ul>
-
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
 
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -145,6 +132,19 @@
                     </div>
                 </div> -->
 
+                <!-- SEARCH FORM -->
+                {{-- <form class="form-inline ml-3"> --}}
+                    <div class="input-group input-group-sm mt-2 mb-2 d-flex" id="searchForm">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                {{-- </form> --}}
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
@@ -198,6 +198,14 @@
                                     <a href="{{url('/jenjangjabatan')}}" class="nav-link {{ set_active('jenjangjabatan.index') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Entry Jenjang Jabatan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/jenissk')}}" class="nav-link {{ set_active('jenissk.index') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Entry Jenis SK</p>
                                     </a>
                                 </li>
                             </ul>
@@ -257,7 +265,7 @@
                             </ul>
                         </li>
                         {{-- END Transaksi Surat --}}
-                        
+
                         <li class="nav-header">LAPORAN</li>
                         {{-- BUKU AGENDA --}}
                         <li class="nav-item has-treeview">
@@ -368,8 +376,32 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            bsCustomFileInput.init();
-        });
+        bsCustomFileInput.init();
+                
+        $('#pushmenu').click(function() {
+            $('#searchForm').empty();
+            if($("body").hasClass('sidebar-collapse')) {
+                searchFormHTML = `
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                            <button class="btn btn-sidebar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    `;
+            }
+            else {
+                searchFormHTML = `
+                        <div class="form-group w-100">
+                        <button class="btn btn-sidebar w-100" type="submit">
+                            <i class="fas fa-search"></i>
+                            </button>
+                        <div>
+                    `;
+            }
+            $('#searchForm').append(searchFormHTML);
+        });		
+    });
     </script>
 </body>
 

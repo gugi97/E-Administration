@@ -40,7 +40,7 @@
             </div>
             @endif
             {{-- END ALERT MESSAGE --}}
-            
+
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
@@ -69,7 +69,7 @@
                         </thead>
                         <tbody>
                             @foreach ($jenjang as $jenjangjabatan)
-                            <tr style="text-align: center;">    
+                            <tr style="text-align: center;">
                                 <th>{{ $jenjangjabatan->id }}</th>
                                 <td>{{ $jenjangjabatan->kode_jenjang }}</td>
                                 <td>{{ $jenjangjabatan->nama_jabatan }}</td>
@@ -127,7 +127,7 @@
                                             <label>Nama Jabatan</label>
                                             <input type="text" class="form-control" placeholder="Nama Jabatan" name="nmjabatan" value="{{ old('nmjabatan') }}">
                                         </div>
-                                            
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
@@ -188,7 +188,7 @@
                                                 <label>Nama Jabatan</label>
                                                 <input type="text" class="form-control" placeholder="Nama Jabatan" name="nmjabatan" id="nmjabatan" value="{{ old('nmjabatan') }}">
                                             </div>
-                                                
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
@@ -214,7 +214,7 @@
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                                
+
                                             <input type="hidden" name="_method" value="DELETE">
                                             <p>Apa yakin ingin menghapus data?</p>
                                         </div>
@@ -249,12 +249,12 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
-            
+
             var table = $('#datatable').DataTable();
 
             //Start Edit Record
             table.on('click', '.edit', function() {
-                
+
                 $tr = $(this).closest('tr');
                 if($($tr).hasClass('child')) {
                     $tr = $tr.prev('.parent');
@@ -268,7 +268,7 @@
                 $('#untsurat').val(data[3]);
                 $('#kdjabatan').val(data[1]);
                 $('#nmjabatan').val(data[2]);
-                
+
                 $('#editForm').attr('action', '/jenjangjabatan/'+data[0]);
                 $('#editModal').modal('show');
             });
@@ -276,16 +276,16 @@
 
             //Start Delete Record
             table.on('click', '.delete', function() {
-                
+
                 $tr = $(this).closest('tr');
-                if($($tr).hasClass('child')) 
+                if($($tr).hasClass('child'))
                 {
                     $tr = $tr.prev('.parent');
                 }
 
                 var data = table.row($tr).data();
                 console.log(data);
-                
+
                 $('#deleteForm').attr('action', '/jenjangjabatan/'+data[0]);
                 $('#deleteModal').modal('show');
             });
