@@ -274,14 +274,14 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
+                            <li class="nav-item">
+                                    <a href="{{ url('/arsipsuratmasuk') }}" class="nav-link {{ set_active('arsipsuratmasuk') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Masuk</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{ url('/arsipsuratkeluar') }}" class="nav-link {{ set_active('arsipsuratkeluar') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keluar</p>
                                     </a>
