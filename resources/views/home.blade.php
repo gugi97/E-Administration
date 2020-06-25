@@ -62,13 +62,14 @@
 
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box" style="color: white !important; background-color: #FFC107;">
+                    <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>44</h3>
-                            <p>User</p>
+                            <h3>65</h3>
+
+                            <p>Surat Keputusan</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-user-plus"></i>
+                            <i class="fas fa-file-alt"></i>
                         </div>
                         <a href="#" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
@@ -78,14 +79,13 @@
 
                 <div class="col-lg-3 col-6">
                     <!-- small card -->
-                    <div class="small-box bg-danger">
+                    <div class="small-box" style="color: white !important; background-color: #FFC107;">
                         <div class="inner">
-                            <h3>65</h3>
-
-                            <p>Unique Visitors</p>
+                            <h3>44</h3>
+                            <p>User</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-chart-pie"></i>
+                            <i class="fas fa-user-plus"></i>
                         </div>
                         <a href="#" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
