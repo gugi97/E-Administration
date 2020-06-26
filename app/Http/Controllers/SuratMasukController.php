@@ -44,7 +44,10 @@ class SuratMasukController extends Controller
         $messages = [
 			'required' => ':attribute Wajib di isi!',
 			'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
-			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
+			'max' => 'Size :attribute maksimal adalah 2MB',
+			'gambar.max' => 'Batas Upload :attribute maksimal adalah 3 buah, jika lebih silahkan upload File PDF saja',
+			'file.max' => 'Size :attribute maksimal adalah 10MB',
+			'file.mimetypes' => ':attribute Harus berupa file PDF'
 		];
 
 		$this->validate($request,[
@@ -55,7 +58,9 @@ class SuratMasukController extends Controller
 			'pengirim' => 'required',
 			'perihal' => 'required',
 			'ket' => 'required',
-			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:5120',
+			'gambar' => 'max:3',
+			'file' => 'mimetypes:application/pdf|max:10240'
         ],$messages);
         
         $input=$request->all();
@@ -65,10 +70,22 @@ class SuratMasukController extends Controller
         if($files = $request->file('gambar')){
 			foreach($files as $file){
 				$name=$file->getClientOriginalName();
-				$tujuan_upload = 'uploads/suratmasuk/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun;
+				$tujuan_upload = 'uploads/suratmasuk/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun.'/'.'GAMBAR';
 				$file->move($tujuan_upload,$name);
 				$gambar[]=$name;
 			}
+		}else{
+			$gambar[] = null;
+			$tujuan_upload = 'uploads/suratmasuk/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun.'/'.'GAMBAR';
+		}
+
+		if($files2 = $request->file('file')){
+			$namefile=$files2->getClientOriginalName();
+			$tujuan_uploadfile = 'uploads/suratmasuk/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun.'/'.'FILE';
+			$files2->move($tujuan_uploadfile,$namefile);
+		}else{
+			$namefile = null;
+			$tujuan_uploadfile = 'uploads/suratmasuk/'.\Carbon\Carbon::now()->format('Y-m-d').'/' .'SURAT'.$urut.$tahun.'/'.'FILE';
 		}
 
         $bulan = $request->input('bulan');
@@ -89,11 +106,13 @@ class SuratMasukController extends Controller
             'pengirim' => $pengirim,
             'perihal' => $perihal,
             'keterangan' => $keterangan,
-            'gambar' => implode(",",$gambar),
+			'gambar' => implode(",",$gambar),
+			'file' => $namefile,
             'nip' => $nip,
             'kode_jenissurat' => $jenis,
             'kode_jenjang' => $jabat,
-            'lokasi' => $tujuan_upload
+			'lokasi' => $tujuan_upload,
+			'lokasifile' => $tujuan_uploadfile
         ]);
 
         return redirect('/suratmasuk');
@@ -111,7 +130,10 @@ class SuratMasukController extends Controller
     {
         $messages = [
 			'required' => ':attribute Wajib di isi!',
-			'max' => 'ukuran :attribute maksimal photo adalah 2MB'
+			'max' => 'Size :attribute maksimal adalah 2MB',
+			'gambarbaru.max' => 'Batas Upload gambar maksimal adalah 3 buah, jika lebih silahkan upload File PDF saja',
+			'filebaru.max' => 'Size :attribute maksimal adalah 10MB',
+			'filebaru.mimetypes' => 'File Harus berupa file PDF'
 		];
 
 		$this->validate($request,[
@@ -120,7 +142,9 @@ class SuratMasukController extends Controller
 			'pengirim' => 'required',
 			'perihal' => 'required',
 			'ket' => 'required',
-			'gambar.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+			'gambarbaru.*' => 'image|mimes:jpeg,png,gif,webp|max:5120',
+			'gambarbaru' => 'max:3',
+			'filebaru' => 'mimetypes:application/pdf|max:10240',
         ],$messages);
 
         $input=$request->all();
@@ -148,6 +172,24 @@ class SuratMasukController extends Controller
 					$tujuan_upload = $hidden_tujuan;
 				}
 			}
+		}
+		
+		if($files = $request->file('filebaru')){
+			//Hapus File
+			$file_surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
+			$hidden_tujuanfile = $file_surat->lokasifile;
+			$lokasifile2 = $file_surat->lokasifile;
+			$filename = $lokasifile2;
+			File::deleteDirectory($filename);
+			$namefile=$files->getClientOriginalName();
+			$tujuan_uploadfile=$hidden_tujuanfile;
+			$files->move($tujuan_uploadfile,$namefile);
+		}else{
+			$file_surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
+			$hidden_tujuanfile = $file_surat->lokasifile;
+			$hidden_namafile = $file_surat->file;
+			$namefile = $hidden_namafile;
+			$tujuan_uploadfile = $hidden_tujuanfile;
         }
 
         // update data surat masuk
@@ -158,7 +200,9 @@ class SuratMasukController extends Controller
 			'perihal' => $request->perihal,
 			'keterangan' => $request->ket,
 			'gambar' => implode(",",$gambarbaru),
-			'lokasi' => $hidden_tujuan
+			'file' => $namefile,
+			'lokasi' => $hidden_tujuan,
+			'lokasifile' => $hidden_tujuanfile
 		]);
         // alihkan halaman ke halaman suratmasuk
         return redirect('/suratmasuk');
@@ -167,15 +211,32 @@ class SuratMasukController extends Controller
     public function delete($id_suratmasuk)
 	{
         //Hapus File
-		$gambar_surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
-		$backuplokasi = $gambar_surat->lokasi;
-		$lokasifile = $gambar_surat->lokasi;
-		$filename = $lokasifile.'/';
-		File::deleteDirectory($filename);
-        File::makeDirectory($backuplokasi);
-        
-		// menghapus data suratmasuk berdasarkan id yang dipilih
-        SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
+		$surat = SuratMasuk::where('id_suratmasuk',$id_suratmasuk)->first();
+		$gambar = $surat->gambar;
+		$file = $surat->file;
+		$backuplokasigambar = $surat->lokasi;
+		$backuplokasifile = $surat->lokasifile;
+		$lokasigambar = $surat->lokasi;
+		$lokasifile = $surat->lokasifile;
+		$filename = $lokasigambar.'/';
+		$filename2 = $lokasifile.'/';
+		if($gambar != null && $file != null){
+			File::deleteDirectory($filename);
+			File::deleteDirectory($filename2);
+			File::makeDirectory($backuplokasigambar);
+			File::makeDirectory($backuplokasifile);
+			SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
+		}else if($gambar == null && $file == null){
+			SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
+		}else if($gambar == null && $file != null){
+			File::deleteDirectory($filename2);
+			File::makeDirectory($backuplokasifile);
+			SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
+		}else if($file == null && $gambar != null){
+			File::deleteDirectory($filename);
+			File::makeDirectory($backuplokasigambar);
+			SuratMasuk::where('id_suratmasuk', $id_suratmasuk)->delete();
+		}
 		// alihkan halaman ke halaman suratmasuk
 		return redirect()->back();
 	}

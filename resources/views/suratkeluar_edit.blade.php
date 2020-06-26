@@ -82,21 +82,63 @@
                             <label for="exampleInputFile">Edit Gambar</label>
                             <table class="table table-bordered table-striped">
                                 <tr>
-                                    @php $allImages = explode(',', $ske->gambar); @endphp
-                                    @foreach($allImages as $Image)
-                                    <input type="hidden" name="hidden_name[]" value="{{ $Image }}" multiple/>
-                                    <td align="center">
-                                        <a class="image-popup-vertical-fit" href="/{{$ske->lokasi}}/{{$Image}}">
-                                            <img width="150px" src="/{{$ske->lokasi}}/{{$Image}}">
-                                        </a>
-                                    </td>
-                                    @endforeach
+                                    <?php if($ske->gambar != null){
+                                    ?>
+                                        @php $allImages = explode(',', $ske->gambar); @endphp
+                                        @foreach($allImages as $Image)
+                                        <input type="hidden" name="hidden_name[]" value="{{ $Image }}" multiple/>
+                                            <td align="center">
+                                                <a class="image-popup-vertical-fit" href="/{{$ske->lokasi}}/{{$Image}}">
+                                                    <img width="150px" src="/{{$ske->lokasi}}/{{$Image}}">
+                                                </a>
+                                            </td>
+                                        @endforeach
+                                    <?php
+                                    }else{
+                                    ?>
+                                        <td align="center" style="padding-top:35px">
+                                            <p>Gambar Tidak Ada</p>
+                                        </td>
+                                    <?php
+                                    }
+                                    ?>
                                     <td style="vertical-align:middle">
                                     <div class="input-group">
                                         <label for="exampleInputFile">Update Gambar</label>
                                         <div class="input-group control-group increment">
                                         <input type="file" name="gambarbaru[]" class="form-control" style="padding:3px;" id="gambarbaru" multiple/>
                                         <input type="hidden" name="hidden_tujuan" value="{{ $ske->lokasi }}" />
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Edit File</label>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <?php if($ske->file != null){
+                                    ?>
+                                        <input type="hidden" name="hidden_namefile" value="{{ $ske->file }}"/>
+                                        <td align="center">
+                                            <p>File Tersimpan di {{$ske->lokasifile}}/{{$ske->file}}</p>
+                                        </td>
+                                    <?php
+                                    }else{
+                                    ?>
+                                        <td align="center" style="padding-top:35px">
+                                            <p>File Tidak Ada</p>
+                                        </td>
+                                    <?php
+                                    }
+                                    ?>
+                                    <td style="vertical-align:middle">
+                                    <div class="input-group">
+                                        <label for="exampleInputFile">Update File</label>
+                                        <div class="input-group control-group increment">
+                                        <input type="file" name="filebaru" class="form-control" style="padding:3px;" id="filebaru"/>
+                                        <input type="hidden" name="hidden_tujuanfile" value="{{ $ske->lokasifile }}" />
                                         </div>
                                     </div>
                                     </td>
