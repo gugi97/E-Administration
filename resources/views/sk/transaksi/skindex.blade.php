@@ -44,8 +44,8 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title"><a href="/jenissk/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Data</a></h3>
-                    <h3 align="center">Input Jenis Surat Keputusan</h3>
+                    <h3 class="card-title"><a href="/suratkeputusan/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Data</a></h3>
+                    <h3 align="center">Data Surat Keputusan</h3>
                 </div>
                 <!-- End Card Header -->
 
@@ -55,23 +55,27 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col">Id SK</th>
-                                <th scope="col">Jenis SK</th>
-                                <th scope="col">Nama Template SK</th>
-                                <th scope="col">Template SK</th>
+                                <th scope="col">ID SK</th>
+                                <th scope="col">No SK</th>
+                                <th scope="col">Staff</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Tahun Ajar</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($jenis as $jenissk)
+                            @foreach ($sk as $sk)
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $jenissk->idjenis_sk }}</td>
-                                <td>{{ $jenissk->jenis_sk }}</td>
-                                <td>{{ $jenissk->nama_template }}</td>
-                                <td>{{ $jenissk->template }}</td>
+                                <th>{{ $sk->iteration }}</th>
+                                <td>{{ $sk->idsk }}</td>
+                                <td>{{ $sk->nosk }}</td>
+                                <td>{{ $sk->userstaff }}</td>
+                                <td>{{ $sk->tglsk }}</td>
+                                <td>{{ $sk->semester }}</td>
+                                <td>{{ $sk->tahunajar }}</td>
                                 <td>
-                                <a href="{{action('JenisSKController@edit', $jenissk->idjenis_sk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
@@ -84,12 +88,12 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete Data Jenis Surat Keputusan</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Data Surat Keputusan</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form role="Insertform" action="/jenissk" method="post" id="deleteForm" enctype="multipart/form-data">
+                                <form role="Insertform" action="/suratkeputusan" method="post" id="deleteForm" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -142,7 +146,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#deleteForm').attr('action', '/jenissk/'+data[1]);
+                $('#deleteForm').attr('action', '/suratkeputusan/'+data[1]);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

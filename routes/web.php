@@ -11,6 +11,7 @@ Route::group(['middleware' => ['auth','checkStatus:Admin']],function(){
     Route::resource('unitsurat', 'UnitSuratController');
     Route::resource('jenjangjabatan', 'JenjangJabatanController');
     Route::resource('jenissk', 'JenisSKController');
+    Route::resource('suratkeputusan', 'SuratKeputusanController');
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Admin,Karyawan']],function(){

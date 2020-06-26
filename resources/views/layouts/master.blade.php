@@ -58,10 +58,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="#" class="dropdown-item">
+                                <!-- <a href="#" class="dropdown-item">
                                     Profil
                                 </a>
-                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div> -->
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -187,12 +187,6 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Instansi</p>
-                                    </a>
-                                </li>
                                 <li class="nav-item">
                                     <a href="../../index2.html" class="nav-link">
                                         <i class="fas fa-angle-right nav-icon"></i>
