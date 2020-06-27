@@ -32,7 +32,8 @@ class SuratKeputusanController extends Controller
      */
     public function create()
     {
-        //
+        $sk = SuratKeputusan::all();
+        return view('sk.transaksi.skcreate', ['sk'=> $sk]);
     }
 
     /**
@@ -43,7 +44,25 @@ class SuratKeputusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nosk' => 'required',
+            'tglsk' => 'required',
+            'userstaff' => 'required',
+            'semester' => 'required',
+            'tahunajar' => 'required',
+        ]);
+
+        $sk = new SuratKeputusan;
+
+        $sk->nosk = $request->input('nosk');
+        $sk->tglsk = $request->input('tglsk');
+        $sk->userstaff = $request->input('userstaff');
+        $sk->semester = $request->input('semester');
+        $sk->tahunajar = $request->input('tahunajar');
+
+        $sk->save();
+
+        return redirect('suratkeputusan')->with('success', 'Data Saved');
     }
 
     /**

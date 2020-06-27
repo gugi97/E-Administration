@@ -56,7 +56,8 @@
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
                                 <th scope="col">ID SK</th>
-                                <th scope="col">No SK</th>
+                                <th scope="col">Nomor SK</th>
+                                <th scope="col">Tanggal SK</th>
                                 <th scope="col">Staff</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Semester</th>
@@ -67,11 +68,12 @@
                         <tbody>
                             @foreach ($sk as $sk)
                             <tr style="text-align: center;">
-                                <th>{{ $sk->iteration }}</th>
+                                <th>{{ $loop->iteration }}</th>
                                 <td>{{ $sk->idsk }}</td>
                                 <td>{{ $sk->nosk }}</td>
-                                <td>{{ $sk->userstaff }}</td>
                                 <td>{{ $sk->tglsk }}</td>
+                                <td>{{ $sk->userstaff }}</td>
+                                <td>{{ $sk->status }}</td>
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>

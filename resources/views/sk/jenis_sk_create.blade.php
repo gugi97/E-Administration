@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/jenissk')}}">Surat Keputusan</a></li>
-                        <li class="breadcrumb-item active">Tambah Jenis Surat Kepurusan</li>
+                        <li class="breadcrumb-item active">Tambah Jenis Surat Keputusan</li>
                     </ol>
                 </div>
             </div>
@@ -78,6 +78,8 @@
 		    <script src="{{asset('ckeditor/custom.js')}}"></script>
             <script>
                 CKEDITOR.replace( 'templatesk' );
+                var editor = CKEDITOR.instances['templatesk'];
+                editor.setData('jenissk');
             </script>
     </section>
 {{-- End Add Modal --}}
