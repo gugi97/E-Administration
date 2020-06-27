@@ -118,6 +118,12 @@
                                 <input type="file" name="gambar[]" class="form-control" style="padding:3px;" id="gambar" multiple/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Upload File</label>
+                            <div class="input-group control-group increment" >
+                                <input type="file" name="file" class="form-control" style="padding:3px;" id="file"/>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 <div class="card-footer">

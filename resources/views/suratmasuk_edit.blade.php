@@ -88,15 +88,26 @@
                             <label for="exampleInputFile">Edit Gambar</label>
                             <table class="table table-bordered table-striped">
                                 <tr>
-                                    @php $allImages = explode(',', $sms->gambar); @endphp
-                                    @foreach($allImages as $Image)
-                                    <input type="hidden" name="hidden_name[]" value="{{ $Image }}" multiple/>
-                                    <td align="center">
-                                        <a class="image-popup-vertical-fit" href="/{{$sms->lokasi}}/{{$Image}}">
-                                            <img width="150px" src="/{{$sms->lokasi}}/{{$Image}}">
-                                        </a>
-                                    </td>
-                                    @endforeach
+                                    <?php if($sms->gambar != null){
+                                    ?>
+                                        @php $allImages = explode(',', $sms->gambar); @endphp
+                                        @foreach($allImages as $Image)
+                                        <input type="hidden" name="hidden_name[]" value="{{ $Image }}" multiple/>
+                                        <td align="center">
+                                            <a class="image-popup-vertical-fit" href="/{{$sms->lokasi}}/{{$Image}}">
+                                                <img width="150px" src="/{{$sms->lokasi}}/{{$Image}}">
+                                            </a>
+                                        </td>
+                                        @endforeach
+                                    <?php
+                                    }else{
+                                    ?>
+                                        <td align="center" style="padding-top:35px">
+                                            <p>Gambar Tidak Ada</p>
+                                        </td>
+                                    <?php
+                                    }
+                                    ?>
                                     <td style="vertical-align:middle">
                                     <div class="input-group">
                                         <label for="exampleInputFile">Update Gambar</label>
@@ -109,6 +120,39 @@
                                 </tr>
                             </table>
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Edit File</label>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <?php if($sms->file != null){
+                                    ?>
+                                        <input type="hidden" name="hidden_namefile" value="{{ $sms->file }}"/>
+                                        <td align="center">
+                                            <p>File Tersimpan di {{$sms->lokasifile}}/{{$sms->file}}</p>
+                                        </td>
+                                    <?php
+                                    }else{
+                                    ?>
+                                        <td align="center" style="padding-top:35px">
+                                            <p>File Tidak Ada</p>
+                                        </td>
+                                    <?php
+                                    }
+                                    ?>
+                                    <td style="vertical-align:middle">
+                                    <div class="input-group">
+                                        <label for="exampleInputFile">Update File</label>
+                                        <div class="input-group control-group increment">
+                                        <input type="file" name="filebaru" class="form-control" style="padding:3px;" id="filebaru"/>
+                                        <input type="hidden" name="hidden_tujuanfile" value="{{ $sms->lokasifile }}" />
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
                     </div>
                         <!-- Footer -->
                         <div class="card-footer">

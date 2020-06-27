@@ -22,10 +22,12 @@ class CreateSuratKeluarsTable extends Migration
             $table->string('tujuan_surat',100);
             $table->text('keterangan');
             $table->text('gambar')->nullable();
+            $table->text('file')->nullable();
             $table->char('nip', 9);
             $table->string('kode_jenissurat', 30);
             $table->string('kode_jenjang', 30);
             $table->string('lokasi', 255)->nullable();
+            $table->string('lokasifile', 255)->nullable();
         });
     }
 
