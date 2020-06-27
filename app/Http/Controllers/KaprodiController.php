@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\SuratKeputusan;
 use App\Kaprodi;
+use App\SuratKeputusan;
 
-class SuratKeputusanController extends Controller
+
+class KaprodiController extends Controller
 {
 
     public function __construct()
@@ -23,7 +24,9 @@ class SuratKeputusanController extends Controller
     public function index()
     {
         $sk = SuratKeputusan::all();
-        return view('sk.transaksi.skindex', ['sk'=> $sk]);
+        $kaprodi = Kaprodi::all();
+
+        return view('kaprodi.index_kaprodi', ['sk'=> $sk, 'kaprodi'=> $kaprodi]);
     }
 
     /**
@@ -33,8 +36,7 @@ class SuratKeputusanController extends Controller
      */
     public function create()
     {
-        $sk = SuratKeputusan::all();
-        return view('sk.transaksi.skcreate', ['sk'=> $sk]);
+        //
     }
 
     /**
@@ -45,28 +47,7 @@ class SuratKeputusanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nosk' => 'required',
-            'tglsk' => 'required',
-            'userstaff' => 'required',
-            'semester' => 'required',
-            'tahunajar' => 'required',
-        ]);
-
-        $sk = new SuratKeputusan;
-        $kaprodi = new Kaprodi;
-
-        $sk->nosk = $request->input('nosk');
-        $kaprodi->noreq = $request->input('nosk');
-        $sk->tglsk = $request->input('tglsk');
-        $sk->userstaff = $request->input('userstaff');
-        $sk->semester = $request->input('semester');
-        $sk->tahunajar = $request->input('tahunajar');
-
-        $sk->save();
-        $kaprodi->save();
-
-        return redirect('suratkeputusan')->with('success', 'Data Saved');
+        //
     }
 
     /**
@@ -88,7 +69,8 @@ class SuratKeputusanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kaprodi = Kaprodi::where('noreq',$id)->get();
+        return view ('kaprodi.edit_kaprodi', ['kaprodi' => $kaprodi]);
     }
 
     /**
@@ -100,7 +82,25 @@ class SuratKeputusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'noreq' => 'required',
+            'nip' => 'required',
+            'ttd' => 'required',
+            'skreq' => 'required',
+            'statusreq' => 'required',
+        ]);
+
+        $kaprodi = Kaprodi::find($id);
+
+        $kaprodi->noreq = $request->input('noreq');
+        $kaprodi->nip = $request->input('nip');
+        $kaprodi->ttd = $request->input('ttd');
+        $kaprodi->skreq = $request->input('skreq');
+        $kaprodi->statusreq = $request->input('statusreq');
+
+        $kaprodi->save();
+
+        return redirect('kaprodi')->with('success', 'Data Update');
     }
 
     /**

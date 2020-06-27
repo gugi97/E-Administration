@@ -79,7 +79,6 @@
             <script>
                 CKEDITOR.replace( 'templatesk' );
                 var editor = CKEDITOR.instances['templatesk'];
-                editor.setData('jenissk');
             </script>
     </section>
 {{-- End Add Modal --}}

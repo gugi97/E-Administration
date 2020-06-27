@@ -20,7 +20,7 @@ class CreateSuratKeputusanTable extends Migration
             $table->string('userstaff');
             $table->string('status')->default('Porposed');
             $table->string('semester', 30);
-            $table->string('tahunajar', 30)->nullable();
+            $table->string('tahunajar', 30);
         });
     }
 
