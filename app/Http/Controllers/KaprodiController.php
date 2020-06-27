@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Kaprodi;
+use Illuminate\Support\Facades\File;
 use App\SuratKeputusan;
 
 
@@ -83,20 +84,43 @@ class KaprodiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'noreq' => 'required',
             'nip' => 'required',
             'ttd' => 'required',
-            'skreq' => 'required',
             'statusreq' => 'required',
         ]);
 
         $kaprodi = Kaprodi::find($id);
-
-        $kaprodi->noreq = $request->input('noreq');
         $kaprodi->nip = $request->input('nip');
-        $kaprodi->ttd = $request->input('ttd');
-        $kaprodi->skreq = $request->input('skreq');
         $kaprodi->statusreq = $request->input('statusreq');
+
+        if($files = $request->file('ttd')){
+			//Hapus File
+            $file_ttd = Kaprodi::where('noreq',$id)->first();
+            $tujuan_uploadfile = 'uploads/kaprodi/'.\Carbon\Carbon::now()->format('Y-m-d').'/ TTD';
+			$hidden_tujuanfile = $file_ttd->$tujuan_uploadfile;
+			$lokasittd = $file_ttd->$tujuan_uploadfile;
+			$filename = $lokasittd;
+			File::deleteDirectory($filename);
+            $namefile=$files->getClientOriginalName();
+            if($hidden_tujuanfile == null){
+                $files->move($tujuan_uploadfile,$namefile);
+            }else{
+                $tujuan_uploadfile=$hidden_tujuanfile;
+			    $files->move($tujuan_uploadfile,$namefile);
+            }
+		}else{
+			$file_ttd = Kaprodi::where('noreq',$id)->first();
+			$tujuan_uploadfile = 'uploads/kaprodi/'.\Carbon\Carbon::now()->format('Y-m-d').'/ TTD';
+            $hidden_tujuanfile = $file_ttd->$tujuan_uploadfile;
+            $namefiles = null;
+			$hidden_namafile = $file_ttd->$namefiles;
+			$namefile = $hidden_namafile;
+			$tujuan_uploadfile = $hidden_tujuanfile;
+        }
+        
+        Kaprodi::where('noreq',$id)->update([
+			'ttd' => $namefile,
+		]);
 
         $kaprodi->save();
 

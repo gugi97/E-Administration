@@ -10,5 +10,7 @@ class Kaprodi extends Model
 
     protected $primaryKey = "noreq";
 
+    protected $fillable = ['ttd', 'nip', 'stattusreq', 'noreq'];
+
     public $timestamps = false;
 }
