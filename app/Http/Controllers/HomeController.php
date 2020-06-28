@@ -24,8 +24,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        
         $sm_count = DB::table('suratmasuk')->count();
         $sk_count = DB::table('suratkeluar')->count();
-        return view('home',['sm_count' => $sm_count], ['sk_count' => $sk_count]);
+        $skep_count = DB::table('suratkeputusan')->count();;
+        
+        return view('home', ['sm_count' => $sm_count, 'sk_count' => $sk_count, 'skep_count' => $skep_count,]);
     }
 }

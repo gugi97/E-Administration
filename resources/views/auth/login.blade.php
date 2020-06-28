@@ -5,7 +5,9 @@
     <div class="login-box">
                 {{-- Card --}}
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header" style="background-color: #095593; text-align: center; color: white; font-weight: bold; font-size: larger;">
+                        {{ __('Login') }}
+                    </div>
                     <div class="card-body login-card-body" style="border-radius: 0 0 .25rem .25rem !important;">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

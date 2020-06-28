@@ -5,7 +5,9 @@
     <div class="register-box">
     
         <div class="card">
-            <div class="card-header">{{ __('Register') }}</div>
+            <div class="card-header" style="background-color: #095593; text-align: center; color: white; font-weight: bold; font-size: larger;">
+                {{ __('Register') }}
+            </div>
         
             <div class="card-body register-card-body" style="border-radius: 0 0 .25rem .25rem !important;">
                 <form method="POST" action="{{ route('register') }}">
