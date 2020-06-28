@@ -14,10 +14,14 @@ Route::group(['middleware' => ['auth','checkStatus:Admin']],function(){
     Route::resource('jenissk', 'JenisSKController');
     Route::resource('suratkeputusan', 'SuratKeputusanController');
 
+<<<<<<< HEAD
     Route::get('user', 'UserController@index')->name('user');
     Route::get('user/edit/{id}', 'UserController@edit');
     Route::put('user/update/{id}', 'UserController@update');
     Route::get('user/hapus/{id}', 'UserController@delete');
+=======
+    Route::resource('kaprodi', 'KaprodiController');
+>>>>>>> 71b0007acfe376a5397a5d2c543d48435e59098c
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Admin,Karyawan,Dekan,Ketua Program Studi']],function(){

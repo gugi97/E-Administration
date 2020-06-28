@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tambah Data Surat Keputusan</h1>
+                    <h1>Update Request Surat Keputusan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/jenissk')}}">Surat Keputusan</a></li>
-                        <li class="breadcrumb-item active">Tambah Surat Keputusan</li>
+                    <li class="breadcrumb-item"><a href="{{url('/kaprodi')}}">Request SK</a></li>
+                        <li class="breadcrumb-item active">Update Request Surat Keputusan</li>
                     </ol>
                 </div>
             </div>
@@ -27,8 +27,8 @@
                     <div class="card">
                         <!-- Card Header -->
                         <div class="card-header">
-                            <h3 class="card-title"><a href="/jenissk" class="btn btn-primary">Kembali</a></h3>
-                            <h3 align="center">Tambah Data Surat Keputusan</h3>
+                            <h3 class="card-title"><a href="/kaprodi" class="btn btn-primary">Kembali</a></h3>
+                            <h3 align="center">Edit Data Jenis SK</h3>
                         </div>
                         <!-- End Card Header -->
                         <!-- Menampilkan error validasi -->
@@ -44,41 +44,37 @@
                             @endif
                         <!-- Akhir Validasi -->
                         <!-- form start -->
-                        <form role="form" method="post" action="{{ action('SuratKeputusanController@store') }}" enctype="multipart/form-data">
+                        @foreach($kaprodi as $kaprodi)
+                        <form role="Insertform" action="{{ action('KaprodiController@update', $kaprodi->noreq) }}" method="post" id="editForm" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+
                                 <div class="form-group">
-                                    <label>Nomor SK</label>
-                                    <input type="text" class="form-control" placeholder="Nomor SK" name="nosk" id="nosk" value="{{ old('nosk') }}">
+                                    <label>No Request</label>
+                                    <input type="number" class="form-control" name="noreq" id="noreq" value="{{ $kaprodi->noreq }}" disabled>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tanggal SK</label>
-                                    <input type="date" class="form-control" name="tglsk" id="tglsk" value="{{ old('tglsk') }}">
+                                    <label>NIP</label>
+                                    <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ $kaprodi->nip }}" maxlength="9">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Staff</label>
-                                    <input type="text" class="form-control" placeholder="Pembuat SK" name="userstaff" id="userstaff" value="{{ old('userstaff') }}">
+                                    <label for="exampleInputFile">Upload Tanda Tangan</label>
+                                    <div class="input-group control-group increment" >
+                                        <input type="file" class="form-control" style="padding:3px;" name="ttd" id="ttd" value="{{ $kaprodi->ttd }}">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Semester</label>
-                                    <select class="form-control" name="semester" required>
-                                        <option>--------</option>
-                                        <option>Genap</option>
-                                        <option>Ganjil</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Tahun Ajaran</label>
-                                    <select class="form-control" name="tahunajar" required>
-                                        <option>--------</option>
-                                        <option>2018/2019</option>
-                                        <option>2019/2020</option>
-                                        <option>2020/2021</option>
-                                        <option>2021/2022</option>
+                                    <label>Status Sk</label>
+                                    <select class="form-control" name="statusreq" id="satatusreq" required>
+                                        <option value="{{ $kaprodi->statusreq }}">--------</option>
+                                        <option>Porposed</option>
+                                        <option>Sedang Proses</option>
+                                        <option>Diterima</option>
                                     </select>
                                 </div>
 
@@ -87,19 +83,15 @@
                             <div class="card-footer">
                                     <div class="row">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
-                                        <a href="{{url('jenissk')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
+                                        <a href="{{url('kaprodi')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
                             <!-- End Footer -->
                         </form>
+                        @endforeach
                     </div>
             </div>
-
-            <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-		    <script src="{{asset('ckeditor/custom.js')}}"></script>
-            <script>
-                CKEDITOR.replace( 'templatesk' );
-            </script>
+            
     </section>
-{{-- End Add Modal --}}
+{{-- End Edit--}}
 @endsection

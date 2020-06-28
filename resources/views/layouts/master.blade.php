@@ -127,6 +127,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/kaprodi') }}" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-check"></i>
+                                <p>
+                                    Request SK
+                                </p>
+                            </a>
+                        </li>
                         @if(auth()->user()->status == 'Admin')
                         {{-- Klasifikasi --}}
                         <li class="nav-item">
@@ -203,6 +211,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         @endif
                         <li class="nav-header">TRANSAKSI</li>
                         {{-- Transaksi Surat --}}
@@ -377,7 +386,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
         bsCustomFileInput.init();
-                
+
         $('#pushmenu').click(function() {
             $('#searchForm').empty();
             if($("body").hasClass('sidebar-collapse')) {
@@ -400,7 +409,7 @@
                     `;
             }
             $('#searchForm').append(searchFormHTML);
-        });		
+        });
     });
     </script>
 </body>

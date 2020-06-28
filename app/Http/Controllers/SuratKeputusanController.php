@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\SuratKeputusan;
+use App\Kaprodi;
 
 class SuratKeputusanController extends Controller
 {
@@ -32,7 +33,8 @@ class SuratKeputusanController extends Controller
      */
     public function create()
     {
-        //
+        $sk = SuratKeputusan::all();
+        return view('sk.transaksi.skcreate', ['sk'=> $sk]);
     }
 
     /**
@@ -43,7 +45,28 @@ class SuratKeputusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nosk' => 'required',
+            'tglsk' => 'required',
+            'userstaff' => 'required',
+            'semester' => 'required',
+            'tahunajar' => 'required',
+        ]);
+
+        $sk = new SuratKeputusan;
+        $kaprodi = new Kaprodi;
+
+        $sk->nosk = $request->input('nosk');
+        $kaprodi->noreq = $request->input('nosk');
+        $sk->tglsk = $request->input('tglsk');
+        $sk->userstaff = $request->input('userstaff');
+        $sk->semester = $request->input('semester');
+        $sk->tahunajar = $request->input('tahunajar');
+
+        $sk->save();
+        $kaprodi->save();
+
+        return redirect('suratkeputusan')->with('success', 'Data Saved');
     }
 
     /**

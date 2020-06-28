@@ -7,7 +7,7 @@ use App\Jenis;
 use App\JenjangJabatan;
 use App\User;
 use File;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,7 +62,7 @@ class SuratMasukController extends Controller
 			'gambar' => 'max:3',
 			'file' => 'mimetypes:application/pdf|max:10240'
         ],$messages);
-        
+
         $input=$request->all();
 		$urut = $request->input('urut');
 		$tahun = $request->input('tahun');
@@ -125,7 +125,7 @@ class SuratMasukController extends Controller
 		// passing data surat masuk yang didapat ke view suratmasuk_edit.blade.php
 		return view('suratmasuk_edit', ['suratmasuk' => $surat]);
     }
-    
+
     public function update($id_suratmasuk, Request $request)
     {
         $messages = [
