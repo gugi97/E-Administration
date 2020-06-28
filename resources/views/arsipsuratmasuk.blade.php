@@ -45,15 +45,23 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $sms->no_surat }}</td>
                             <td>{{ $sms->tgl_surat }}</td>
-                            @php $allImages = explode(',', $sms->gambar); @endphp
+                                <?php if($sms->gambar != null){
+                                ?>
+                                @php $allImages = explode(',', $sms->gambar); @endphp
                                 @foreach($allImages as $Image)
-                                <input type="hidden" name="hidden_name[]" value="{{ $Image }}" multiple/>
-                                <td align="center">
-                                    <a class="image-popup-vertical-fit" href="/{{$sms->lokasi}}/{{$Image}}">
-                                        <img width="150px" src="/{{$sms->lokasi}}/{{$Image}}">
-                                    </a>
-                                </td>
+                                    <td align="center">
+                                        <a class="image-popup-vertical-fit" href="/{{$sms->lokasi}}/{{$Image}}">
+                                            <img width="150px" src="/{{$sms->lokasi}}/{{$Image}}">
+                                        </a>
+                                    </td>
                                 @endforeach
+                                <?php
+                                }else{
+                                ?>
+                                    <td>Gambar Tidak Ada</td>
+                                <?php
+                                }
+                                ?>
                         </tr>
                         @endforeach
                     </tbody>

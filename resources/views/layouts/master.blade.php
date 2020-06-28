@@ -188,9 +188,17 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{url('/user')}}" class="nav-link {{ set_active('user.index') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>User</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/dosen')}}" class="nav-link {{ set_active('dosen.index') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Dosen</p>
                                     </a>
                                 </li>
                             </ul>
@@ -262,7 +270,7 @@
                         {{-- Galeri --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-folder-open"></i>
+                                <i class="nav-icon far fa-file-pdf"></i>
                                 <p>Galeri Gambar
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
@@ -288,7 +296,37 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- END Galeri --}}
+                        {{-- END File Galeri --}}
+                        {{-- Galeri --}}
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-file-image"></i>
+                                <p>Galeri File
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                    <a href="{{ url('/arsipfilesuratmasuk') }}" class="nav-link {{ set_active('arsipfilesuratmasuk') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Surat Masuk</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('/arsipfilesuratkeluar') }}" class="nav-link {{ set_active('arsipfilesuratkeluar') }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Surat Keluar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../index3.html" class="nav-link">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Surat Keputusan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- END File Galeri --}}
                         <li class="nav-header">MISCELLANEOUS</li>
                         <li class="nav-item">
                             <a href="https://adminlte.io/docs/3.0" class="nav-link">

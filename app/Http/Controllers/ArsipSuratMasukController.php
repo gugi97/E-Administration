@@ -23,4 +23,13 @@ class ArsipSuratMasukController extends Controller
     	// mengirim data suratmasuk ke view index
 		return view('arsipsuratmasuk',['arsipsuratmasuk' => $arsipsuratmasuk]);
     }
+
+    public function indexfile()
+    {
+		// mengambil data dari table suratmasuk
+        $arsipfilesuratmasuk = SuratMasuk::getallsuratmasuk();
+        
+    	// mengirim data suratmasuk ke view index
+		return view('arsipfilesuratmasuk',['arsipfilesuratmasuk' => $arsipfilesuratmasuk]);
+	}
 }

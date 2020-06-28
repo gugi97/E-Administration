@@ -22,7 +22,7 @@ class UnitIndukController extends Controller
      */
     public function index()
     {
-        $induk = UnitInduk::all();
+        $induk = UnitInduk::where();
         return view('unit_induk')->with('induk', $induk);
     }
 

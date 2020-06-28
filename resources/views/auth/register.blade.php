@@ -105,8 +105,9 @@
                         <div class="input-group mb-3">
                             <select id="status" type="status" class="form-control @error('status') is-invalid @enderror" name="status" required>
                                 <option value="">--------</option>
-                                <option value="Admin">Admin</option>
                                 <option value="Karyawan">Karyawan</option>
+                                <option value="Dekan">Dekan</option>
+                                <option value="Ketua Program Studi">Ketua Program Studi</option>
                             </select>
                             <div class="input-group-append">
                                 <div class="input-group-text">

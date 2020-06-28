@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -33,4 +34,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopegetalluser(){
+        $result = DB::table('users')->where('status', 'Karyawan')->orWhere('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->get();
+        return $result;
+    }
 }

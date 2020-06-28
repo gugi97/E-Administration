@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\JenisSK;
+use App\Dosen;
+use App\User;
 
-class JenisSKController extends Controller
+class DosenController extends Controller
 {
     public function __construct()
     {
@@ -20,8 +21,8 @@ class JenisSKController extends Controller
      */
     public function index()
     {
-        $jenis = JenisSK::all();
-        return view('sk.jenis_sk_index', ['jenis'=> $jenis]);
+        $dosen = Dosen::all();
+        return view('dosen', ['dosen'=> $dosen]);
     }
 
     /**
@@ -31,8 +32,8 @@ class JenisSKController extends Controller
      */
     public function create()
     {
-        $jenis = JenisSK::all();
-        return view('sk.jenis_sk_create', ['jenis'=> $jenis]);
+        // $dosen = Dosen::all();
+        // return view('dosen', ['dosen'=> $dosen]);
     }
 
     /**
@@ -43,21 +44,26 @@ class JenisSKController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
+            'min' => ':attribute harus 9 digit'
+        ];
+
         $this->validate($request,[
-            'jenissk' => 'required',
-            'namask' => 'required',
-            'templatesk' => 'required',
+            'nip' => 'required|numeric|min:9',
+            'name' => 'required',
+            'email' => 'required',
         ]);
 
-        $jenis = new JenisSK;
+        $dosen = new Dosen;
 
-        $jenis->jenis_sk = $request->input('jenissk');
-        $jenis->nama_template = $request->input('namask');
-        $jenis->template = $request->input('templatesk');
+        $dosen->nip = $request->input('nip');
+        $dosen->name = $request->input('name');
+        $dosen->email = $request->input('email');
 
-        $jenis->save();
+        $dosen->save();
 
-        return redirect('jenissk')->with('success', 'Data Saved');
+        return redirect('dosen')->with('success', 'Data Saved');
     }
 
     /**
@@ -80,8 +86,8 @@ class JenisSKController extends Controller
      */
     public function edit($id)
     {
-        $jenis = JenisSK::where('idjenis_sk',$id)->get();
-        return view ('sk.jenis_sk_edit', ['jenis' => $jenis]);
+        // $dosen = Dosen::where('id',$id)->get();
+        // return view ('dosen', ['dosen' => $dosen]);
     }
 
     /**
@@ -91,23 +97,28 @@ class JenisSKController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode)
     {
+        $messages = [
+            'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
+            'min' => ':attribute harus 9 digit'
+        ];
+
         $this->validate($request,[
-            'jenissk' => 'required',
-            'namask' => 'required',
-            'templatesk' => 'required',
+            'nip' => 'required|numeric|min:9',
+            'name' => 'required',
+            'email' => 'required',
         ]);
 
-        $jenis = JenisSK::find($id);
+        $dosen = Dosen::where('id',$kode)->first();
 
-        $jenis->jenis_sk = $request->input('jenissk');
-        $jenis->nama_template = $request->input('namask');
-        $jenis->template = $request->input('templatesk');
+        $dosen->nip = $request->input('nip');
+        $dosen->name = $request->input('name');
+        $dosen->email = $request->input('email');
 
-        $jenis->save();
+        $dosen->save();
 
-        return redirect('jenissk')->with('success', 'Data Update');
+        return redirect('dosen')->with('success', 'Data Update');
     }
 
     /**
@@ -118,9 +129,9 @@ class JenisSKController extends Controller
      */
     public function destroy($kode)
     {
-        $jenis = JenisSk::where('idjenis_sk', $kode)->first();
-        $jenis->delete();
+        $dosen = Dosen::where('id',$kode)->first();
+        $dosen->delete();
 
-        return redirect('jenissk')->with('success', 'Data Deleted');
+        return redirect('dosen')->with('success', 'Data Deleted');
     }
 }
