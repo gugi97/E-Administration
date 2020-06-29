@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                         <li class="breadcrumb-item active">Dosen</li>
                     </ol>
                 </div>
@@ -40,7 +40,7 @@
             </div>
             @endif
             {{-- END ALERT MESSAGE --}}
-            
+
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <!-- Button trigger Add modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fas fa-plus-circle"></i> Tambah Data Dosen
+                    <i class="fas fa-plus-circle"></i> Tambah Data
                     </button>
                     {{-- End Trigger Button --}}
                     <br><br>
@@ -60,16 +60,18 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">NIP Dosen</th>
                                 <th scope="col">Nama Dosen</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Emailt</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($dosen as $dsn)
-                            <tr style="text-align: center;">    
+                            <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
+                                <td>{{ $dsn->id }}</td>
                                 <td>{{ $dsn->nip }}</td>
                                 <td>{{ $dsn->name }}</td>
                                 <td>{{ $dsn->email }}</td>
@@ -97,7 +99,7 @@
                                         {{ csrf_field() }}
 
                                         <div class="form-group">
-                                            <label>NIP Dosen</label>
+                                            <label>Nip Dosen</label>
                                             <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" value="{{ old('nip') }}" maxlength="9">
                                         </div>
 
@@ -110,7 +112,7 @@
                                             <label>Email Dosen</label>
                                             <input type="email" class="form-control" placeholder="Email Dosen" name="email" value="{{ old('email') }}">
                                         </div>
-                                            
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
@@ -126,12 +128,12 @@
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Dosen</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Jenjang Jabatan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
                                     <form role="Insertform" action="/dosen" method="post" id="editForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
@@ -144,7 +146,7 @@
 
                                             <div class="form-group">
                                                 <label>NIP Dosen</label>
-                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" id="nip" value="{{ old('nip') }}" maxlength="9">
+                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nipdsn" id="nipdsn" value="{{ old('nip') }}" maxlength="9">
                                             </div>
     
                                             <div class="form-group">
@@ -157,6 +159,7 @@
                                                 <input type="email" class="form-control" placeholder="Email Dosen" name="email" id="email" value="{{ old('email') }}">
                                             </div>
 
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
                                             <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
@@ -172,16 +175,16 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Unit Surat</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Dosen</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                                <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                     <form role="Insertform" action="/dosen" method="post" id="deleteForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                                
+
                                             <input type="hidden" name="_method" value="DELETE">
                                             <p>Apa yakin ingin menghapus data?</p>
                                         </div>
@@ -216,12 +219,12 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
-            
+
             var table = $('#datatable').DataTable();
 
             //Start Edit Record
             table.on('click', '.edit', function() {
-                
+
                 $tr = $(this).closest('tr');
                 if($($tr).hasClass('child')) {
                     $tr = $tr.prev('.parent');
@@ -230,29 +233,29 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#id').val(data[0]);
-                $('#nip').val(data[1]);
-                $('#name').val(data[2]);
-                $('#email').val(data[3]);
-                
-                $('#editForm').attr('action', '/dosen/'+data[0]);
+                $('#id').val(data[1]);
+                $('#nipdsn').val(data[2]);
+                $('#name').val(data[3]);
+                $('#email').val(data[4]);
+
+                $('#editForm').attr('action', '/dosen/'+data[1]);
                 $('#editModal').modal('show');
             });
             //End Edit Record
 
             //Start Delete Record
             table.on('click', '.delete', function() {
-                
+
                 $tr = $(this).closest('tr');
-                if($($tr).hasClass('child')) 
+                if($($tr).hasClass('child'))
                 {
                     $tr = $tr.prev('.parent');
                 }
 
                 var data = table.row($tr).data();
                 console.log(data);
-                
-                $('#deleteForm').attr('action', '/dosen/'+data[0]);
+
+                $('#deleteForm').attr('action', '/dosen/'+data[1]);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

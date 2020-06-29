@@ -97,7 +97,7 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $kode)
+    public function update(Request $request, $id)
     {
         $messages = [
             'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
@@ -105,14 +105,16 @@ class DosenController extends Controller
         ];
 
         $this->validate($request,[
-            'nip' => 'required|numeric|min:9',
+            'nipdsn' => 'required|numeric|min:9',
             'name' => 'required',
             'email' => 'required',
         ]);
 
-        $dosen = Dosen::where('id',$kode)->first();
+        $dosen = new Dosen;
 
-        $dosen->nip = $request->input('nip');
+        $dosen = Dosen::findOrFail($id);
+        
+        $dosen->nip = $request->input('nipdsn');
         $dosen->name = $request->input('name');
         $dosen->email = $request->input('email');
 
@@ -127,11 +129,11 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($kode)
+    public function destroy($id)
     {
-        $dosen = Dosen::where('id',$kode)->first();
-        $dosen->delete();
+        $dosen = Dosen::find($id);
 
+        $dosen->delete();
         return redirect('dosen')->with('success', 'Data Deleted');
     }
 }
