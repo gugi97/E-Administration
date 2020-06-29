@@ -70,11 +70,28 @@
 
                                 <div class="form-group">
                                     <label>Status Sk</label>
+
                                     <select class="form-control" name="statusreq" id="satatusreq" required>
-                                        <option value="{{ $kaprodi->statusreq }}">--------</option>
-                                        <option>Porposed</option>
-                                        <option>Sedang Proses</option>
-                                        <option>Diterima</option>
+                                        <?php if($kaprodi->statusreq == "Porposed"){
+                                        ?>
+                                            <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
+                                            <option value="Sedang Proses">Sedang Proses</option>
+                                            <option value="Diterima">Diterima</option>
+                                        <?php
+                                        }else if($kaprodi->statusreq == "Sedang Proses"){
+                                        ?>
+                                            <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
+                                            <option value="Porposed">Porposed</option>
+                                            <option value="Diterima">Diterima</option>
+                                        <?php
+                                        }else if($kaprodi->statusreq == "Diterima"){
+                                        ?>
+                                            <option value="{{$kaprodi->statusreq}}">{{$kaprodi->statusreq}}</option>
+                                            <option value="Porposed">Porposed</option>
+                                            <option value="Sedang Proses">Sedang Proses</option>
+                                        <?php
+                                        }
+                                        ?> 
                                     </select>
                                 </div>
 

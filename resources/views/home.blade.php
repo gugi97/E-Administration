@@ -27,6 +27,10 @@
 
         <!-- Default box -->
         <div class="card">
+            <div class="card-header" style="text-align: center;">
+                <h3>Jumlah Data Transaksi Surat</h3>
+            </div>
+
             <div class="card-body">
                 @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -90,13 +94,13 @@
                         <!-- small card -->
                         <div class="small-box" style="color: white !important; background-color: #FFC107;">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{$user_count}}</h3>
                                 <p>User</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-plus"></i>
                             </div>
-                            <a href="#" class="small-box-footer">
+                            <a href="user" class="small-box-footer">
                                 More info <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>

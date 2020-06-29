@@ -64,20 +64,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sk as $sk)
-                            @foreach ($kaprodi as $kaprodi )
+                            @foreach ($sk as $sk2)
+                            @foreach ($kaprodi as $kaprodi2 )
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $kaprodi->noreq }}</td>
-                                <td>{{ $sk->tglsk }}</td>
-                                <td>{{ $sk->userstaff }}</td>
-                                    {{-- <td>{{ $sk->suratkeputusan }}</td> --}}
-                                <td>{{ $sk->status }}</td>
+                                <td>{{ $kaprodi2->noreq }}</td>
+                                <td>{{ $sk2->tglsk }}</td>
+                                <td>{{ $sk2->userstaff }}</td>                            
+                                    {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
+                                <?php
+                                    if($kaprodi2->statusreq == null)
+                                    {
+                                        echo "<td> $sk2->status </td>";
+                                    }else{
+                                        echo "<td> $kaprodi2->statusreq </td>";
+                                    }
+                                ?>
                                 <td>
-                                    <a href="{{action('KaprodiController@edit', $kaprodi->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             @endforeach
+                            @break
                             @endforeach
                             </tr>
                         </tbody>

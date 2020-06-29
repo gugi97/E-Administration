@@ -27,7 +27,7 @@
                     <div class="card">
                         <!-- Card Header -->
                         <div class="card-header">
-                            <h3 class="card-title"><a href="/jenissk" class="btn btn-primary">Kembali</a></h3>
+                            <h3 class="card-title"><a href="/suratkeputusan" class="btn btn-primary">Kembali</a></h3>
                             <h3 align="center">Tambah Data Surat Keputusan</h3>
                         </div>
                         <!-- End Card Header -->
@@ -87,7 +87,7 @@
                             <div class="card-footer">
                                     <div class="row">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
-                                        <a href="{{url('jenissk')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
+                                        <a href="{{url('suratkeputusan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
                             <!-- End Footer -->

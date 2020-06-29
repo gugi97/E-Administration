@@ -79,6 +79,7 @@
             <script>
                 CKEDITOR.replace( 'templatesk' );
                 var editor = CKEDITOR.instances['templatesk'];
+                CKEDITOR.instances['templatesk'].setData('hello');
             </script>
     </section>
 {{-- End Add Modal --}}
