@@ -75,11 +75,11 @@
             </div>
 
             <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-		    <script src="{{asset('ckeditor/custom.js')}}"></script>
+		    <script src="{{asset('ckeditor/ckeditor_conf.js')}}"></script>
             <script>
                 CKEDITOR.replace( 'templatesk' );
                 var editor = CKEDITOR.instances['templatesk'];
-                CKEDITOR.instances['templatesk'].setData('hello');
+                CKEDITOR.instances['templatesk'].setData('<b><h3 style="text-align:center;">NOMOR SURAT : </h3><h3 style="text-align:center">[Field Nomor Surat]</h3></b><h3 style="text-align:center;">TENTANG : </h3><b><h3 style="text-align:center">[Tentang Surat]</h3></b><p style="text-align:center">[ISI SURAT]</p><p style="text-align:center;">KAMPUS ROXY MAS : Pusat Niaga Roxy Mas Blok E.2 No. 38-39 Telp: (021) 6328709, 6328710, Fax: (O21) 6322872<br>KAMPUS SALEMBA MAS : Sentra Salemba Mas Blok S-T, Telp:(021) 3928688, 3928689, Fax:(021) 3161636</p>');
             </script>
     </section>
 {{-- End Add Modal --}}
