@@ -4,7 +4,9 @@
 <main class="hold-transition login-page" style="height: 91vh !important;">
     <div class="login-box">
         <div class="card">
-                    <div class="card-header">{{ __('Reset Password') }}</div>
+                    <div class="card-header" style="background-color: #095593; text-align: center; color: white; font-weight: bold; font-size: larger;">
+                        {{ __('Reset Password') }}
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('password.update') }}">
