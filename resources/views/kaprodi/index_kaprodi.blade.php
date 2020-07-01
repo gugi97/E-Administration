@@ -70,7 +70,7 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $kaprodi2->noreq }}</td>
                                 <td>{{ $sk2->tglsk }}</td>
-                                <td>{{ $sk2->userstaff }}</td>                            
+                                <td>{{ $sk2->nip }}</td>                            
                                     {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
                                 <?php
                                     if($kaprodi2->statusreq == null)

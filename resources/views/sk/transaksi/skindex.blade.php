@@ -58,7 +58,7 @@
                                 <th scope="col">ID SK</th>
                                 <th scope="col">Nomor SK</th>
                                 <th scope="col">Tanggal SK</th>
-                                <th scope="col">Staff</th>
+                                <th scope="col">Tujuan</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Semester</th>
                                 <th scope="col">Tahun Ajar</th>
@@ -72,7 +72,7 @@
                                 <td>{{ $sk->idsk }}</td>
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
-                                <td>{{ $sk->userstaff }}</td>
+                                <td>{{ $sk->tujuan }}</td>
                                 <td>{{ $sk->status }}</td>
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>

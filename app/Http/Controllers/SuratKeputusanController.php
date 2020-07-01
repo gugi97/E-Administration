@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\SuratKeputusan;
 use App\Kaprodi;
+use App\User;
 
 class SuratKeputusanController extends Controller
 {
@@ -34,7 +35,11 @@ class SuratKeputusanController extends Controller
     public function create()
     {
         $sk = SuratKeputusan::all();
-        return view('sk.transaksi.skcreate', ['sk'=> $sk]);
+        $alluser = SuratKeputusan::getalluser();
+        $alltemplate = SuratKeputusan::getalltemplate();
+        $nama = Auth::user()->name;
+        $nip = User::where('name',$nama)->first();
+        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alluser' => $alluser, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip]);
     }
 
     /**
@@ -45,23 +50,33 @@ class SuratKeputusanController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+			'hasil.required' => 'Data harus di Generate terlebih dahulu'
+        ];
+        
         $this->validate($request,[
             'nosk' => 'required',
+            'tentangsk' => 'required',
             'tglsk' => 'required',
-            'userstaff' => 'required',
+            'tujuan' => 'required',
             'semester' => 'required',
             'tahunajar' => 'required',
+            'hasil' => 'required'
         ]);
 
         $sk = new SuratKeputusan;
         $kaprodi = new Kaprodi;
 
         $sk->nosk = $request->input('nosk');
+        $sk->tentangsk = $request->input('tentangsk');
         $kaprodi->noreq = $request->input('nosk');
         $sk->tglsk = $request->input('tglsk');
-        $sk->userstaff = $request->input('userstaff');
+        $sk->tujuan = $request->input('tujuan');
         $sk->semester = $request->input('semester');
         $sk->tahunajar = $request->input('tahunajar');
+        $sk->template = $request->input('hasil');
+        $kaprodi->template = $request->input('hasil');
+        $sk->nip = $request->input('nip');
 
         $sk->save();
         $kaprodi->save();

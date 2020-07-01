@@ -88,7 +88,7 @@
             </div>
 
             <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-		    <script src="{{asset('ckeditor/custom.js')}}"></script>
+		    <script src="{{asset('ckeditor/ckeditor_conf.js')}}"></script>
             <script>
                 CKEDITOR.replace( 'templatesk' );
             </script>
