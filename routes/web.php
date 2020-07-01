@@ -44,6 +44,6 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Dekan,Ketua Program Stu
     Route::get('suratkeluar/hapus/{id_suratkeluar}', 'SuratKeluarController@delete');
 });
 
-Route::group(['middleware' => ['auth','checkStatus:Admin,Ketua Program Studi']],function(){
+Route::group(['middleware' => ['auth','checkStatus:Ketua Program Studi']],function(){
     Route::resource('kaprodi', 'KaprodiController');
 });
