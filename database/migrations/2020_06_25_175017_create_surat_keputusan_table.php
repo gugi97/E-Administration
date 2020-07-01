@@ -16,7 +16,7 @@ class CreateSuratKeputusanTable extends Migration
         Schema::create('suratkeputusan', function (Blueprint $table) {
             $table->increments('idsk');
             $table->string('nosk', 30);
-            $table->strin('tentangsk',255);
+            $table->string('tentangsk',255);
             $table->date('tglsk');
             $table->string('tujuan',255);
             $table->string('status')->default('Porposed');

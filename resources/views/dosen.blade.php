@@ -60,10 +60,10 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col">ID</th>
                                 <th scope="col">NIP Dosen</th>
                                 <th scope="col">Nama Dosen</th>
-                                <th scope="col">Emailt</th>
+                                <th scope="col">Nomor HP</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
@@ -71,9 +71,12 @@
                             @foreach ($dosen as $dsn)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $dsn->id }}</td>
                                 <td>{{ $dsn->nip }}</td>
-                                <td>{{ $dsn->name }}</td>
+                                <td><span id='fieldGelarDepan'>{{$dsn->gelar_depan}}</span>
+                                    <span id='fieldNama'>{{ $dsn->name }}</span>
+                                    <span id='fieldGelarBelakang'>{{$dsn->gelar_belakang}}</span>
+                                </td>
+                                <td>{{ $dsn->no_hp }}</td>
                                 <td>{{ $dsn->email }}</td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
@@ -99,13 +102,28 @@
                                         {{ csrf_field() }}
 
                                         <div class="form-group">
-                                            <label>Nip Dosen</label>
+                                            <label>NIP Dosen</label>
                                             <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" value="{{ old('nip') }}" maxlength="9">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Gelar Depan Dosen</label>
+                                            <input type="text" class="form-control" placeholder="Gelar Depan Dosen" name="gelar_depan" value="{{ old('gelar_depan') }}">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Nama Dosen</label>
                                             <input type="text" class="form-control" placeholder="Nama Dosen" name="name" value="{{ old('name') }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Gelar Belakang Dosen</label>
+                                            <input type="text" class="form-control" placeholder="Gelar Belakang Dosen" name="gelar_belakang" value="{{ old('gelar_belakang') }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nomor Handphone</label>
+                                            <input type="text" class="form-control" placeholder="Nomor Handphone" name="no_hp" value="{{ old('no_hp') }}" maxlength="14">
                                         </div>
 
                                         <div class="form-group">
@@ -140,18 +158,28 @@
                                             {{ method_field('PUT') }}
 
                                             <div class="form-group">
-                                                <label>Id Dosen</label>
-                                                <input type="number" class="form-control" placeholder="ID Dosen" name="id" id="id" disabled>
-                                            </div>
-
-                                            <div class="form-group">
                                                 <label>NIP Dosen</label>
                                                 <input type="text" class="form-control" placeholder="NIP Dosen" name="nipdsn" id="nipdsn" value="{{ old('nip') }}" maxlength="9">
                                             </div>
-    
+
+                                            <div class="form-group">
+                                                <label>Gelar Depan Dosen</label>
+                                                <input type="text" class="form-control" placeholder="Gelar Depan Dosen" name="gelar_depan" id="gelar_depan" value="{{ old('gelar_depan') }}">
+                                            </div>
+
                                             <div class="form-group">
                                                 <label>Nama Dosen</label>
                                                 <input type="text" class="form-control" placeholder="Nama Dosen" name="name" id="name" value="{{ old('name') }}">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Gelar Belakang Dosen</label>
+                                                <input type="text" class="form-control" placeholder="Gelar Belakang Dosen" name="gelar_belakang" id="gelar_belakang" value="{{ old('gelar_belakang') }}">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Nomor Handphone</label>
+                                                <input type="text" class="form-control" placeholder="Nomor Handphone" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" maxlength="14">
                                             </div>
 
                                             <div class="form-group">
@@ -231,11 +259,14 @@
                 }
 
                 var data = table.row($tr).data();
+
                 console.log(data);
 
-                $('#id').val(data[1]);
-                $('#nipdsn').val(data[2]);
-                $('#name').val(data[3]);
+                $('#nipdsn').val(data[1]);
+                $('#gelar_depan').val($('#fieldGelarDepan').html());
+                $('#name').val($('#fieldNama').html());
+                $('#gelar_belakang').val($('#fieldGelarBelakang').html());
+                $('#no_hp').val(data[3]);
                 $('#email').val(data[4]);
 
                 $('#editForm').attr('action', '/dosen/'+data[1]);

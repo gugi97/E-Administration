@@ -31,9 +31,9 @@ class User extends Authenticatable
      * The attributes that should be cast to native types.
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 
     public function scopegetalluser(){
         $result = DB::table('users')->where('status', 'Karyawan')->orWhere('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->get();

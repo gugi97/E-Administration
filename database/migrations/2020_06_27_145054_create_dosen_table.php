@@ -14,12 +14,12 @@ class CreateDosenTable extends Migration
     public function up()
     {
         Schema::create('dosen', function (Blueprint $table) {
-            $table->increments('id');
-            $table->char('nip', 9)->unique();
+            $table->char('nip', 9)->primary();
+            $table->string('gelar_depan', 50);
             $table->string('name');
-            $table->string('divisi', 50);
+            $table->string('gelar_belakang', 50);
+            $table->string('no_hp', 15);
             $table->string('email')->unique();
-            $table->timestamps();
         });
     }
 

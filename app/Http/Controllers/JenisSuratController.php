@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Jenis;
-use App\User;
 use App\Rules\HurufBesar;
 
 class JenisSuratController extends Controller
@@ -73,7 +72,7 @@ class JenisSuratController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        
+
     }
 
     /**
@@ -90,8 +89,8 @@ class JenisSuratController extends Controller
             'namajns' => 'required',
         ]);
 
-        $jns = Jenis::where('kode_jenissurat',$kode)->first();
-        
+        $jns = Jenis::where('id',$kode)->first();
+
         $jns->kode_jenissurat = $request->input('kodejns');
         $jns->nama_jenissurat = $request->input('namajns');
 
@@ -108,7 +107,7 @@ class JenisSuratController extends Controller
      */
     public function destroy($kode)
     {
-        $jns = Jenis::where('kode_jenissurat',$kode)->first();
+        $jns = Jenis::where('id',$kode)->first();
         $jns->delete();
 
         return redirect('jenissurat')->with('success', 'Data Deleted');

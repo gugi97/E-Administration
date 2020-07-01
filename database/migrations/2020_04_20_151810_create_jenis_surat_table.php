@@ -17,7 +17,6 @@ class CreateJenisSuratTable extends Migration
             $table->increments('id');
             $table->string('kode_jenissurat', 1)->unique();
             $table->string('nama_jenissurat', 50);
-            $table->string('kd_histori', 3)->nullable();
         });
     }
 

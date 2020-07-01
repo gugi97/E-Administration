@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Dosen;
-use App\User;
 
 class DosenController extends Controller
 {
@@ -51,14 +50,20 @@ class DosenController extends Controller
 
         $this->validate($request,[
             'nip' => 'required|numeric|min:9',
+            'gelar_depan' => 'nullable',
             'name' => 'required',
+            'gelar_belakang' => 'required',
+            'no_hp' => 'required|numeric',
             'email' => 'required',
         ]);
 
         $dosen = new Dosen;
 
         $dosen->nip = $request->input('nip');
+        $dosen->gelar_depan = $request->input('gelar_depan');
         $dosen->name = $request->input('name');
+        $dosen->gelar_belakang = $request->input('gelar_belakang');
+        $dosen->no_hp = $request->input('no_hp');
         $dosen->email = $request->input('email');
 
         $dosen->save();
@@ -106,16 +111,21 @@ class DosenController extends Controller
 
         $this->validate($request,[
             'nipdsn' => 'required|numeric|min:9',
+            'gelar_depan' => 'required',
             'name' => 'required',
+            'gelar_belakang' => 'required',
+            'no_hp' => 'required|numeric',
             'email' => 'required',
         ]);
 
         $dosen = new Dosen;
-
         $dosen = Dosen::findOrFail($id);
-        
+
         $dosen->nip = $request->input('nipdsn');
+        $dosen->gelar_depan = $request->input('gelar_depan');
         $dosen->name = $request->input('name');
+        $dosen->gelar_belakang = $request->input('gelar_belakang');
+        $dosen->no_hp = $request->input('no_hp');
         $dosen->email = $request->input('email');
 
         $dosen->save();

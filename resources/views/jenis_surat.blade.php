@@ -40,7 +40,7 @@
             </div>
             @endif
             {{-- END ALERT MESSAGE --}}
-            
+
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
@@ -60,6 +60,7 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
+                                <th scope="col" style="display:none;">Id</th>
                                 <th scope="col">Kode Jenis</th>
                                 <th scope="col">Nama Jenis</th>
                                 <th scope="col">Opsi</th>
@@ -67,8 +68,9 @@
                         </thead>
                         <tbody>
                             @foreach ($jenis as $jnsdata)
-                            <tr style="text-align: center;">    
+                            <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
+                                <td style="display:none;">{{ $jnsdata->id }}</td>
                                 <td>{{ $jnsdata->kode_jenissurat }}</td>
                                 <td>{{ $jnsdata->nama_jenissurat }}</td>
                                 <td>
@@ -103,7 +105,7 @@
                                             <label>Nama Jenis</label>
                                             <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" value="{{ old('namajns') }}">
                                         </div>
-                                            
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
@@ -129,17 +131,22 @@
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('PUT') }}
-    
+
+                                            <div class="form-group">
+                                                <label>Id Jenis</label>
+                                                <input type="number" class="form-control" placeholder="Id Jenis Surat" name="idjns" id="idjns" disabled>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label>Kode Jenis</label>
                                                 <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" id="kodejns" maxlength="1" value="{{ old('kodejns') }}">
                                                 </div>
-    
+
                                             <div class="form-group">
                                                 <label>Nama Jenis</label>
                                                 <input type="text" class="form-control" placeholder="Nama Jenis Surat" name="namajns" id="namajns" value="{{ old('namajns') }}">
                                             </div>
-                                                
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
@@ -165,7 +172,7 @@
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                                
+
                                             <input type="hidden" name="_method" value="DELETE">
                                             <p>Apa yakin ingin menghapus data?</p>
                                         </div>
@@ -200,12 +207,12 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
-            
+
             var table = $('#datatable').DataTable();
 
             //Start Edit Record
             table.on('click', '.edit', function() {
-                
+
                 $tr = $(this).closest('tr');
                 if($($tr).hasClass('child')) {
                     $tr = $tr.prev('.parent');
@@ -214,9 +221,10 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#kodejns').val(data[1]);
-                $('#namajns').val(data[2]);
-                
+                $('#idjns').val(data[1]);
+                $('#kodejns').val(data[2]);
+                $('#namajns').val(data[3]);
+
                 $('#editForm').attr('action', '/jenissurat/'+data[1]);
                 $('#editModal').modal('show');
             });
@@ -224,16 +232,16 @@
 
             //Start Delete Record
             table.on('click', '.delete', function() {
-                
+
                 $tr = $(this).closest('tr');
-                if($($tr).hasClass('child')) 
+                if($($tr).hasClass('child'))
                 {
                     $tr = $tr.prev('.parent');
                 }
 
                 var data = table.row($tr).data();
                 console.log(data);
-                
+
                 $('#deleteForm').attr('action', '/jenissurat/'+data[1]);
                 $('#deleteModal').modal('show');
             });
