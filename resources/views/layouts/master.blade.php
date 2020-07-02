@@ -127,6 +127,7 @@
                                 </p>
                             </a>
                         </li>
+                        @if(auth()->user()->status == 'Ketua Program Studi' OR auth()->user()->status == 'Admin')
                         <li class="nav-item">
                             <a href="{{ url('/kaprodi') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
@@ -135,6 +136,7 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
                         @if(auth()->user()->status == 'Admin')
                         {{-- Klasifikasi --}}
                         <li class="nav-item">
@@ -211,8 +213,9 @@
                                 </li>
                             </ul>
                         </li>
-
                         @endif
+
+                        @if(auth()->user()->status == 'Admin' OR auth()->user()->status == 'Staf')
                         <li class="nav-header">TRANSAKSI</li>
                         {{-- Transaksi Surat --}}
                         <li class="nav-item has-treeview">
@@ -305,7 +308,7 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- END File Galeri --}}
+                        {{-- END Gambar Galeri --}}
                         {{-- Galeri --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -336,13 +339,7 @@
                             </ul>
                         </li>
                         {{-- END File Galeri --}}
-                        <!-- <li class="nav-header">MISCELLANEOUS</li>
-                        <li class="nav-item">
-                            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>Documentation</p>
-                            </a>
-                        </li> -->
+                        @endif
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

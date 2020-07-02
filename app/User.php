@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     use Notifiable;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
@@ -36,7 +37,7 @@ class User extends Authenticatable
     // ];
 
     public function scopegetalluser(){
-        $result = DB::table('users')->where('status', 'Karyawan')->orWhere('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->get();
+        $result = DB::table('users')->where('status', 'Staf')->orWhere('status', 'Dosen')->orWhere('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->get();
         return $result;
     }
 }

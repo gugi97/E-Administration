@@ -90,6 +90,7 @@
                         </div>
                     </div>
 
+                    @if(auth()->user()->status == 'Admin')
                     <div class="col-lg-3 col-6">
                         <!-- small card -->
                         <div class="small-box" style="color: white !important; background-color: #FFC107;">
@@ -105,6 +106,43 @@
                             </a>
                         </div>
                     </div>
+                    @endif
+
+                    @if(auth()->user()->status == 'Ketua Program Studi')
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box" style="color: white !important; background-color: #FFC107;">
+                            <div class="inner">
+                                <h3>0</h3>
+                                <p>Request SK</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <a href="user" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->status == 'Staf')
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box" style="color: white !important; background-color: #FFC107;">
+                            <div class="inner">
+                                <h3>0</h3>
+                                <p>Request Surat</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <a href="user" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
 

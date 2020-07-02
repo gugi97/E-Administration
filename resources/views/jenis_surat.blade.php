@@ -60,7 +60,6 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col" style="display:none;">Id</th>
                                 <th scope="col">Kode Jenis</th>
                                 <th scope="col">Nama Jenis</th>
                                 <th scope="col">Opsi</th>
@@ -69,8 +68,9 @@
                         <tbody>
                             @foreach ($jenis as $jnsdata)
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
-                                <td style="display:none;">{{ $jnsdata->id }}</td>
+                                <th>
+                                    {{ $loop->iteration }} <span id='id' style="display:none;">{{ $jnsdata->id }}</span>
+                                </th>
                                 <td>{{ $jnsdata->kode_jenissurat }}</td>
                                 <td>{{ $jnsdata->nama_jenissurat }}</td>
                                 <td>
@@ -221,9 +221,9 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#idjns').val(data[1]);
-                $('#kodejns').val(data[2]);
-                $('#namajns').val(data[3]);
+                $('#idjns').val($('#id').html());
+                $('#kodejns').val(data[1]);
+                $('#namajns').val(data[2]);
 
                 $('#editForm').attr('action', '/jenissurat/'+data[1]);
                 $('#editModal').modal('show');
