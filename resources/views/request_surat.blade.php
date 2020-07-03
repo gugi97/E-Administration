@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Request Surat Keputusan</h1>
+                    <h1>Request Surat</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Request SK</li>
+                        <li class="breadcrumb-item active">Request Surat</li>
                     </ol>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <!-- Card Header -->
                 <div class="card-header">
                     {{-- <h3 class="card-title"><a href="/suratkeputusan/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Data</a></h3> --}}
-                    <h3 align="center">Data Request Surat Keputusan</h3>
+                    <h3 align="center">Data Request Surat Keluar</h3>
                 </div>
                 <!-- End Card Header -->
 
@@ -57,35 +57,27 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Nomor Request</th>
                                 <th scope="col">Tanggal Pengajuan</th>
-                                <th scope="col">NIP Staff</th>
-                                {{-- <th scope="col">Surat Keputusan</th> --}}
+                                <th scope="col">NIP Dosen</th>
+                                <th scope="col">Kebutuhan</th>
+                                <th scope="col">Detail Surat</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sk as $sk2)
-                            @foreach ($kaprodi as $kaprodi2 )
+                            @foreach ($req as $reqdosen)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $kaprodi2->noreq }}</td>
-                                <td>{{ $sk2->tglsk }}</td>
-                                <td>{{ $sk2->nip }}</td>                            
-                                    {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
-                                <?php
-                                    if($kaprodi2->statusreq == null)
-                                    {
-                                        echo "<td> $sk2->status </td>";
-                                    }else{
-                                        echo "<td> $kaprodi2->statusreq </td>";
-                                    }
-                                ?>
+                                <td>{{ $reqdosen->no_req }}</td>
+                                <td>{{ $reqdosen->tgl_maxsurat }}</td>
+                                <td>{{ $reqdosen->nip }}</td>
+                                <td>{{ $reqdosen->kebutuhan }}</td>
+                                <td>{{ $reqdosen->detail_surat }}</td>
+                                <td>{{ $reqdosen->statusreq }}</td>
                                 <td>
                                     <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
-                            @endforeach
-                            @break
                             @endforeach
                             </tr>
                         </tbody>

@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dosen</h1>
+                    <h1>Request Dosen</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Dosen</li>
+                    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Request Dosen</li>
                     </ol>
                 </div>
             </div>
@@ -44,39 +44,37 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fas fa-plus-circle"></i> Tambah Data
-                        </button>    
-                    </h3>
-                    <h3 align="center">Data Dosen</h3>
+                    <h3 class="card-title">Input Request Surat</h3>
                 </div>
                 <!-- End Card Header -->
 
                 <!-- form start -->
                 <div class="card-body">
+                    <!-- Button trigger Add modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-plus-circle"></i> Tambah Data
+                    </button>
+                    {{-- End Trigger Button --}}
+                    <br><br>
                     <table id="datatable" class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col">NIP Dosen</th>
-                                <th scope="col">Nama Dosen</th>
-                                <th scope="col">Nomor HP</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Kode Jabatan</th>
+                                <th scope="col">Nama Jabatan</th>
+                                <th scope="col">Kode Unit Surat</th>
+                                <th scope="col">Kode Unit Induk</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dosen as $dsn)
+                            @foreach ($jenjang as $jenjangjabatan)
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $dsn->nip }}</td>
-                                <td><span id='fieldGelarDepan'>{{$dsn->gelar_depan}}</span>
-                                    <span id='fieldNama'>{{ $dsn->name }}</span>
-                                    <span id='fieldGelarBelakang'>{{$dsn->gelar_belakang}}</span>
-                                </td>
-                                <td>{{ $dsn->no_hp }}</td>
-                                <td>{{ $dsn->email }}</td>
+                                <th>{{ $jenjangjabatan->id }}</th>
+                                <td>{{ $jenjangjabatan->kode_jenjang }}</td>
+                                <td>{{ $jenjangjabatan->nama_jabatan }}</td>
+                                <td>{{ $jenjangjabatan->kode_unitsurat }}</td>
+                                <td>{{ $jenjangjabatan->kode_unitinduk }}</td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
@@ -91,43 +89,43 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Dosen</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Jenjang Jabatan</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                <form role="Insertform" action="{{ action('DosenController@store') }}" method="post" enctype="multipart/form-data">
+                                <form role="Insertform" action="{{ action('JenjangJabatanController@store') }}" method="post" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
 
                                         <div class="form-group">
-                                            <label>NIP Dosen</label>
-                                            <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" value="{{ old('nip') }}" maxlength="9">
+                                            <label>Unit Induk</label>
+                                            <select class="form-control" name="untinduk" required>
+                                                <option>-----</option>
+                                                @foreach ($induk as  $untinduk)
+                                                    <option value="{{$untinduk->kd_unit}}">{{$untinduk->nama_unit}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Gelar Depan Dosen</label>
-                                            <input type="text" class="form-control" placeholder="Gelar Depan Dosen" name="gelar_depan" value="{{ old('gelar_depan') }}">
+                                            <label>Unit Surat</label>
+                                            <select class="form-control" name="untsurat" required>
+                                                <option>-----</option>
+                                                @foreach ($surat as  $untsurat)
+                                                    <option value="{{$untsurat->kode_unitsurat}}">{{$untsurat->nama_unitsurat}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Nama Dosen</label>
-                                            <input type="text" class="form-control" placeholder="Nama Dosen" name="name" value="{{ old('name') }}">
+                                            <label>Kode Jenjang Jabatan</label>
+                                            <input type="text" class="form-control" placeholder="Kode Jabatan" name="kdjabatan" value="{{ old('kdjabatan') }}" maxlength="3">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Gelar Belakang Dosen</label>
-                                            <input type="text" class="form-control" placeholder="Gelar Belakang Dosen" name="gelar_belakang" value="{{ old('gelar_belakang') }}">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Nomor Handphone</label>
-                                            <input type="text" class="form-control" placeholder="Nomor Handphone" name="no_hp" value="{{ old('no_hp') }}" maxlength="14">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Email Dosen</label>
-                                            <input type="email" class="form-control" placeholder="Email Dosen" name="email" value="{{ old('email') }}">
+                                            <label>Nama Jabatan</label>
+                                            <input type="text" class="form-control" placeholder="Nama Jabatan" name="nmjabatan" value="{{ old('nmjabatan') }}">
                                         </div>
 
                                     </div>
@@ -151,39 +149,44 @@
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                    <form role="Insertform" action="/dosen" method="post" id="editForm" enctype="multipart/form-data">
+                                    <form role="Insertform" action="/jenjangjabatan" method="post" id="editForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('PUT') }}
 
                                             <div class="form-group">
-                                                <label>NIP Dosen</label>
-                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nipdsn" id="nipdsn" value="{{ old('nip') }}" maxlength="9">
+                                                <label>Id Jabatan</label>
+                                                <input type="number" class="form-control" placeholder="Id Jenjang Jabatan" name="idjabatan" id="idjabatan" disabled>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Gelar Depan Dosen</label>
-                                                <input type="text" class="form-control" placeholder="Gelar Depan Dosen" name="gelar_depan" id="gelar_depan" value="{{ old('gelar_depan') }}">
+                                            <label>Unit Induk</label>
+                                            <select class="form-control" name="untinduk" id="untinduk" required>
+                                                <option>-----</option>
+                                                @foreach ($induk as  $untinduk)
+                                                    <option value="{{$untinduk->kd_unit}}">{{$untinduk->nama_unit}}</option>
+                                                @endforeach
+                                            </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Nama Dosen</label>
-                                                <input type="text" class="form-control" placeholder="Nama Dosen" name="name" id="name" value="{{ old('name') }}">
+                                                <label>Unit Surat</label>
+                                                <select class="form-control" name="untsurat" id="untsurat" required>
+                                                    <option>-----</option>
+                                                    @foreach ($surat as  $untsurat)
+                                                        <option value="{{$untsurat->kode_unitsurat}}">{{$untsurat->nama_unitsurat}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Gelar Belakang Dosen</label>
-                                                <input type="text" class="form-control" placeholder="Gelar Belakang Dosen" name="gelar_belakang" id="gelar_belakang" value="{{ old('gelar_belakang') }}">
+                                                <label>Kode Jenjang Jabatan</label>
+                                                <input type="text" class="form-control" placeholder="Kode Jabatan" name="kdjabatan" id="kdjabatan" value="{{ old('kdjabatan') }}" maxlength="3">
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Nomor Handphone</label>
-                                                <input type="text" class="form-control" placeholder="Nomor Handphone" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" maxlength="14">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Email Dosen</label>
-                                                <input type="email" class="form-control" placeholder="Email Dosen" name="email" id="email" value="{{ old('email') }}">
+                                                <label>Nama Jabatan</label>
+                                                <input type="text" class="form-control" placeholder="Nama Jabatan" name="nmjabatan" id="nmjabatan" value="{{ old('nmjabatan') }}">
                                             </div>
 
                                         </div>
@@ -202,12 +205,12 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Dosen</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Data Jenjang Jabatan</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                    <form role="Insertform" action="/dosen" method="post" id="deleteForm" enctype="multipart/form-data">
+                                    <form role="Insertform" action="/jenjangjabatan" method="post" id="deleteForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
@@ -258,17 +261,15 @@
                 }
 
                 var data = table.row($tr).data();
-
                 console.log(data);
 
-                $('#nipdsn').val(data[1]);
-                $('#gelar_depan').val($('#fieldGelarDepan').html());
-                $('#name').val($('#fieldNama').html());
-                $('#gelar_belakang').val($('#fieldGelarBelakang').html());
-                $('#no_hp').val(data[3]);
-                $('#email').val(data[4]);
+                $('#idjabatan').val(data[0]);
+                $('#untinduk').val(data[4]);
+                $('#untsurat').val(data[3]);
+                $('#kdjabatan').val(data[1]);
+                $('#nmjabatan').val(data[2]);
 
-                $('#editForm').attr('action', '/dosen/'+data[1]);
+                $('#editForm').attr('action', '/jenjangjabatan/'+data[0]);
                 $('#editModal').modal('show');
             });
             //End Edit Record
@@ -285,7 +286,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#deleteForm').attr('action', '/dosen/'+data[1]);
+                $('#deleteForm').attr('action', '/jenjangjabatan/'+data[0]);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

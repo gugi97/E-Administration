@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\RequestSurat;
 
 class RequestSuratController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,9 @@ class RequestSuratController extends Controller
      */
     public function index()
     {
-        //
+        $req = RequestSurat::all();
+
+        return view('request_surat', ['req'=> $req]);
     }
 
     /**

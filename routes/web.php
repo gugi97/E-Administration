@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('suratkeluar/hapus/{id_suratkeluar}', 'SuratKeluarController@delete');
 
     Route::resource('suratkeputusan', 'SuratKeputusanController');
+
+    Route::resource('requestsurat', 'RequestSuratController');
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Admin,Ketua Program Studi']],function(){
