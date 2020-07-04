@@ -10,5 +10,9 @@ class RequestSurat extends Model
 
     protected $primaryKey = "no_req";
 
+    protected $attributes = [
+        'statusreq' => 'Porposed',
+    ];
+
     public $timestamps = false;
 }

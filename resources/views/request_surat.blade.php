@@ -75,7 +75,7 @@
                                 <td>{{ $reqdosen->detail_surat }}</td>
                                 <td>{{ $reqdosen->statusreq }}</td>
                                 <td>
-                                    <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    <a href="" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             @endforeach

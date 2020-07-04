@@ -128,6 +128,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/dosenrequest') }}" class="nav-link">
+                                <i class="nav-icon fas fa-list-alt"></i>
+                                <p>
+                                    Form Request
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/requestsurat') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>
