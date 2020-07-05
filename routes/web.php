@@ -34,6 +34,10 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::put('suratmasuk/update/{id_suratmasuk}', 'SuratMasukController@update');
     Route::get('suratmasuk/hapus/{id_suratmasuk}', 'SuratMasukController@delete');
 
+    Route::get('agendasuratmasuk', 'AgendaSuratMasukController@index')->name('agendasuratmasuk');
+    Route::get('agendasuratmasuk/pencarian', 'AgendaSuratMasukController@cari');
+    Route::get('agendasuratmasuk_pdf', 'AgendaSuratMasukController@cetak_pdf');
+
     Route::get('suratkeluar', 'SuratKeluarController@index')->name('suratkeluar');
     Route::get('arsipsuratkeluar', 'ArsipSuratKeluarController@index')->name('arsipsuratkeluar');
     Route::get('arsipfilesuratkeluar', 'ArsipSuratKeluarController@indexfile')->name('arsipfilesuratkeluar');
@@ -42,6 +46,10 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('suratkeluar/edit/{id_suratkeluar}', 'SuratKeluarController@edit');
     Route::put('suratkeluar/update/{id_suratkeluar}', 'SuratKeluarController@update');
     Route::get('suratkeluar/hapus/{id_suratkeluar}', 'SuratKeluarController@delete');
+
+    Route::get('agendasuratkeluar', 'AgendaSuratKeluarController@index')->name('agendasuratkeluar');
+    Route::get('agendasuratkeluar/pencarian', 'AgendaSuratKeluarController@cari');
+    Route::get('agendasuratkeluar_pdf', 'AgendaSuratKeluarController@cetak_pdf');
 
     Route::resource('suratkeputusan', 'SuratKeputusanController');
 
