@@ -28,8 +28,17 @@ class HomeController extends Controller
         $sm_count = DB::table('suratmasuk')->count();
         $sk_count = DB::table('suratkeluar')->count();
         $skep_count = DB::table('suratkeputusan')->count();
+        $req_count = DB::table('request_surat')->count();
+        $req_terima = DB::table('request_surat')->where('statusreq', 'Diterima')->count();
+        $req_tolak = DB::table('request_surat')->where('statusreq', 'Ditolak')->count();
         $user_count = DB::table('users')->where('status', 'Staf')->orWhere('status', 'Dosen')->orWhere('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->count();
         
-        return view('home', ['sm_count' => $sm_count, 'sk_count' => $sk_count, 'skep_count' => $skep_count, 'user_count' => $user_count]);
+        return view('home', ['req_count' => $req_count,
+                             'req_terima' => $req_terima,
+                             'req_tolak' => $req_tolak, 
+                             'sm_count' => $sm_count, 
+                             'sk_count' => $sk_count, 
+                             'skep_count' => $skep_count, 
+                             'user_count' => $user_count]);
     }
 }

@@ -39,6 +39,7 @@
                 @endif
                 
                 <div class="row">
+                    @if(auth()->user()->status == 'Admin' OR auth()->user()->status == 'Staf')
                     <div class="col-lg-3 col-6">
                         <!-- small card -->
                         <div class="small-box bg-info">
@@ -89,6 +90,7 @@
                             </a>
                         </div>
                     </div>
+                    @endif
 
                     @if(auth()->user()->status == 'Admin')
                     <div class="col-lg-3 col-6">
@@ -102,6 +104,59 @@
                                 <i class="fas fa-user-plus"></i>
                             </div>
                             <a href="user" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->status == 'Dosen')
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{$req_count}}</h3>
+
+                                <p>Request Surat</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <a href="dosenrequest" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{$req_terima}}</h3>
+
+                                <p>Request Diterima</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <a href="dosenrequest" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{$req_tolak}}</h3>
+
+                                <p>Request Ditolak</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <a href="dosenrequest" class="small-box-footer">
                                 More info <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>

@@ -96,17 +96,9 @@ class RequestSuratController extends Controller
 
     public function proses(Request $request,$no_req){
         $req = RequestSurat::find($no_req);
-        $req->statusreq = "Porposed";
+        $req->statusreq = "Proses";
         $req->save();
         return redirect('requestsurat')->with('success', 'Data Diproses');
-    }
-
-    public function updateterima($id)
-    {
-        $update = RequestSurat::updateterima($id);
-	    $data['status'] = $update;
-        dd($update);
-        return redirect('suratmasuk', $data);
     }
 
     /**
@@ -117,6 +109,9 @@ class RequestSuratController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $req = RequestSurat::where('no_req',$id)->first();
+        $req->delete();
+
+        return redirect('requestsurat')->with('success', 'Data Deleted');
     }
 }

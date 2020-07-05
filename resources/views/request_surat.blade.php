@@ -76,23 +76,33 @@
                                 <td>{{ $reqdosen->kebutuhan }}</td>
                                 <td>{{ $reqdosen->detail_surat }}</td>
                                 <td>@if($reqdosen->statusreq == "Porposed")
-                                    <span class="bg-info p-2 rounded">{{ $reqdosen->statusreq }}</span>
+                                    <span class="bg-info p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
                                     <a href="requestsurat/diterima/{{$reqdosen->no_req}}" class="btn btn-success">Diterima</a>
                                     <a href="requestsurat/ditolak/{{$reqdosen->no_req}}" class="btn btn-danger">Ditolak</a>
                                 </td>
+                                
                                     @elseif($reqdosen->statusreq == "Diterima")
-                                    <span class="bg-success p-2 rounded">{{ $reqdosen->statusreq }}</span>
+                                    <span class="bg-success p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
-                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-success">Proses</a>
+                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-primary">Proses</a>
                                 </td>
+                                
+                                    @elseif($reqdosen->statusreq == "Proses")
+                                    <span class="bg-warning p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="requestsurat/diterima/{{$reqdosen->no_req}}" class="btn btn-success">Diterima</a>
+                                    <a href="requestsurat/ditolak/{{$reqdosen->no_req}}" class="btn btn-danger">Ditolak</a>
+                                </td>
+                                
                                     @elseif($reqdosen->statusreq == "Ditolak")
-                                    <span class="bg-danger p-2 rounded">{{ $reqdosen->statusreq }}</span>
+                                    <span class="bg-danger p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
-                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-success">Proses</a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                                     @endif
                             @endforeach
@@ -110,7 +120,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form role="Insertform" action="/kaprodi" method="post" id="deleteForm" enctype="multipart/form-data">
+                                <form role="Insertform" action="/requestsurat" method="post" id="deleteForm" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -162,7 +172,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#deleteForm').attr('action', '/kaprodi/'+data[1]);
+                $('#deleteForm').attr('action', '/requestsurat/'+data[1]);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

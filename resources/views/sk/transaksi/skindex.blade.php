@@ -77,7 +77,7 @@
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
-                                @if($sk->status == 'Porposed')
+                                @if($sk->status == 'Diterima')
                                     <button>Kirim</button>
                                 @else
                                     <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>

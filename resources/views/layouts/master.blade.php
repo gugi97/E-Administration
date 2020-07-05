@@ -127,6 +127,7 @@
                                 </p>
                             </a>
                         </li>
+                        @if(auth()->user()->status == 'Dosen')
                         <li class="nav-item">
                             <a href="{{ url('/dosenrequest') }}" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
@@ -135,6 +136,8 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
+                        @if(auth()->user()->status == 'Staf' OR auth()->user()->status == 'Admin')
                         <li class="nav-item">
                             <a href="{{ url('/requestsurat') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
@@ -143,6 +146,7 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
                         @if(auth()->user()->status == 'Ketua Program Studi' OR auth()->user()->status == 'Admin')
                         <li class="nav-item">
                             <a href="{{ url('/kaprodi') }}" class="nav-link">
