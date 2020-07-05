@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::resource('suratkeputusan', 'SuratKeputusanController');
 
     Route::resource('requestsurat', 'RequestSuratController');
+    Route::get('requestsurat/diterima/{no_req}', 'RequestSuratController@diterima');
+    Route::get('requestsurat/ditolak/{no_req}', 'RequestSuratController@ditolak');
+    Route::get('requestsurat/proses/{no_req}', 'RequestSuratController@proses');
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Admin,Ketua Program Studi']],function(){

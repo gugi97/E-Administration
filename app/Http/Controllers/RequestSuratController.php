@@ -80,6 +80,27 @@ class RequestSuratController extends Controller
         //
     }
 
+    public function diterima(Request $request,$no_req){
+        $req = RequestSurat::find($no_req);
+        $req->statusreq = "Diterima";
+        $req->save();
+        return redirect('requestsurat')->with('success', 'Data Diterima');
+    }
+
+    public function ditolak(Request $request,$no_req){
+        $req = RequestSurat::find($no_req);
+        $req->statusreq = "Ditolak";
+        $req->save();
+        return redirect('requestsurat')->with('success', 'Data Ditolak');
+    }
+
+    public function proses(Request $request,$no_req){
+        $req = RequestSurat::find($no_req);
+        $req->statusreq = "Porposed";
+        $req->save();
+        return redirect('requestsurat')->with('success', 'Data Diproses');
+    }
+
     public function updateterima($id)
     {
         $update = RequestSurat::updateterima($id);

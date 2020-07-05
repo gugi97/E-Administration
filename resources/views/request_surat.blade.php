@@ -66,6 +66,8 @@
                         </thead>
                         <tbody>
                             @foreach ($req as $reqdosen)
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $reqdosen->no_req }}</td>
@@ -74,16 +76,25 @@
                                 <td>{{ $reqdosen->kebutuhan }}</td>
                                 <td>{{ $reqdosen->detail_surat }}</td>
                                 <td>@if($reqdosen->statusreq == "Porposed")
-                                    <span class="bg-info p-2 rounded">{{ $reqdosen->statusreq }}</span></td>
-                                    @elseif($reqdosen->statusreq == "Diterima")
-                                    <span class="bg-success p-2 rounded">{{ $reqdosen->statusreq }}</span></td>
-                                    @elseif($reqdosen->statusreq == "Ditolak")
-                                    <span class="bg-danger p-2 rounded">{{ $reqdosen->statusreq }}</span></td>
-                                    @endif
-                                <td>
-                                    <a href="" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                    <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    <span class="bg-info p-2 rounded">{{ $reqdosen->statusreq }}</span>
                                 </td>
+                                <td>
+                                    <a href="requestsurat/diterima/{{$reqdosen->no_req}}" class="btn btn-success">Diterima</a>
+                                    <a href="requestsurat/ditolak/{{$reqdosen->no_req}}" class="btn btn-danger">Ditolak</a>
+                                </td>
+                                    @elseif($reqdosen->statusreq == "Diterima")
+                                    <span class="bg-success p-2 rounded">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-success">Proses</a>
+                                </td>
+                                    @elseif($reqdosen->statusreq == "Ditolak")
+                                    <span class="bg-danger p-2 rounded">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-success">Proses</a>
+                                </td>
+                                    @endif
                             @endforeach
                             </tr>
                         </tbody>
