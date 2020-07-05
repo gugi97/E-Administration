@@ -132,7 +132,6 @@
 
     <script src="/adminlte/plugins/jquery/jquery.slim.min.js"></script>
     <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
-    <script src="/adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js" defer></script>
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>

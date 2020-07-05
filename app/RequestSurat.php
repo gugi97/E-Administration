@@ -14,5 +14,10 @@ class RequestSurat extends Model
         'statusreq' => 'Porposed',
     ];
 
+    public function updateterima($id){
+		$result = $this->db->set('statusreq','Diterima')->where('no_req',$id)->update('request_surat');
+		return $result;
+	}
+
     public $timestamps = false;
 }

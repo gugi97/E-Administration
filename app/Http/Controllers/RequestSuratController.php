@@ -80,6 +80,14 @@ class RequestSuratController extends Controller
         //
     }
 
+    public function updateterima($id)
+    {
+        $update = RequestSurat::updateterima($id);
+	    $data['status'] = $update;
+        dd($update);
+        return redirect('suratmasuk', $data);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

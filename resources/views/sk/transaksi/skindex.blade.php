@@ -77,8 +77,12 @@
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
-                                <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                @if($sk->status == 'Porposed')
+                                    <button>Kirim</button>
+                                @else
+                                    <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -126,7 +130,6 @@
 
     <script src="/adminlte/plugins/jquery/jquery.slim.min.js"></script>
     <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
-    <script src="/adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js" defer></script>
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>

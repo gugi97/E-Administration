@@ -55,7 +55,7 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col">Nomor Request</th>
+                                <th scope="col">No. Request</th>
                                 <th scope="col">Tanggal Pengajuan</th>
                                 <th scope="col">NIP Dosen</th>
                                 <th scope="col">Kebutuhan</th>
@@ -73,7 +73,13 @@
                                 <td>{{ $reqdosen->nip }}</td>
                                 <td>{{ $reqdosen->kebutuhan }}</td>
                                 <td>{{ $reqdosen->detail_surat }}</td>
-                                <td>{{ $reqdosen->statusreq }}</td>
+                                <td>@if($reqdosen->statusreq == "Porposed")
+                                    <span class="bg-info p-2 rounded">{{ $reqdosen->statusreq }}</span></td>
+                                    @elseif($reqdosen->statusreq == "Diterima")
+                                    <span class="bg-success p-2 rounded">{{ $reqdosen->statusreq }}</span></td>
+                                    @elseif($reqdosen->statusreq == "Ditolak")
+                                    <span class="bg-danger p-2 rounded">{{ $reqdosen->statusreq }}</span></td>
+                                    @endif
                                 <td>
                                     <a href="" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
@@ -124,7 +130,6 @@
 
     <script src="/adminlte/plugins/jquery/jquery.slim.min.js"></script>
     <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
-    <script src="/adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js" defer></script>
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>
