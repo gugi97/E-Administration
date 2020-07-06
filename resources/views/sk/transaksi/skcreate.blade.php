@@ -8,11 +8,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tambah Data Surat Keputusan</h1>
+                    <h1>Tambah Surat Keputusan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/jenissk')}}">Surat Keputusan</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/suratkeputusan')}}">Surat Keputusan</a></li>
                         <li class="breadcrumb-item active">Tambah Surat Keputusan</li>
                     </ol>
                 </div>

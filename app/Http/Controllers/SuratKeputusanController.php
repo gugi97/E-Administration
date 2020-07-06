@@ -103,7 +103,11 @@ class SuratKeputusanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sk = SuratKeputusan::where('idsk',$id)->get();
+        $alluser = SuratKeputusan::getalluser();
+        $alltemplate = SuratKeputusan::getalltemplate();
+
+        return view ('sk.transaksi.skedit', ['sk' => $sk, 'alluser' => $alluser, 'alltemplate' => $alltemplate,]);
     }
 
     /**
@@ -115,7 +119,38 @@ class SuratKeputusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+			'hasil.required' => 'Data harus di Generate terlebih dahulu'
+        ];
+        
+        $this->validate($request,[
+            'nosk' => 'required',
+            'tentangsk' => 'required',
+            'tglsk' => 'required',
+            'tujuan' => 'required',
+            'semester' => 'required',
+            'tahunajar' => 'required',
+            'hasil' => 'required'
+        ]);
+
+        $sk = SuratKeputusan::find($id);
+        $kaprodi = Kaprodi::find($id);
+
+        $sk->nosk = $request->input('nosk');
+        $sk->tentangsk = $request->input('tentangsk');
+        $kaprodi->noreq = $request->input('nosk');
+        $sk->tglsk = $request->input('tglsk');
+        $sk->tujuan = $request->input('tujuan');
+        $sk->semester = $request->input('semester');
+        $sk->tahunajar = $request->input('tahunajar');
+        $sk->template = $request->input('hasil');
+        $kaprodi->template = $request->input('hasil');
+        $sk->nip = $request->input('nip');
+
+        $sk->save();
+        $kaprodi->save();
+
+        return redirect('suratkeputusan')->with('success', 'Data Saved');
     }
 
     /**
@@ -126,6 +161,9 @@ class SuratKeputusanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sk = SuratKeputusan::where('idsk', $id)->first();
+        $sk->delete();
+
+        return redirect('suratkeputusan')->with('success', 'Data Deleted');
     }
 }

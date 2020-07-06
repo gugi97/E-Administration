@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/jenissk')}}">Surat Keputusan</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/jenissk')}}">Jenis Surat Keputusan</a></li>
                         <li class="breadcrumb-item active">Edit Jenis Surat Kepurusan</li>
                     </ol>
                 </div>
