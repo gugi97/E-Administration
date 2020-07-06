@@ -84,13 +84,12 @@ class KaprodiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nip' => 'required',
             // 'ttd' => 'required',
             'statusreq' => 'required',
         ]);
 
         $kaprodi = Kaprodi::find($id);
-        $kaprodi->nip = $request->input('nip');
+        $kaprodi->nip = Auth::user()->nip;
         $kaprodi->statusreq = $request->input('statusreq');
 
         // if($files = $request->file('ttd')){

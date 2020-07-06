@@ -16,7 +16,6 @@ class CreateKaprodiTable extends Migration
         Schema::create('kaprodi', function (Blueprint $table) {
             $table->increments('noreq');
             $table->char('nip', 9)->nullable();
-            $table->text('ttd')->nullable();
             $table->text('skreq')->nullable();
             $table->string('statusreq')->nullable();
             $table->text('template');

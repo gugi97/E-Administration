@@ -24,7 +24,9 @@ class SuratKeputusanController extends Controller
     public function index()
     {
         $sk = SuratKeputusan::all();
-        return view('sk.transaksi.skindex', ['sk'=> $sk]);
+        $nip = SuratKeputusan::select('nip')->pluck('nip');
+        $sknama = User::where('nip',$nip)->first();
+        return view('sk.transaksi.skindex', ['sk'=> $sk, 'sknama'=> $sknama]);
     }
 
     /**

@@ -69,12 +69,12 @@
                             @foreach ($sk as $sk)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}
-                                <span style="display: none;" id='idsk'>{{$sk->idsk}}</span>
+                                    <span style="display: none;" id='idsk'>{{$sk->idsk}}</span>
                                 </th>                                
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
                                 <td>{{ $sk->tujuan }}</td>
-                                <td>{{ Auth::user()->name }}</td>
+                                <td>{{ $sknama->name }}</td>
                                 <td>{{ $sk->status }}</td>
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>

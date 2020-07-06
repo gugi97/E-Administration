@@ -57,8 +57,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>NIP</label>
-                                    <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ $kaprodi->nip }}" maxlength="9">
+                                    <label>NIP Kaprodi</label>
+                                    <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ Auth::user()->nip }}" maxlength="9" disabled>
                                 </div>
 
                                 <!-- <div class="form-group">
