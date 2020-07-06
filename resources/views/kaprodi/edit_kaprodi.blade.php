@@ -61,37 +61,29 @@
                                     <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ $kaprodi->nip }}" maxlength="9">
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="exampleInputFile">Upload Tanda Tangan</label>
                                     <div class="input-group control-group increment" >
                                         <input type="file" class="form-control" style="padding:3px;" name="ttd" id="ttd" value="{{ $kaprodi->ttd }}">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label>Status Sk</label>
-
                                     <select class="form-control" name="statusreq" id="satatusreq" required>
-                                        <?php if($kaprodi->statusreq == "Porposed"){
-                                        ?>
+                                        @if($kaprodi->statusreq == "Porposed")
                                             <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
-                                            <option value="Sedang Proses">Sedang Proses</option>
+                                            <option value="Ditolak">Ditolak</option>
                                             <option value="Diterima">Diterima</option>
-                                        <?php
-                                        }else if($kaprodi->statusreq == "Sedang Proses"){
-                                        ?>
+                                        @elseif($kaprodi->statusreq == "Ditolak")
                                             <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
                                             <option value="Porposed">Porposed</option>
                                             <option value="Diterima">Diterima</option>
-                                        <?php
-                                        }else if($kaprodi->statusreq == "Diterima"){
-                                        ?>
+                                        @elseif($kaprodi->statusreq == "Diterima"){
                                             <option value="{{$kaprodi->statusreq}}">{{$kaprodi->statusreq}}</option>
                                             <option value="Porposed">Porposed</option>
-                                            <option value="Sedang Proses">Sedang Proses</option>
-                                        <?php
-                                        }
-                                        ?> 
+                                            <option value="Ditolak">Ditolak</option>
+                                        @endif
                                     </select>
                                 </div>
 

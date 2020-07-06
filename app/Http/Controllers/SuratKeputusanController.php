@@ -70,6 +70,7 @@ class SuratKeputusanController extends Controller
         $sk->nosk = $request->input('nosk');
         $sk->tentangsk = $request->input('tentangsk');
         $kaprodi->noreq = $request->input('nosk');
+        $kaprodi->statusreq = $sk->status;
         $sk->tglsk = $request->input('tglsk');
         $sk->tujuan = $request->input('tujuan');
         $sk->semester = $request->input('semester');

@@ -55,10 +55,10 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
-                                <th scope="col">ID SK</th>
                                 <th scope="col">Nomor SK</th>
                                 <th scope="col">Tanggal SK</th>
                                 <th scope="col">Tujuan</th>
+                                <th scope="col">Staf</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Semester</th>
                                 <th scope="col">Tahun Ajar</th>
@@ -68,11 +68,13 @@
                         <tbody>
                             @foreach ($sk as $sk)
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $sk->idsk }}</td>
+                                <th>{{ $loop->iteration }}
+                                <span style="display: none;" id='idsk'>{{$sk->idsk}}</span>
+                                </th>                                
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
                                 <td>{{ $sk->tujuan }}</td>
+                                <td>{{ Auth::user()->name }}</td>
                                 <td>{{ $sk->status }}</td>
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>
@@ -151,7 +153,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#deleteForm').attr('action', '/suratkeputusan/'+data[1]);
+                $('#deleteForm').attr('action', '/suratkeputusan/'+ $('#idsk').html());
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

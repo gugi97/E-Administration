@@ -72,17 +72,12 @@
                                 <td>{{ $sk2->tglsk }}</td>
                                 <td>{{ $sk2->nip }}</td>                            
                                     {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
-                                <?php
-                                    if($kaprodi2->statusreq == null)
-                                    {
-                                        echo "<td> $sk2->status </td>";
-                                    }else{
-                                        echo "<td> $kaprodi2->statusreq </td>";
-                                    }
-                                ?>
+                                <td> {{$kaprodi2->statusreq}} </td>
                                 <td>
                                     <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    @if($kaprodi2->statusreq == 'Ditolak')
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    @endif
                                 </td>
                             @endforeach
                             @break
@@ -96,7 +91,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete Data Surat Keputusan</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Request Surat Keputusan</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

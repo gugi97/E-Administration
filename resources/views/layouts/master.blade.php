@@ -152,7 +152,7 @@
                             <a href="{{ url('/kaprodi') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
                                 <p>
-                                    Verifikasi SK
+                                    Verifikasi SK Kaprodi
                                 </p>
                             </a>
                         </li>

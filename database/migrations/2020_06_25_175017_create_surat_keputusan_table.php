@@ -19,7 +19,7 @@ class CreateSuratKeputusanTable extends Migration
             $table->string('tentangsk',255);
             $table->date('tglsk');
             $table->string('tujuan',255);
-            $table->string('status')->default('Porposed');
+            $table->string('status');
             $table->string('semester', 30);
             $table->string('tahunajar', 30);
             $table->text('template');

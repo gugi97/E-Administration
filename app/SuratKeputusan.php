@@ -12,6 +12,10 @@ class SuratKeputusan extends Model
 
     public $timestamps = false;
 
+    protected $attributes = [
+        'status' => "Porposed",
+     ];
+
     public function scopegetalluser(){
         $result = DB::table('users')->where('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->get();
         return $result;
