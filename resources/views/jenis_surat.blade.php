@@ -98,7 +98,7 @@
 
                                         <div class="form-group">
                                             <label>Kode Jenis</label>
-                                            <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" value="{{ old('kodejns') }}" maxlength="1">
+                                            <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kode_jenissurat" value="{{ old('kode_jenissurat') }}" maxlength="1">
                                         </div>
 
                                         <div class="form-group">
@@ -139,7 +139,7 @@
 
                                             <div class="form-group">
                                                 <label>Kode Jenis</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kodejns" id="kodejns" maxlength="1" value="{{ old('kodejns') }}">
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kode_jenissurat" id="kode_jenissurat" maxlength="1" value="{{ old('kode_jenissurat') }}">
                                                 </div>
 
                                             <div class="form-group">
@@ -221,7 +221,7 @@
                 console.log(data);
 
                 $('#idjns').val($('#id').html());
-                $('#kodejns').val(data[1]);
+                $('#kode_jenissurat').val(data[1]);
                 $('#namajns').val(data[2]);
 
                 $('#editForm').attr('action', '/jenissurat/'+data[1]);

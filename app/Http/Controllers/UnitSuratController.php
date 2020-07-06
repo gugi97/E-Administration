@@ -44,14 +44,18 @@ class UnitSuratController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'unique' => ':attribute sudah ada atau sudah dipakai!'
+        ];
+
         $this->validate($request,[
-            'unitsurat' => ['required', new HurufBesar],
+            'kode_unitsurat' => ['required', new HurufBesar, 'unique:unit_surat'],
             'namasurat' => 'required',
         ]);
 
         $untsurat = new UnitSurat;
 
-        $untsurat->kode_unitsurat = $request->input('unitsurat');
+        $untsurat->kode_unitsurat = $request->input('kode_unitsurat');
         $untsurat->nama_unitsurat = $request->input('namasurat');
 
         $untsurat->save();
@@ -91,13 +95,13 @@ class UnitSuratController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'unitsurat' => ['required', new HurufBesar],
+            'kode_unitsurat' => ['required', new HurufBesar],
             'namasurat' => 'required',
         ]);
 
         $untsurat = UnitSurat::where('kode_unitsurat',$kode)->first();
 
-        $untsurat->kode_unitsurat = $request->input('unitsurat');
+        $untsurat->kode_unitsurat = $request->input('kode_unitsurat');
         $untsurat->nama_unitsurat = $request->input('namasurat');
 
         $untsurat->save();

@@ -39,13 +39,13 @@ class JenisSuratController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'kodejns' => ['required', new HurufBesar],
+            'kode_jenissurat' => ['required', new HurufBesar, 'unique:jenis_surat'],
             'namajns' => 'required',
         ]);
 
         $jns = new Jenis;
 
-        $jns->kode_jenissurat = $request->input('kodejns');
+        $jns->kode_jenissurat = $request->input('kode_jenissurat');
         $jns->nama_jenissurat = $request->input('namajns');
 
         $jns->save();
@@ -85,13 +85,13 @@ class JenisSuratController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'kodejns' => ['required', new HurufBesar],
+            'kode_jenissurat' => ['required', new HurufBesar],
             'namajns' => 'required',
         ]);
 
-        $jns = Jenis::where('id',$kode)->first();
+        $jns = Jenis::where('kode_jenissurat',$kode)->first();
 
-        $jns->kode_jenissurat = $request->input('kodejns');
+        $jns->kode_jenissurat = $request->input('kode_jenissurat');
         $jns->nama_jenissurat = $request->input('namajns');
 
         $jns->save();
@@ -107,7 +107,7 @@ class JenisSuratController extends Controller
      */
     public function destroy($kode)
     {
-        $jns = Jenis::where('id',$kode)->first();
+        $jns = Jenis::where('kode_jenissurat',$kode)->first();
         $jns->delete();
 
         return redirect('jenissurat')->with('success', 'Data Deleted');

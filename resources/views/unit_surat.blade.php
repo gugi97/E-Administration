@@ -96,7 +96,7 @@
 
                                         <div class="form-group">
                                             <label>Kode Unit Surat</label>
-                                            <input type="text" class="form-control" placeholder="Kode Unit Surat" name="unitsurat" maxlength="3" value="{{ old('unitsurat') }}">
+                                            <input type="text" class="form-control" placeholder="Kode Unit Surat" name="kode_unitsurat" maxlength="3" value="{{ old('kode_unitsurat') }}">
                                         </div>
 
                                         <div class="form-group">
@@ -132,7 +132,7 @@
     
                                             <div class="form-group">
                                                 <label>Kode Unit Surat</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="unitsurat" id="unitsurat" maxlength="3" value="{{ old('unitsurat') }}">
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kode_unitsurat" id="kode_unitsurat" maxlength="3" value="{{ old('kode_unitsurat') }}">
                                                 </div>
     
                                             <div class="form-group">
@@ -213,7 +213,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#unitsurat').val(data[1]);
+                $('#kode_unitsurat').val(data[1]);
                 $('#namasurat').val(data[2]);
                 
                 $('#editForm').attr('action', '/unitsurat/'+data[1]);

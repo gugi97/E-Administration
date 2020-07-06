@@ -45,16 +45,17 @@ class DosenController extends Controller
     {
         $messages = [
             'numeric' => ':attribute hanya bisa diisi oleh angka saja!',
-            'min' => ':attribute harus 9 digit'
+            'min' => ':attribute harus 9 digit',
+            'unique' => ':attribute sudah ada atau sudah dipakai!'
         ];
 
         $this->validate($request,[
-            'nip' => 'required|numeric|min:9',
+            'nip' => 'required|numeric|min:9|unique:dosen',
             'gelar_depan' => 'nullable',
             'name' => 'required',
             'gelar_belakang' => 'required',
             'no_hp' => 'required|numeric',
-            'email' => 'required',
+            'email' => 'required|unique:dosen',
         ]);
 
         $dosen = new Dosen;
@@ -110,12 +111,12 @@ class DosenController extends Controller
         ];
 
         $this->validate($request,[
-            'nipdsn' => 'required|numeric|min:9',
+            'nipdsn' => 'required|numeric|min:9|unique:dosen',
             'gelar_depan' => 'required',
             'name' => 'required',
             'gelar_belakang' => 'required',
             'no_hp' => 'required|numeric',
-            'email' => 'required',
+            'email' => 'required|unique:dosen',
         ]);
 
         $dosen = new Dosen;
