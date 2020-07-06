@@ -96,7 +96,7 @@
 
                                         <div class="form-group">
                                             <label>Kode Unit Induk</label>
-                                            <input type="text" class="form-control" placeholder="Kode Unit Induk" name="untinduk" value="{{ old('untinduk') }}" maxlength="3">
+                                            <input type="text" class="form-control" placeholder="Kode Unit Induk" name="kd_unit" value="{{ old('kd_unit') }}" maxlength="3">
                                         </div>
 
                                         <div class="form-group">
@@ -132,7 +132,7 @@
     
                                             <div class="form-group">
                                                 <label>Kode Unit Induk</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="untinduk" id="untinduk" maxlength="3" value="{{ old('untinduk') }}">
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kd_unit" id="kd_unit" maxlength="3" value="{{ old('kd_unit') }}">
                                                 </div>
     
                                             <div class="form-group">
@@ -213,7 +213,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#untinduk').val(data[1]);
+                $('#kd_unit').val(data[1]);
                 $('#nminduk').val(data[2]);
                 
                 $('#editForm').attr('action', '/unitinduk/'+data[1]);
