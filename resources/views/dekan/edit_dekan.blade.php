@@ -44,8 +44,8 @@
                             @endif
                         <!-- Akhir Validasi -->
                         <!-- form start -->
-                        @foreach($kaprodi as $kaprodi)
-                        <form role="Insertform" action="{{ action('KaprodiController@update', $kaprodi->idreq) }}" method="post" id="editForm" enctype="multipart/form-data">
+                        @foreach($dekan as $dekan)
+                        <form role="Insertform" action="{{ action('DekanController@update', $dekan->id_dekan) }}" method="post" id="editForm" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 {{ csrf_field() }}
@@ -53,7 +53,7 @@
 
                                 <div class="form-group">
                                     <label>No Request</label>
-                                    <input type="number" class="form-control" name="noreq" id="noreq" value="{{ $kaprodi->noreq }}" disabled>
+                                    <input type="text" class="form-control" name="noreq" id="noreq" value="{{ $kaprodi->noreq }}" disabled>
                                 </div>
 
                                 <div class="form-group">
