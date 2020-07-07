@@ -45,7 +45,7 @@
                         <!-- Akhir Validasi -->
                         <!-- form start -->
                         @foreach($kaprodi as $kaprodi)
-                        <form role="Insertform" action="{{ action('KaprodiController@update', $kaprodi->idreq) }}" method="post" id="editForm" enctype="multipart/form-data">
+                        <form role="Insertform" action="{{ action('KaprodiController@update', $kaprodi->noreq) }}" method="post" id="editForm" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 {{ csrf_field() }}

@@ -522,3 +522,5 @@
 [0707/202101.865:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0707/202817.731:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0707/202817.732:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0708/005602.128:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0708/005602.129:ERROR:crash_report_database_win.cc(469)] failed to stat report

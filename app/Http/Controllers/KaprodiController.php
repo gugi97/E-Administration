@@ -99,15 +99,10 @@ class KaprodiController extends Controller
         $dekan->statusreq_dekan = "Menunggu Persetujuan";
 
         $suratkeputusan = SuratKeputusan::find($id);
-        
-        if($kaprodi->statusreq == "Ditolak"){
-            $suratkeputusan->status = "Ditolak";
-            $suratkeputusan->save();
-        }
-        
-        $kaprodi->save();
+        $dekan = Dekan::find($id);
         
         $dekan->save();
+        $kaprodi->save();
 
         return redirect('kaprodi')->with('success', 'Data Update');
     }
