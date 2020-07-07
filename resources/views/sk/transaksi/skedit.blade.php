@@ -67,18 +67,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Dituju</label>
-                                    <select class="form-control" name="tujuan" id="tujuan" required>
-                                        <option>--------</option>
-                                        @foreach ($alluser as  $user)
-                                            <option value="{{ $user->status }}" {{ $user->status == $suratkeputusan->tujuan ? 'selected' : '' }}>
-                                                {{$user->status}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
                                     <label>Semester</label>
                                     <select class="form-control" name="semester" required>
                                         <option>--------</option>

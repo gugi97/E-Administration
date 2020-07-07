@@ -74,7 +74,7 @@
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
                                 <td>{{ $sk->tujuan }}</td>
-                                <td>{{ $sknama->name }}</td>
+                                <td>{{ $sk->nip}}</td>
                                 <td>{{ $sk->status }}</td>
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>

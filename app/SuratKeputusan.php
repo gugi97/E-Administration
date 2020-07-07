@@ -15,12 +15,7 @@ class SuratKeputusan extends Model
     protected $attributes = [
         'status' => "Porposed",
      ];
-
-    public function scopegetalluser(){
-        $result = DB::table('users')->where('status', 'Dekan')->orWhere('status', 'Ketua Program Studi')->get();
-        return $result;
-    }
-
+     
     public function scopegetalltemplate(){
         $result = DB::table('jenis_sk')->get();
         return $result;

@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Verifikasi Surat Keputusan Kaprodi</h1>
+                    <h1>Verifikasi Surat Keputusan Dekan/h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Verifikasi SK Kaprodi</li>
+                        <li class="breadcrumb-item active">Verifikasi SK Dekan</li>
                     </ol>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Nomor Request</th>
                                 <th scope="col">Tanggal Pengajuan</th>
-                                <th scope="col">NIP Staff</th>
+                                <th scope="col">NIP Kaprodi</th>
                                 {{-- <th scope="col">Surat Keputusan</th> --}}
                                 <th scope="col">Status</th>
                                 <th scope="col">Opsi</th>

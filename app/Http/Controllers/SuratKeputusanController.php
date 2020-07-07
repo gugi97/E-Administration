@@ -24,9 +24,8 @@ class SuratKeputusanController extends Controller
     public function index()
     {
         $sk = SuratKeputusan::all();
-        $nip = SuratKeputusan::select('nip')->pluck('nip');
-        $sknama = User::where('nip',$nip)->first();
-        return view('sk.transaksi.skindex', ['sk'=> $sk, 'sknama'=> $sknama]);
+
+        return view('sk.transaksi.skindex', ['sk'=> $sk]);
     }
 
     /**
@@ -37,11 +36,10 @@ class SuratKeputusanController extends Controller
     public function create()
     {
         $sk = SuratKeputusan::all();
-        $alluser = SuratKeputusan::getalluser();
         $alltemplate = SuratKeputusan::getalltemplate();
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
-        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alluser' => $alluser, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip]);
+        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip]);
     }
 
     /**
@@ -60,7 +58,6 @@ class SuratKeputusanController extends Controller
             'nosk' => 'required',
             'tentangsk' => 'required',
             'tglsk' => 'required',
-            'tujuan' => 'required',
             'semester' => 'required',
             'tahunajar' => 'required',
             'hasil' => 'required'
@@ -74,7 +71,6 @@ class SuratKeputusanController extends Controller
         $kaprodi->noreq = $request->input('nosk');
         $kaprodi->statusreq = $sk->status;
         $sk->tglsk = $request->input('tglsk');
-        $sk->tujuan = $request->input('tujuan');
         $sk->semester = $request->input('semester');
         $sk->tahunajar = $request->input('tahunajar');
         $sk->template = $request->input('hasil');
@@ -130,7 +126,6 @@ class SuratKeputusanController extends Controller
             'nosk' => 'required',
             'tentangsk' => 'required',
             'tglsk' => 'required',
-            'tujuan' => 'required',
             'semester' => 'required',
             'tahunajar' => 'required',
             'hasil' => 'required'
@@ -143,7 +138,6 @@ class SuratKeputusanController extends Controller
         $sk->tentangsk = $request->input('tentangsk');
         $kaprodi->noreq = $request->input('nosk');
         $sk->tglsk = $request->input('tglsk');
-        $sk->tujuan = $request->input('tujuan');
         $sk->semester = $request->input('semester');
         $sk->tahunajar = $request->input('tahunajar');
         $sk->template = $request->input('hasil');
