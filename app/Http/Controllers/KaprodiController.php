@@ -94,7 +94,7 @@ class KaprodiController extends Controller
         $kaprodi->nip = Auth::user()->nip;
         $kaprodi->statusreq = $request->input('statusreq');
 
-        $dekan->noreq = $kaprodi->noreq;
+        $dekan->noreq_dekan = $kaprodi->noreq;
         $dekan->statusreq_dekan = $kaprodi->statusreq;
         
         $kaprodi->save();
@@ -113,7 +113,7 @@ class KaprodiController extends Controller
      */
     public function destroy($id)
     {
-        $kaprodi = Kaprodi::where('noreq',$id)->first();
+        $kaprodi = Kaprodi::where('idreq',$id)->first();
         $kaprodi->delete();
 
         return redirect('kaprodi')->with('success', 'Data Deleted');
