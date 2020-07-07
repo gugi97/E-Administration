@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use App\Dekan;
+use App\Kaprodi;
+use App\SuratKeputusan;
+
 
 class DekanController extends Controller
 {
@@ -19,7 +25,10 @@ class DekanController extends Controller
     public function index()
     {
         $dekan = Dekan::all();
-        return view('dekan.index_dekan', ['dekan'=> $dekan]);
+        $kaprodi = Kaprodi::all();
+        $sk = SuratKeputusan::all();
+
+        return view('dekan.index_dekan', ['dekan'=> $dekan, 'sk'=> $sk, 'kaprodi'=> $kaprodi]);
     }
 
     /**

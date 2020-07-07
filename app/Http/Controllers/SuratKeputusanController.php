@@ -68,13 +68,17 @@ class SuratKeputusanController extends Controller
 
         $sk->nosk = $request->input('nosk');
         $sk->tentangsk = $request->input('tentangsk');
+
         $kaprodi->noreq = $request->input('nosk');
         $kaprodi->statusreq = $sk->status;
+        
         $sk->tglsk = $request->input('tglsk');
         $sk->semester = $request->input('semester');
         $sk->tahunajar = $request->input('tahunajar');
         $sk->template = $request->input('hasil');
+
         $kaprodi->template = $request->input('hasil');
+        
         $sk->nip = $request->input('nip');
 
         $sk->save();
@@ -103,10 +107,9 @@ class SuratKeputusanController extends Controller
     public function edit($id)
     {
         $sk = SuratKeputusan::where('idsk',$id)->get();
-        $alluser = SuratKeputusan::getalluser();
         $alltemplate = SuratKeputusan::getalltemplate();
 
-        return view ('sk.transaksi.skedit', ['sk' => $sk, 'alluser' => $alluser, 'alltemplate' => $alltemplate,]);
+        return view ('sk.transaksi.skedit', ['sk' => $sk, 'alltemplate' => $alltemplate,]);
     }
 
     /**
@@ -136,12 +139,16 @@ class SuratKeputusanController extends Controller
 
         $sk->nosk = $request->input('nosk');
         $sk->tentangsk = $request->input('tentangsk');
+
         $kaprodi->noreq = $request->input('nosk');
+
         $sk->tglsk = $request->input('tglsk');
         $sk->semester = $request->input('semester');
         $sk->tahunajar = $request->input('tahunajar');
         $sk->template = $request->input('hasil');
+
         $kaprodi->template = $request->input('hasil');
+        
         $sk->nip = $request->input('nip');
 
         $sk->save();

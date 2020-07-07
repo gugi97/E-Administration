@@ -57,7 +57,6 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Nomor SK</th>
                                 <th scope="col">Tanggal SK</th>
-                                <th scope="col">Tujuan</th>
                                 <th scope="col">Staf</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Semester</th>
@@ -73,7 +72,6 @@
                                 </th>                                
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
-                                <td>{{ $sk->tujuan }}</td>
                                 <td>{{ $sk->nip}}</td>
                                 <td>{{ $sk->status }}</td>
                                 <td>{{ $sk->semester }}</td>

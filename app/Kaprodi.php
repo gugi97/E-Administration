@@ -8,7 +8,7 @@ class Kaprodi extends Model
 {
     protected $table = "kaprodi";
 
-    protected $primaryKey = "noreq";
+    protected $primaryKey = "idreq";
 
     protected $fillable = ['nip', 'stattusreq', 'noreq'];
 

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Verifikasi Surat Keputusan Dekan/h1>
+                    <h1>Verifikasi Surat Keputusan Dekan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -57,31 +57,32 @@
                                 <th scope="col">Nomor Request</th>
                                 <th scope="col">Tanggal Pengajuan</th>
                                 <th scope="col">NIP Kaprodi</th>
-                                {{-- <th scope="col">Surat Keputusan</th> --}}
                                 <th scope="col">Status</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sk as $sk2)
-                            @foreach ($kaprodi as $kaprodi2 )
-                            <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $kaprodi2->noreq }}</td>
-                                <td>{{ $sk2->tglsk }}</td>
-                                <td>{{ $sk2->nip }}</td>                            
-                                    {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
-                                <td> {{$kaprodi2->statusreq}} </td>
-                                <td>
-                                    <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                    @if($kaprodi2->statusreq == 'Ditolak')
-                                    <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
-                                    @endif
-                                </td>
+                            @foreach ($kaprodi as $kaprodi2)
+                                @foreach ($dekan as $dekan2 )
+                                    <tr style="text-align: center;">
+                                        <th>{{ $loop->iteration }}</th>
+                                        <td>{{ $dekan2->noreq_dekan }}</td>
+                                        @foreach ($sk as $sk2 )
+                                        <td>{{ $sk2->tglsk }}</td>
+                                        @break
+                                        @endforeach
+                                        <td>{{ $kaprodi2->nip }}</td>                            
+                                        <td>{{ $dekan2->statusreq_dekan }}</td>
+                                        <td>
+                                            <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                            @if($kaprodi2->statusreq == 'Ditolak')
+                                            <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                            @endif
+                                        </td>
+                                @endforeach
+                                @break
                             @endforeach
-                            @break
-                            @endforeach
-                            </tr>
+                                    </tr>
                         </tbody>
                     </table>
 

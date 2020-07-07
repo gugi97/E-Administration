@@ -157,6 +157,16 @@
                             </a>
                         </li>
                         @endif
+                        @if(auth()->user()->status == 'Dekan' OR auth()->user()->status == 'Admin')
+                        <li class="nav-item">
+                            <a href="{{ url('/dekan') }}" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-check"></i>
+                                <p>
+                                    Verifikasi SK Dekan
+                                </p>
+                            </a>
+                        </li>
+                        @endif
                         @if(auth()->user()->status == 'Admin')
                         {{-- Klasifikasi --}}
                         <li class="nav-item">
@@ -318,12 +328,6 @@
                                     <a href="{{ url('/arsipsuratkeluar') }}" class="nav-link {{ set_active('arsipsuratkeluar') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keluar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
-                                        <i class="fas fa-angle-right nav-icon"></i>
-                                        <p>Surat Keputusan</p>
                                     </a>
                                 </li>
                             </ul>

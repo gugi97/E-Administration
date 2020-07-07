@@ -63,6 +63,10 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Ketua Program Studi']],
     Route::resource('kaprodi', 'KaprodiController');
 });
 
+Route::group(['middleware' => ['auth','checkStatus:Admin,Dekan']],function(){
+    Route::resource('dekan', 'DekanController');
+});
+
 Route::group(['middleware' => ['auth','checkStatus:Dosen']],function(){
     Route::resource('dosenrequest', 'DosenRequestController');
 });

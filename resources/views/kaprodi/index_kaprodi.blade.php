@@ -57,7 +57,6 @@
                                 <th scope="col">Nomor Request</th>
                                 <th scope="col">Tanggal Pengajuan</th>
                                 <th scope="col">NIP Staff</th>
-                                {{-- <th scope="col">Surat Keputusan</th> --}}
                                 <th scope="col">Status</th>
                                 <th scope="col">Opsi</th>
                             </tr>
