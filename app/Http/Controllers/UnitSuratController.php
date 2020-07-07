@@ -95,13 +95,11 @@ class UnitSuratController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'kode_unitsurat' => ['required', new HurufBesar],
             'namasurat' => 'required',
         ]);
 
         $untsurat = UnitSurat::where('kode_unitsurat',$kode)->first();
 
-        $untsurat->kode_unitsurat = $request->input('kode_unitsurat');
         $untsurat->nama_unitsurat = $request->input('namasurat');
 
         $untsurat->save();

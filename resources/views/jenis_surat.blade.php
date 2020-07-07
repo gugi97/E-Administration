@@ -139,7 +139,7 @@
 
                                             <div class="form-group">
                                                 <label>Kode Jenis</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kode_jenissurat" id="kode_jenissurat" maxlength="1" value="{{ old('kode_jenissurat') }}">
+                                                <input type="text" class="form-control" placeholder="Kode Jenis Surat" name="kode_jenissurat" id="kode_jenissurat" disabled>
                                                 </div>
 
                                             <div class="form-group">

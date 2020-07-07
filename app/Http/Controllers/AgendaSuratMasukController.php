@@ -32,8 +32,9 @@ class AgendaSuratMasukController extends Controller
         $sampai_tgl = $request->input('sampai_tgl');
 
         $orders = SuratMasuk::whereBetween('tgl_surat', [$dari_tgl, $sampai_tgl])->get();
+        $test = count($orders);
 
-        return view('agendasuratmasuk', compact('orders'), ['dari_tgl'=>$dari_tgl, 'sampai_tgl'=>$sampai_tgl]);
+        return view('agendasuratmasuk', compact('orders'), ['dari_tgl'=>$dari_tgl, 'sampai_tgl'=>$sampai_tgl, 'test'=>$test]);
     }
 
     public function cetak_pdf(Request $request)

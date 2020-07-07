@@ -74,23 +74,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($orders as $ord)
+                    @if($test != "0")
+                        @foreach($orders as $ord)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $ord->no_suratkeluar }}</td>
+                                <td>{{ $ord->tgl_suratkeluar }}</td>
+                                <td>{{ $ord->perihal }}</td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $ord->no_suratkeluar }}</td>
-                            <td>{{ $ord->tgl_suratkeluar }}</td>
-                            <td>{{ $ord->perihal }}</td>
+                            <td colspan="4" align="center">Data Tidak Ada / Data Tidak Ditemukan</td>
                         </tr>
-                    @endforeach
+                    @endif
                     </tbody>
                 </table>
-                
-                    <form role="form" method="get" action="{{url('agendasuratkeluar_pdf')}}" align='center'>
-                        <input type="hidden" name="dari_tgl2" id="dari_tgl2" class="form-control" value="{{ $dari_tgl }}">
-                        <input type="hidden" name="sampai_tgl2" id="sampai_tgl2" class="form-control" value="{{ $sampai_tgl }}">
+                <form role="form" method="get" action="{{url('agendasuratkeluar_pdf')}}" align='center'>
+                    <input type="hidden" name="dari_tgl2" id="dari_tgl2" class="form-control" value="{{ $dari_tgl }}">
+                    <input type="hidden" name="sampai_tgl2" id="sampai_tgl2" class="form-control" value="{{ $sampai_tgl }}">
+                    @if($test != "0")
                         <button type="submit" class="btn btn-primary" align="center" style="margin-bottom:20px;"><i class="far fa-file-pdf"></i> Cetak PDF</button>
-                    </form>
+                    @endif
+                </form>
                 @endif
+                
                 <!-- Footer -->
                 <div class="card-footer">
                     <div class="row small text-muted">

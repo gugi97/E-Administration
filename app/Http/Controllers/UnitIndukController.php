@@ -91,13 +91,11 @@ class UnitIndukController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'kd_unit' => ['required', new HurufBesar],
             'nminduk' => 'required',
         ]);
 
         $induk = UnitInduk::where('kd_unit',$kode)->first();
 
-        $induk->kd_unit = $request->input('kd_unit');
         $induk->nama_unit = $request->input('nminduk');
 
         $induk->save();

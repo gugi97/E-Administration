@@ -52,7 +52,7 @@ class JenjangJabatanController extends Controller
         ];
         
         $this->validate($request,[
-            'kdjabatan' => 'required|numeric',
+            'kode_jenjang' => 'required|numeric|unique:jenjang_jabatan',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',
@@ -60,7 +60,7 @@ class JenjangJabatanController extends Controller
 
         $jenjang = new JenjangJabatan;
 
-        $jenjang->kode_jenjang = $request->input('kdjabatan');
+        $jenjang->kode_jenjang = $request->input('kode_jenjang');
         $jenjang->nama_jabatan = $request->input('nmjabatan');
         $jenjang->kode_unitinduk = $request->input('untinduk');
         $jenjang->kode_unitsurat = $request->input('untsurat');
@@ -106,7 +106,6 @@ class JenjangJabatanController extends Controller
         ];
 
         $this->validate($request,[
-            'kdjabatan' => 'required|numeric',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',
@@ -114,7 +113,6 @@ class JenjangJabatanController extends Controller
 
         $jenjang = JenjangJabatan::where('id',$kode)->first();
 
-        $jenjang->kode_jenjang = $request->input('kdjabatan');
         $jenjang->nama_jabatan = $request->input('nmjabatan');
         $jenjang->kode_unitinduk = $request->input('untinduk');
         $jenjang->kode_unitsurat = $request->input('untsurat');

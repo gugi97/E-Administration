@@ -33,7 +33,9 @@ class AgendaSuratKeluarController extends Controller
 
       $orders = SuratKeluar::whereBetween('tgl_suratkeluar', [$dari_tgl, $sampai_tgl])->get();
 
-      return view('agendasuratkeluar', compact('orders'), ['dari_tgl'=>$dari_tgl, 'sampai_tgl'=>$sampai_tgl]);
+      $test = count($orders);
+
+      return view('agendasuratkeluar', compact('orders'), ['dari_tgl'=>$dari_tgl, 'sampai_tgl'=>$sampai_tgl, 'test'=>$test]);
   }
 
   public function cetak_pdf(Request $request)
@@ -41,9 +43,9 @@ class AgendaSuratKeluarController extends Controller
       $dari_tgl2 = $request->input('dari_tgl2');
       $sampai_tgl2 = $request->input('sampai_tgl2');
 
-    $data = SuratKeluar::whereBetween('tgl_suratkeluar', [$dari_tgl2, $sampai_tgl2])->get();
+      $data = SuratKeluar::whereBetween('tgl_suratkeluar', [$dari_tgl2, $sampai_tgl2])->get();
 
-    $pdf = PDF::loadview('agendasuratkeluar_pdf',['data'=>$data, 'dari_tgl2'=>$dari_tgl2, 'sampai_tgl2'=>$sampai_tgl2]);
-    return $pdf->stream();
+      $pdf = PDF::loadview('agendasuratkeluar_pdf',['data'=>$data, 'dari_tgl2'=>$dari_tgl2, 'sampai_tgl2'=>$sampai_tgl2]);
+      return $pdf->stream();
   }
 }

@@ -59,7 +59,7 @@
                     <table id="datatable" class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr style="text-align: center;">
-                                <th scope="col">No</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Kode Jabatan</th>
                                 <th scope="col">Nama Jabatan</th>
                                 <th scope="col">Kode Unit Surat</th>
@@ -120,7 +120,7 @@
 
                                         <div class="form-group">
                                             <label>Kode Jenjang Jabatan</label>
-                                            <input type="text" class="form-control" placeholder="Kode Jabatan" name="kdjabatan" value="{{ old('kdjabatan') }}" maxlength="3">
+                                            <input type="text" class="form-control" placeholder="Kode Jabatan" name="kode_jenjang" value="{{ old('kode_jenjang') }}" maxlength="3">
                                         </div>
 
                                         <div class="form-group">
@@ -181,7 +181,7 @@
 
                                             <div class="form-group">
                                                 <label>Kode Jenjang Jabatan</label>
-                                                <input type="text" class="form-control" placeholder="Kode Jabatan" name="kdjabatan" id="kdjabatan" value="{{ old('kdjabatan') }}" maxlength="3">
+                                                <input type="text" class="form-control" placeholder="Kode Jabatan" name="kode_jenjang" id="kode_jenjang" disabled>
                                             </div>
 
                                             <div class="form-group">
@@ -265,7 +265,7 @@
                 $('#idjabatan').val(data[0]);
                 $('#untinduk').val(data[4]);
                 $('#untsurat').val(data[3]);
-                $('#kdjabatan').val(data[1]);
+                $('#kode_jenjang').val(data[1]);
                 $('#nmjabatan').val(data[2]);
 
                 $('#editForm').attr('action', '/jenjangjabatan/'+data[0]);

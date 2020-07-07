@@ -37,7 +37,7 @@
                             <th>No</th>
                             <th>No. Surat Keluar</th>
                             <th>Tgl. Surat Keluar</th>
-                            <th >File</th>
+                            <th>File</th>
                         </tr>
                     </thead>
                     <tbody>

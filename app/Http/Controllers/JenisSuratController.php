@@ -85,13 +85,11 @@ class JenisSuratController extends Controller
     public function update(Request $request, $kode)
     {
         $this->validate($request,[
-            'kode_jenissurat' => ['required', new HurufBesar],
             'namajns' => 'required',
         ]);
 
         $jns = Jenis::where('kode_jenissurat',$kode)->first();
 
-        $jns->kode_jenissurat = $request->input('kode_jenissurat');
         $jns->nama_jenissurat = $request->input('namajns');
 
         $jns->save();

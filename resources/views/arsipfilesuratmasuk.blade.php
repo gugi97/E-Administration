@@ -19,6 +19,7 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -36,11 +37,9 @@
                             <th>No</th>
                             <th>No. Surat Masuk</th>
                             <th>Tgl. Surat Masuk</th>
-                            <th colspan="3">Gambar</th>
+                            <th>File</th>
                         </tr>
                     </thead>
-                    <?php if($arsipfilesuratmasuk != null){
-                    ?>
                     <tbody>
                         @foreach($arsipfilesuratmasuk as $sms)
                         <tr>
@@ -59,16 +58,6 @@
                             ?>
                         </tr>
                         @endforeach
-                    <?php
-                    }else{
-                    ?>
-                    <tbody>
-                        <tr>
-                            <td>Tidak ada data</td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
                     </tbody>
                 </table>
                 <!-- Footer -->
