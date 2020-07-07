@@ -89,6 +89,7 @@ class KaprodiController extends Controller
 
         $dekan = new Dekan;
         $kaprodi = new Kaprodi;
+        $suratkeputusan = new SuratKeputusan;
 
         $kaprodi = Kaprodi::find($id);
         $kaprodi->nip = Auth::user()->nip;
@@ -96,9 +97,15 @@ class KaprodiController extends Controller
 
         $dekan->noreq_dekan = $kaprodi->noreq;
         $dekan->statusreq_dekan = "Menunggu Persetujuan";
+
+        $suratkeputusan = SuratKeputusan::find($id);
+        
+        if($kaprodi->statusreq == "Ditolak"){
+            $suratkeputusan->status = "Ditolak";
+            $suratkeputusan->save();
+        }
         
         $kaprodi->save();
-
         
         $dekan->save();
 
