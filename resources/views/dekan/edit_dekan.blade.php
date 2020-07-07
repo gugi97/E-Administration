@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/kaprodi')}}">Request SK</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/dekan')}}">Verifikasi SK Dekan</a></li>
                         <li class="breadcrumb-item active">Update Request Surat Keputusan</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="card">
                         <!-- Card Header -->
                         <div class="card-header">
-                            <h3 class="card-title"><a href="/kaprodi" class="btn btn-primary">Kembali</a></h3>
+                            <h3 class="card-title"><a href="/dekan" class="btn btn-primary">Kembali</a></h3>
                             <h3 align="center">Edit Data Jenis SK</h3>
                         </div>
                         <!-- End Card Header -->
@@ -53,7 +53,7 @@
 
                                 <div class="form-group">
                                     <label>No Request</label>
-                                    <input type="text" class="form-control" name="noreq" id="noreq" value="{{ $kaprodi->noreq }}" disabled>
+                                    <input type="number" class="form-control" name="noreq" id="noreq" value="{{ $kaprodi->noreq }}" disabled>
                                 </div>
 
                                 <div class="form-group">

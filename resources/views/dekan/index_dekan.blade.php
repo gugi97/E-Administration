@@ -65,7 +65,9 @@
                             @foreach ($kaprodi as $kaprodi2)
                                 @foreach ($dekan as $dekan2 )
                                     <tr style="text-align: center;">
-                                        <th>{{ $loop->iteration }}</th>
+                                        <th>{{ $loop->iteration }}
+                                            <span style="display: none;" id='iddekan'>{{$dekan2->id_dekan}}</span>
+                                        </th>
                                         <td>{{ $dekan2->noreq_dekan }}</td>
                                         @foreach ($sk as $sk2 )
                                         <td>{{ $sk2->tglsk }}</td>
@@ -74,8 +76,8 @@
                                         <td>{{ $kaprodi2->nip }}</td>                            
                                         <td>{{ $dekan2->statusreq_dekan }}</td>
                                         <td>
-                                            <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                            @if($kaprodi2->statusreq == 'Ditolak')
+                                            <a href="{{action('DekanController@edit', $dekan2->id_dekan)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                            @if($dekan2->statusreq_dekan == 'Ditolak')
                                             <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                             @endif
                                         </td>
@@ -96,7 +98,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form role="Insertform" action="/kaprodi" method="post" id="deleteForm" enctype="multipart/form-data">
+                                <form role="Insertform" action="/dekan" method="post" id="deleteForm" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -148,7 +150,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#deleteForm').attr('action', '/kaprodi/'+data[1]);
+                $('#deleteForm').attr('action', '/dekan/'+ $('#iddekan').html());
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

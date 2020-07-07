@@ -65,14 +65,16 @@
                             @foreach ($sk as $sk2)
                             @foreach ($kaprodi as $kaprodi2 )
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
+                                <th>{{ $loop->iteration }}
+                                    <span style="display: none;" id='idkaprodi'>{{$kaprodi2->idreq}}</span>
+                                </th>
                                 <td>{{ $kaprodi2->noreq }}</td>
                                 <td>{{ $sk2->tglsk }}</td>
                                 <td>{{ $sk2->nip }}</td>                            
                                     {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
                                 <td> {{$kaprodi2->statusreq}} </td>
                                 <td>
-                                    <a href="{{action('KaprodiController@edit', $kaprodi2->noreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    <a href="{{action('KaprodiController@edit', $kaprodi2->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     @if($kaprodi2->statusreq == 'Ditolak')
                                     <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                     @endif
@@ -146,7 +148,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#deleteForm').attr('action', '/kaprodi/'+data[1]);
+                $('#deleteForm').attr('action', '/kaprodi/'+ $('#idkaprodi').html());
                 $('#deleteModal').modal('show');
             });
             //End Delete Record
