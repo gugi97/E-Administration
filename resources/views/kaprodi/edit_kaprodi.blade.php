@@ -77,11 +77,9 @@
                                             <option value="Diterima">Diterima</option>
                                         @elseif($kaprodi->statusreq == "Ditolak")
                                             <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
-                                            <option value="Porposed">Porposed</option>
                                             <option value="Diterima">Diterima</option>
                                         @elseif($kaprodi->statusreq == "Diterima"){
                                             <option value="{{$kaprodi->statusreq}}">{{$kaprodi->statusreq}}</option>
-                                            <option value="Porposed">Porposed</option>
                                             <option value="Ditolak">Ditolak</option>
                                         @endif
                                     </select>

@@ -69,6 +69,7 @@ class SuratKeputusanController extends Controller
         $sk->nosk = $request->input('nosk');
         $sk->tentangsk = $request->input('tentangsk');
 
+        
         $kaprodi->noreq = $request->input('nosk');
         $kaprodi->statusreq = $sk->status;
         
@@ -82,6 +83,9 @@ class SuratKeputusanController extends Controller
         $sk->nip = $request->input('nip');
 
         $sk->save();
+
+        $kaprodi->idreq = $sk->idsk;
+
         $kaprodi->save();
 
         return redirect('suratkeputusan')->with('success', 'Data Saved');
@@ -148,8 +152,6 @@ class SuratKeputusanController extends Controller
         $sk->template = $request->input('hasil');
 
         $kaprodi->template = $request->input('hasil');
-        
-        $sk->nip = $request->input('nip');
 
         $sk->save();
         $kaprodi->save();
@@ -166,7 +168,9 @@ class SuratKeputusanController extends Controller
     public function destroy($id)
     {
         $sk = SuratKeputusan::where('idsk', $id)->first();
+        $kaprodi = Kaprodi::where('idreq', $id)->first();
         $sk->delete();
+        $kaprodi->delete();
 
         return redirect('suratkeputusan')->with('success', 'Data Deleted');
     }
