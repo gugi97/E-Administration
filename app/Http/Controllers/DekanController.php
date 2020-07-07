@@ -71,7 +71,8 @@ class DekanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dekan = Dekan::where('id_dekan',$id)->get();
+        return view ('dekan.edit_dekan', ['dekan' => $dekan]);
     }
 
     /**
@@ -83,7 +84,26 @@ class DekanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'statusreq' => 'required',
+        ]);
+
+        $dekan = new Dekan;
+        $kaprodi = new Kaprodi;
+
+        $kaprodi = Kaprodi::find($id);
+        $kaprodi->nip = Auth::user()->nip;
+        $kaprodi->statusreq = $request->input('statusreq');
+
+        $dekan->noreq_dekan = $kaprodi->noreq;
+        $dekan->statusreq_dekan = $kaprodi->statusreq;
+        
+        $kaprodi->save();
+
+        
+        $dekan->save();
+
+        return redirect('kaprodi')->with('success', 'Data Update');
     }
 
     /**
@@ -94,6 +114,9 @@ class DekanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dekan = Dekan::where('id_dekan',$id)->first();
+        $dekan->delete();
+
+        return redirect('dekan')->with('success', 'Data Deleted');
     }
 }

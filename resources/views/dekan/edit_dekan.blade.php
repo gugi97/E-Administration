@@ -53,36 +53,27 @@
 
                                 <div class="form-group">
                                     <label>No Request</label>
-                                    <input type="text" class="form-control" name="noreq" id="noreq" value="{{ $kaprodi->noreq }}" disabled>
+                                    <input type="text" class="form-control" name="noreq_dekan" id="noreq_dekan" value="{{ $dekan->noreq_dekan }}" disabled>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>NIP Kaprodi</label>
-                                    <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ Auth::user()->nip }}" maxlength="9" disabled>
+                                    <label>NIP Dekan</label>
+                                    <input type="text" class="form-control" placeholder="NIP" name="nip_dekan" id="nip_dekan" value="{{ Auth::user()->nip }}" maxlength="9" disabled>
                                 </div>
-
-                                <!-- <div class="form-group">
-                                    <label for="exampleInputFile">Upload Tanda Tangan</label>
-                                    <div class="input-group control-group increment" >
-                                        <input type="file" class="form-control" style="padding:3px;" name="ttd" id="ttd" value="{{ $kaprodi->ttd }}">
-                                    </div>
-                                </div> -->
 
                                 <div class="form-group">
                                     <label>Status Sk</label>
-                                    <select class="form-control" name="statusreq" id="satatusreq" required>
-                                        @if($kaprodi->statusreq == "Porposed")
-                                            <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
-                                            <option value="Ditolak">Ditolak</option>
-                                            <option value="Diterima">Diterima</option>
-                                        @elseif($kaprodi->statusreq == "Ditolak")
-                                            <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
-                                            <option value="Porposed">Porposed</option>
-                                            <option value="Diterima">Diterima</option>
-                                        @elseif($kaprodi->statusreq == "Diterima"){
-                                            <option value="{{$kaprodi->statusreq}}">{{$kaprodi->statusreq}}</option>
-                                            <option value="Porposed">Porposed</option>
-                                            <option value="Ditolak">Ditolak</option>
+                                    <select class="form-control" name="statusreq_dekan" id="statusreq_dekan" required>
+                                        @if($dekan->statusreq_dekan == "Menunggu Persetujuan")
+                                            <option value="{{ $dekan->statusreq_dekan }}">{{$dekan->statusreq_dekan}}</option>
+                                            <option value="Disetujui">Disetujui</option>
+                                            <option value="Tidak Disetujui">Tidak Disetujui</option>
+                                        @elseif($dekan->statusreq_dekan == "Disetujui")
+                                            <option value="{{ $dekan->statusreq_dekan }}">{{$dekan->statusreq_dekan}}</option>
+                                            <option value="Tidak Disetujui">Tidak Disetujui</option>
+                                        @elseif($dekan->statusreq_dekan == "Tidak Disetujui")
+                                            <option value="{{ $dekan->statusreq_dekan }}">{{$dekan->statusreq_dekan}}</option>
+                                            <option value="Disetujui">Disetujui</option>
                                         @endif
                                     </select>
                                 </div>
@@ -92,7 +83,7 @@
                             <div class="card-footer">
                                     <div class="row">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
-                                        <a href="{{url('kaprodi')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
+                                        <a href="{{url('dekan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
                             <!-- End Footer -->

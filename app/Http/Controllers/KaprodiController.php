@@ -95,7 +95,7 @@ class KaprodiController extends Controller
         $kaprodi->statusreq = $request->input('statusreq');
 
         $dekan->noreq_dekan = $kaprodi->noreq;
-        $dekan->statusreq_dekan = $kaprodi->statusreq;
+        $dekan->statusreq_dekan = "Menunggu Persetujuan";
         
         $kaprodi->save();
 
