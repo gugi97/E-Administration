@@ -75,9 +75,6 @@
                                 <td> {{$kaprodi2->statusreq}} </td>
                                 <td>
                                     <a href="{{action('KaprodiController@edit', $kaprodi2->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                    @if($kaprodi2->statusreq == 'Ditolak')
-                                    <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
-                                    @endif
                                 </td>
                             @endforeach
                             @break

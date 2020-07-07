@@ -94,14 +94,39 @@ class KaprodiController extends Controller
         $kaprodi = Kaprodi::find($id);
         $kaprodi->nip = Auth::user()->nip;
         $kaprodi->statusreq = $request->input('statusreq');
-
-        $dekan->noreq_dekan = $kaprodi->noreq;
-        $dekan->statusreq_dekan = "Menunggu Persetujuan";
-
-        $suratkeputusan = SuratKeputusan::find($id);
-        $dekan = Dekan::find($id);
         
-        $dekan->save();
+        if($kaprodi->statusreq == "Ditolak"){
+            $dekan = Dekan::find($id);
+            if($dekan != $kaprodi){
+                $dekan = Dekan::where('id_dekan',$id)->first();
+                if($dekan != null){
+                    $dekan->delete();
+                }
+                $suratkeputusan = SuratKeputusan::find($id);
+                $suratkeputusan->status = "Ditolak";
+                $suratkeputusan->save();
+            }
+        }elseif($kaprodi->statusreq == "Diterima"){
+            $dekan = Dekan::find($id);
+            if($dekan != null){  
+                if($dekan->id_dekan == $kaprodi->idreq){
+                $dekan->statusreq_dekan = "Diterima";
+                $dekan->save();
+                }
+            }else{
+                $dekan = new Dekan;
+                $dekan->id_dekan = $kaprodi->idreq;
+
+                $dekan->noreq_dekan = $kaprodi->noreq;
+                $dekan->statusreq_dekan = "Menunggu Persetujuan";
+
+                $dekan->save();
+                $suratkeputusan = SuratKeputusan::find($id);
+                $suratkeputusan->status = "Diterima (Kaprodi)";
+                $suratkeputusan->save();
+            }
+        }
+        
         $kaprodi->save();
 
         return redirect('kaprodi')->with('success', 'Data Update');

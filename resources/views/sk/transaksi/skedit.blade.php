@@ -109,10 +109,10 @@
                             </div>
                             <!-- Footer -->
                             <div class="card-footer">
-                                    <div class="row">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
-                                        <a href="{{url('suratkeputusan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
-                                    </div>
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary" id='buttonCetak'><i class="far fa-save"></i> Simpan</button>
+                                    <a href="{{url('suratkeputusan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
+                                </div>
                             </div>
                             <!-- End Footer -->
                         </form>

@@ -80,8 +80,15 @@
                                 @if($sk->status == 'Diterima')
                                     <button>Kirim</button>
                                 @else
-                                    <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                    <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    @if($sk->status == "Porposed")
+                                        <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    @elseif($sk->status == "Diterima (Kaprodi)")
+                                        <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled" disabled><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
+                                    @elseif($sk->status == "Ditolak")
+                                        <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    @endif
                                 @endif
                                 </td>
                             </tr>
