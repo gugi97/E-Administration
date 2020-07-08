@@ -74,7 +74,7 @@
 
                                 <div class="form-group">
                                     <label>Status Sk</label>
-                                    <select class="form-control" name="statusreq" id="satatusreq" required>
+                                    <select class="form-control" name="statusreq" id="statusreq" required>
                                         @if($kaprodi->statusreq == "Porposed")
                                             <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
                                             <option value="Ditolak">Ditolak</option>
@@ -89,11 +89,20 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group text-center mt-3">
+						            <button type="button" id='templatesurat' class="btn btn-primary w-50" name="templatesurat" value="{{ $kaprodi->idreq }}">Lihat Surat</button>
+					            </div>
+
+                                <div class="form-group">
+                                    <label>Surat Keputusan :</label>
+                                    <div class="border p-3" name="templateSurat" id='templateSurat'> -- KLIK TOMBOL TERLEBIH DAHULU -- </div>
+                                </div>
+
                             </div>
                             <!-- Footer -->
                             <div class="card-footer">
                                     <div class="row">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                                        <button type="submit" class="btn btn-primary d-none" id='buttonCetak'><i class="far fa-save"></i> Simpan</button>
                                         <a href="{{url('kaprodi')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
@@ -102,6 +111,41 @@
                         @endforeach
                     </div>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function(){
+
+                    // TAMPIL TEMPLATE SURAT JIKA TOMBOL DIKLIK
+                    $('#templatesurat').click(function() {
+                        var idtemplate  = $(this).val();
+                        
+                        $('#buttonCetak').removeClass('d-none');
+                        if(idtemplate) {
+                            $.ajax({
+                                url: "{{asset('ajaxRequest2.php')}}",
+                                type: "POST",
+                                data : {"idtemplate":idtemplate},
+                                dataType: "json",
+                                success:function(data) {
+                                    $('#templateSurat').empty();
+                                    $('#templateSurat').append(data);
+                                },
+                                error:function(e) {
+                                    $('#templateSurat').empty();
+                                    $('#templateSurat').append(e.responseText);
+                                }
+                            });
+                        }
+                        else
+                        {
+                            $('#templateSurat').empty();
+                        }
+                    });
+
+                    
+                });
+            </script>
             
     </section>
 {{-- End Edit--}}
