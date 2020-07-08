@@ -1,4 +1,4 @@
-CKEDITOR.replace( 'editor1', {
+CKEDITOR.replace( 'templatesk', {
 	// Define the toolbar: https://ckeditor.com/docs/ckeditor4/latest/features/toolbar.html
 	// The full preset from CDN which we used as a base provides more features than we need.
 	// Also by default it comes with a 3-line toolbar. Here we put all buttons in a single row.
@@ -46,7 +46,10 @@ CKEDITOR.replace( 'editor1', {
 	//  - About Disallowed Content: https://ckeditor.com/docs/ckeditor4/latest/guide/dev_disallowed_content.html
 	//  - About Allowed Content: https://ckeditor.com/docs/ckeditor4/latest/guide/dev_allowed_content_rules.html
 	disallowedContent: 'img{width,height,float}',
-	extraAllowedContent: 'img[width,height,align]',
+
+	// TAMBAHAN
+	extraAllowedContent: 'img[width,height,align] *[id]',
+	allowedContent: true,
 
 	// Enabling extra plugins, available in the full-all preset: https://ckeditor.com/cke4/presets-all
 	/*	extraPlugins: 'tableresize,uploadimage,uploadfile', */

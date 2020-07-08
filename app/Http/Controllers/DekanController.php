@@ -91,8 +91,13 @@ class DekanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+			'hasil.required' => 'Data harus di Generate terlebih dahulu'
+        ];
+
         $this->validate($request,[
             'statusreq_dekan' => 'required',
+            'hasil' => 'required'
         ]);
 
         $dekan = new Dekan;
@@ -101,6 +106,36 @@ class DekanController extends Controller
         $dekan = Dekan::find($id);
         
         $dekan->statusreq_dekan = $request->input('statusreq_dekan');
+        $dekan->template = $request->input('hasil');
+
+        // if($files = $request->file('ttd')){
+		// 	//Hapus File
+        //     $file_ttd = Dekan::where('noreq_dekan',$id)->first();
+        //     $tujuan_uploadfile = 'uploads/dekan/'.\Carbon\Carbon::now()->format('Y-m-d').'/ TTD';
+		// 	$hidden_tujuanfile = $file_ttd->$tujuan_uploadfile;
+		// 	$lokasittd = $file_ttd->$tujuan_uploadfile;
+		// 	$filename = $lokasittd;
+		// 	File::deleteDirectory($filename);
+        //     $namefile=$files->getClientOriginalName();
+        //     if($hidden_tujuanfile == null){
+        //         $files->move($tujuan_uploadfile,$namefile);
+        //     }else{
+        //         $tujuan_uploadfile=$hidden_tujuanfile;
+		// 	    $files->move($tujuan_uploadfile,$namefile);
+        //     }
+		// }else{
+		// 	$file_ttd = Dekan::where('noreq_dekan',$id)->first();
+		// 	$tujuan_uploadfile = 'uploads/dekan/'.\Carbon\Carbon::now()->format('Y-m-d').'/ TTD';
+        //     $hidden_tujuanfile = $file_ttd->$tujuan_uploadfile;
+        //     $namefiles = null;
+		// 	$hidden_namafile = $file_ttd->$namefiles;
+		// 	$namefile = $hidden_namafile;
+		// 	$tujuan_uploadfile = $hidden_tujuanfile;
+        // }
+
+        // Dekan::where('noreq_dekan',$id)->update([
+		// 	'ttd_dekan' => $namefile,
+		// ]);
         
         $dekan->save();
 

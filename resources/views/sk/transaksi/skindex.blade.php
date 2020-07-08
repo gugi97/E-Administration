@@ -139,7 +139,6 @@
                                 <form role="Insertform" action="/suratkeputusan" method="post" id="kirimForm" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
 
                                         <input type="hidden" name="_method" value="DELETE">
                                         <p>Apa yakin ingin menghapus data?</p>

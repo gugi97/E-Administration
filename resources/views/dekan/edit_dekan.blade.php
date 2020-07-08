@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputFile">Upload Tanda Tangan</label>
                                     <div class="input-group control-group increment" >
-                                        <input type="file" class="form-control" style="padding:3px;" name="ttd" id="ttd" value="{{ $dekan->ttd_dekan }}">
+                                        <input type="file" class="form-control" style="padding:3px;" id="ttd">
                                     </div>
                                 </div>
 
@@ -119,34 +119,70 @@
             <script>
                 $(document).ready(function(){
 
-                    // TAMPIL TEMPLATE SURAT JIKA TOMBOL DIKLIK
+                    // JIKA BUTTON GENERATE DI KLIK
                     $('#templatesurat').click(function() {
                         var idtemplate  = $(this).val();
-                        
+                                                
                         $('#buttonCetak').removeClass('d-none');
                         if(idtemplate) {
                             $.ajax({
-                                url: "{{asset('ajaxRequest2.php')}}",
+                                url: "{{asset('ajaxRequest3.php')}}",
                                 type: "POST",
                                 data : {"idtemplate":idtemplate},
                                 dataType: "json",
                                 success:function(data) {
                                     $('#templateSurat').empty();
                                     $('#templateSurat').append(data);
+
                                 },
                                 error:function(e) {
                                     $('#templateSurat').empty();
                                     $('#templateSurat').append(e.responseText);
+
+                                    // GET TEMPLATE SURAT
+                                    $('#templateSurat').html();
+                                    
+                                    // MENGISI KOLOM DINAMIS PADA TEMPLATE SURAT DENGAN ISIAN DARI INPUT FIELD
+
+                                    // MEMBUAT TAG IMG UNTUK GAMBAR TTD
+                                    $('#templateSurat').find('#ttdDekan').empty();
+                                    $('#templateSurat').find('#ttdDekan').html('<img class="m-2" id="ttdcoba" src="" height="100px">');
+
+                                    // MENGISI DENGAN GAMBAR
+                                    var preview = document.querySelector('#ttdcoba');
+                                    var file    = document.querySelector('input[type=file]').files[0];
+                                    var reader  = new FileReader();
+
+                                    reader.onloadend = function () {
+                                        preview.src = reader.result;
+                                    }
+                                    
+                                    if (file) {
+                                        reader.readAsDataURL(file);
+                                    } else {
+                                        preview.src = "";
+                                    }
+
+                                    $('#buttonCetak').removeClass('d-none');    
                                 }
                             });
                         }
                         else
                         {
                             $('#templateSurat').empty();
-                        }
+                        }            
                     });
-                    
-                });
+
+                    // JIKA BUTTON CETAK DI KLIK
+                    $('#buttonCetak').click(function() {
+                            
+                            // MENGISI INPUT FIELD (ID: templateHasil) DENGAN ISIAN DARI ELEMENT (ID: templateSurat)
+                            $("#templateHasil").val($("#templateSurat").html());
+                            
+                            // SUBMIT FORM
+                            $("#formName").submit();
+                    });
+            });
             </script>
     </section>
 {{-- End Edit--}}
