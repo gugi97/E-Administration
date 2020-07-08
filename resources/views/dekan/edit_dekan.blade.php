@@ -82,13 +82,20 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Upload Tanda Tangan</label>
+                                    <div class="input-group control-group increment" >
+                                        <input type="file" class="form-control" style="padding:3px;" name="ttd" id="ttd" value="{{ $dekan->ttd_dekan }}">
+                                    </div>
+                                </div>
+
                                 <div class="form-group text-center mt-3">
-						            <button type="button" id='generate' class="btn btn-primary w-50" name="generate">Generate</button>
+						            <button type="button" id='templatesurat' class="btn btn-primary w-50" name="templatesurat" value="{{ $dekan->id_dekan }}">Generate</button>
 					            </div>
 
                                 <div class="form-group">
-                                    <label>Hasil Output:</label>
-                                    <div class="border p-3" name="templateSurat" id='templateSurat'> -- PILIH TEMPLATE SURAT TERLEBIH DAHULU -- </div>
+                                    <label>Surat Keputusan :</label>
+                                    <div class="border p-3" name="templateSurat" id='templateSurat'> -- KLIK TOMBOL TERLEBIH DAHULU -- </div>
                                 </div>
 
                                 <input type='hidden' id='templateHasil' name='hasil' readonly>
@@ -96,7 +103,7 @@
                             <!-- Footer -->
                             <div class="card-footer">
                                     <div class="row">
-                                        <button type="submit" class="btn btn-primary" id='buttonCetak'><i class="far fa-save"></i> Simpan</button>
+                                        <button type="submit" class="btn btn-primary d-none" id='buttonCetak'><i class="far fa-save"></i> Simpan</button>
                                         <a href="{{url('dekan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
@@ -108,18 +115,18 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-		    <script src="{{asset('ckeditor/custom.js')}}"></script>
 
             <script>
                 $(document).ready(function(){
 
-                    // TAMPIL TEMPLATE SURAT JIKA DROPDOWN BERUBAH
-                    $("#templatesurat").change(function(){
-                        var idtemplate    = $(this).val();
+                    // TAMPIL TEMPLATE SURAT JIKA TOMBOL DIKLIK
+                    $('#templatesurat').click(function() {
+                        var idtemplate  = $(this).val();
                         
+                        $('#buttonCetak').removeClass('d-none');
                         if(idtemplate) {
                             $.ajax({
-                                url: "{{asset('ajaxRequest.php')}}",
+                                url: "{{asset('ajaxRequest2.php')}}",
                                 type: "POST",
                                 data : {"idtemplate":idtemplate},
                                 dataType: "json",
@@ -139,31 +146,6 @@
                         }
                     });
                     
-                    // JIKA BUTTON GENERATE DI KLIK
-                    $('#generate').click(function() {
-                        
-                        // GET TEMPLATE SURAT
-                        $('#templateSurat').html();
-                        
-                        // MENGISI KOLOM DINAMIS PADA TEMPLATE SURAT DENGAN ISIAN DARI INPUT FIELD
-                        $('#templateSurat').find('#nomorSurat').html($('#nosk').val());
-
-                        $('#templateSurat').find('#tentangSurat').html($('#tentangsk').val());
-                        
-                        $('#templateSurat').find('#namaDekan').html($('#tujuan').val());
-                        
-                        $('#buttonCetak').removeClass('d-none');
-                    });
-
-                    // JIKA BUTTON CETAK DI KLIK
-                    $('#buttonCetak').click(function() {
-                        
-                        // MENGISI INPUT FIELD (ID: templateHasil) DENGAN ISIAN DARI ELEMENT (ID: templateSurat)
-                        $("#templateHasil").val($("#templateSurat").html());
-                        
-                        // SUBMIT FORM
-                        $("#formName").submit();
-                    });
                 });
             </script>
     </section>
