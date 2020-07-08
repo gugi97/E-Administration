@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,14 +47,25 @@ class UserController extends Controller
             'status' => 'required'
 		],$messages);
 
-		// update data user
-		User::where('id',$id)->update([
-			'name' => $request->name,
-			'email' => $request->email,
-			'password' => $request->password,
-			'status' => $request->status
-		]);
-		// alihkan halaman ke halaman user
+		if (Hash::needsRehash($request)) {
+			$hashed = Hash::make('plain-text');
+		}
+
+		$user = User::find($id);
+
+		$user->name = $request->input('name');
+		$user->email = $request->input('email');
+		if($user->password == $request->password)
+		{
+			$user->password = $request->input('password');
+		}
+		else{
+			$user->password = Hash::make($request->input('password'));
+		}
+		$user->status = $request->input('status');
+
+		$user->save();
+		
 		return redirect('/user');
 	}
     

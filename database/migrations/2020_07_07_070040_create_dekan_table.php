@@ -14,7 +14,7 @@ class CreateDekanTable extends Migration
     public function up()
     {
         Schema::create('dekan', function (Blueprint $table) {
-            $table->increments('id_dekan');
+            $table->unsignedinteger('id_dekan')->primary();
             $table->string('noreq_dekan', 30)->unique();
             $table->char('nip_dekan', 9)->nullable();
             $table->text('ttd_dekan')->nullable();

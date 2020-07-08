@@ -89,21 +89,13 @@ class DekanController extends Controller
         ]);
 
         $dekan = new Dekan;
-        $kaprodi = new Kaprodi;
-
-        $kaprodi = Kaprodi::find($id);
-        $kaprodi->nip = Auth::user()->nip;
-        $kaprodi->statusreq = $request->input('statusreq');
-
-        $dekan->noreq_dekan = $kaprodi->noreq;
-        $dekan->statusreq_dekan = $kaprodi->statusreq;
+        $dekan = Dekan::find($id);
         
-        $kaprodi->save();
-
+        $dekan->statusreq_dekan = $request->input('statusreq');
         
         $dekan->save();
 
-        return redirect('kaprodi')->with('success', 'Data Update');
+        return redirect('dekan')->with('success', 'Data Update');
     }
 
     /**

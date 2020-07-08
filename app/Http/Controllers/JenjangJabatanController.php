@@ -52,7 +52,7 @@ class JenjangJabatanController extends Controller
         ];
         
         $this->validate($request,[
-            'kode_jenjang' => 'required|numeric|unique:jenjang_jabatan',
+            'kode_jenjang' => 'required|numeric',
             'nmjabatan' => 'required',
             'untinduk' => 'required',
             'untsurat' => 'required',

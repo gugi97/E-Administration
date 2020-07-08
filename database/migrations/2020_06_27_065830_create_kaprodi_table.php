@@ -14,7 +14,7 @@ class CreateKaprodiTable extends Migration
     public function up()
     {
         Schema::create('kaprodi', function (Blueprint $table) {
-            $table->increments('idreq');
+            $table->unsignedinteger('idreq')->primary();
             $table->string('noreq', 30)->unique();
             $table->char('nip', 9)->nullable();
             $table->string('statusreq')->nullable();

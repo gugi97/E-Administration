@@ -68,26 +68,27 @@
                         <div class="form-group">
                             <label>Status</label>
                             <select class="form-control" name="status" id="status" required>
-                                <?php if($usr->status == "Karyawan"){
-                                ?>
+                                @if($usr->status == "Staf")
                                     <option value="{{$usr->status}}">{{$usr->status}}</option>
+                                    <option value="Dosen">Dosen</option>
                                     <option value="Ketua Program Studi">Ketua Program Studi</option>
                                     <option value="Dekan">Dekan</option>
-                                <?php
-                                }else if($usr->status == "Ketua Program Studi"){
-                                ?>
+                                @elseif($usr->status == "Dosen")
                                     <option value="{{$usr->status}}">{{$usr->status}}</option>
-                                    <option value="Karyawan">Karyawan</option>
-                                    <option value="Dekan">Dekan</option>
-                                <?php
-                                }else if($usr->status == "Dekan"){
-                                ?>
-                                    <option value="{{$usr->status}}">{{$usr->status}}</option>
-                                    <option value="Karyawan">Karyawan</option>
+                                    <option value="Staf">Staf</option>
                                     <option value="Ketua Program Studi">Ketua Program Studi</option>
-                                <?php
-                                }
-                                ?> 
+                                    <option value="Dekan">Dekan</option>
+                                @elseif($usr->status == "Ketua Program Studi")
+                                    <option value="{{$usr->status}}">{{$usr->status}}</option>
+                                    <option value="Staf">Staf</option>
+                                    <option value="Dosen">Dosen</option>
+                                    <option value="Dekan">Dekan</option>                                
+                                @elseif($usr->status == "Dekan")
+                                    <option value="{{$usr->status}}">{{$usr->status}}</option>
+                                    <option value="Staf">Staf</option>
+                                    <option value="Dosen">Dosen</option>
+                                    <option value="Ketua Program Studi">Ketua Program Studi</option>
+                                @endif
                             </select>
                         </div>
                     </div>

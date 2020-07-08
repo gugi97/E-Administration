@@ -158,7 +158,7 @@
 
                                             <div class="form-group">
                                                 <label>NIP Dosen</label>
-                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nipdsn" id="nipdsn" value="{{ old('nip') }}" maxlength="9">
+                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" id="nip" value="{{ old('nip') }}" maxlength="9">
                                             </div>
 
                                             <div class="form-group">
@@ -260,7 +260,7 @@
 
                 console.log(data);
 
-                $('#nipdsn').val(data[1]);
+                $('#nip').val(data[1]);
                 $('#gelar_depan').val($('#fieldGelarDepan').html());
                 $('#name').val($('#fieldNama').html());
                 $('#gelar_belakang').val($('#fieldGelarBelakang').html());

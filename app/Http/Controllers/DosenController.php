@@ -111,18 +111,18 @@ class DosenController extends Controller
         ];
 
         $this->validate($request,[
-            'nipdsn' => 'required|numeric|min:9|unique:dosen',
+            'nip' => 'required|numeric|min:9',
             'gelar_depan' => 'required',
             'name' => 'required',
             'gelar_belakang' => 'required',
             'no_hp' => 'required|numeric',
-            'email' => 'required|unique:dosen',
+            'email' => 'required',
         ]);
 
         $dosen = new Dosen;
         $dosen = Dosen::findOrFail($id);
 
-        $dosen->nip = $request->input('nipdsn');
+        $dosen->nip = $request->input('nip');
         $dosen->gelar_depan = $request->input('gelar_depan');
         $dosen->name = $request->input('name');
         $dosen->gelar_belakang = $request->input('gelar_belakang');
