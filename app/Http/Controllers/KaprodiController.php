@@ -125,7 +125,7 @@ class KaprodiController extends Controller
 
                 $dekan->noreq_dekan = $kaprodi->noreq;
                 $dekan->statusreq_dekan = "Menunggu Persetujuan";
-
+                $dekan->template = $kaprodi->template;
                 $dekan->save();
                 $suratkeputusan = SuratKeputusan::find($id);
                 $suratkeputusan->status = "Diterima (Kaprodi)";

@@ -103,7 +103,7 @@
                             <!-- Footer -->
                             <div class="card-footer">
                                     <div class="row">
-                                        <button type="submit" class="btn btn-primary d-none" id='buttonCetak'><i class="far fa-save"></i> Simpan</button>
+                                        <button type="submit" class="btn btn-primary d-none" id='buttonCetak' ><i class="far fa-save"></i> Simpan</button>
                                         <a href="{{url('dekan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
@@ -143,7 +143,6 @@
                                     $('#templateSurat').html();
                                     
                                     // MENGISI KOLOM DINAMIS PADA TEMPLATE SURAT DENGAN ISIAN DARI INPUT FIELD
-
                                     // MEMBUAT TAG IMG UNTUK GAMBAR TTD
                                     $('#templateSurat').find('#ttdDekan').empty();
                                     $('#templateSurat').find('#ttdDekan').html('<img class="m-2" id="ttdcoba" src="" height="100px">');
@@ -163,7 +162,15 @@
                                         preview.src = "";
                                     }
 
-                                    $('#buttonCetak').removeClass('d-none');    
+                                    let hariIni = new Date();
+                                    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                                    let hari= hariIni.getDate()+' '+months[hariIni.getMonth()]+' '+hariIni.getFullYear();
+                                    $('#templateSurat').find('#tanggalSurat').html(hari);
+                                    
+                                    let namaDekan = '{{Auth::user()->name}}';
+                                    $('#templateSurat').find('#namaDekan').html(namaDekan);
+                                    
+                                    $('#buttonCetak').removeClass('d-none');   
                                 }
                             });
                         }

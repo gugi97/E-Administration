@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use App\Dekan;
 use App\Kaprodi;
 use App\SuratKeputusan;
+use PDF;
 
 
 class DekanController extends Controller
@@ -78,7 +79,6 @@ class DekanController extends Controller
             $dekan_nip->save();
         }
 
-
         return view ('dekan.edit_dekan', ['dekan' => $dekan]);
     }
 
@@ -108,34 +108,25 @@ class DekanController extends Controller
         $dekan->statusreq_dekan = $request->input('statusreq_dekan');
         $dekan->template = $request->input('hasil');
 
-        // if($files = $request->file('ttd')){
-		// 	//Hapus File
-        //     $file_ttd = Dekan::where('noreq_dekan',$id)->first();
-        //     $tujuan_uploadfile = 'uploads/dekan/'.\Carbon\Carbon::now()->format('Y-m-d').'/ TTD';
-		// 	$hidden_tujuanfile = $file_ttd->$tujuan_uploadfile;
-		// 	$lokasittd = $file_ttd->$tujuan_uploadfile;
-		// 	$filename = $lokasittd;
-		// 	File::deleteDirectory($filename);
-        //     $namefile=$files->getClientOriginalName();
-        //     if($hidden_tujuanfile == null){
-        //         $files->move($tujuan_uploadfile,$namefile);
-        //     }else{
-        //         $tujuan_uploadfile=$hidden_tujuanfile;
-		// 	    $files->move($tujuan_uploadfile,$namefile);
-        //     }
-		// }else{
-		// 	$file_ttd = Dekan::where('noreq_dekan',$id)->first();
-		// 	$tujuan_uploadfile = 'uploads/dekan/'.\Carbon\Carbon::now()->format('Y-m-d').'/ TTD';
-        //     $hidden_tujuanfile = $file_ttd->$tujuan_uploadfile;
-        //     $namefiles = null;
-		// 	$hidden_namafile = $file_ttd->$namefiles;
-		// 	$namefile = $hidden_namafile;
-		// 	$tujuan_uploadfile = $hidden_tujuanfile;
-        // }
+        if($dekan->statusreq_dekan == "Disetujui"){
+            $suratkeputusan = SuratKeputusan::find($id);
+            $suratkeputusan->status = "Disetujui";
+            $suratkeputusan->save();
+            $dekan->statusreq_dekan = "Disetujui";
+            $dekan->save();
 
-        // Dekan::where('noreq_dekan',$id)->update([
-		// 	'ttd_dekan' => $namefile,
-		// ]);
+            $dekan->template = $request->input('hasil');
+            $templatebaru = $dekan->template;
+            $pdf = PDF::loadview('dekan.templatedekan_pdf',['templatebaru'=>$templatebaru]);
+            return $pdf->download('laporan-pdf.pdf');
+            
+        }elseif($dekan->statusreq_dekan == "Tidak Disetujui"){
+            $suratkeputusan = SuratKeputusan::find($id);
+            $suratkeputusan->status = "Tidak Disetujui";
+            $suratkeputusan->save();
+            $dekan->statusreq_dekan = "Tidak Disetujui";
+            $dekan->save();
+        }
         
         $dekan->save();
 

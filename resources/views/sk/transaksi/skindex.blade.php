@@ -77,10 +77,9 @@
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
-                                @if($sk->status == 'Diterima')
-                                    <a href="#" class="btn btn-primary kirim"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</a>
-                                @else
-                                    @if($sk->status == "Porposed")
+                                    @if($sk->status == 'Disetujui')
+                                        <a href="#" class="btn btn-primary kirim"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</a>
+                                    @elseif($sk->status == "Porposed")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                         <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                     @elseif($sk->status == "Diterima (Kaprodi)")
@@ -88,8 +87,9 @@
                                         <a href="#" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
                                     @elseif($sk->status == "Ditolak")
                                         <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    @elseif($sk->status == "Tidak Disetujui")
+                                        <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
                                     @endif
-                                @endif
                                 </td>
                             </tr>
                             @endforeach
