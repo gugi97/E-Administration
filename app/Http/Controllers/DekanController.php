@@ -72,6 +72,13 @@ class DekanController extends Controller
     public function edit($id)
     {
         $dekan = Dekan::where('id_dekan',$id)->get();
+        $dekan_nip = Dekan::find($id);
+        if($dekan_nip->nip_dekan == ""){
+            $dekan_nip->nip_dekan = Auth::user()->nip;
+            $dekan_nip->save();
+        }
+
+
         return view ('dekan.edit_dekan', ['dekan' => $dekan]);
     }
 
@@ -85,13 +92,15 @@ class DekanController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'statusreq' => 'required',
+            'statusreq_dekan' => 'required',
         ]);
 
         $dekan = new Dekan;
+        $suratkeputusan = new SuratKeputusan;
+        
         $dekan = Dekan::find($id);
         
-        $dekan->statusreq_dekan = $request->input('statusreq');
+        $dekan->statusreq_dekan = $request->input('statusreq_dekan');
         
         $dekan->save();
 

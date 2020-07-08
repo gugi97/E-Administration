@@ -45,7 +45,7 @@
                         <!-- Akhir Validasi -->
                         <!-- form start -->
                         @foreach($kaprodi as $kaprodi)
-                        <form role="Insertform" action="{{ action('KaprodiController@update', $kaprodi->noreq) }}" method="post" id="editForm" enctype="multipart/form-data">
+                        <form role="Insertform" action="{{ action('KaprodiController@update', $kaprodi->idreq) }}" method="post" id="editForm" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 {{ csrf_field() }}
@@ -58,7 +58,11 @@
 
                                 <div class="form-group">
                                     <label>NIP Kaprodi</label>
+                                    @if($kaprodi->nip == "")
                                     <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ Auth::user()->nip }}" maxlength="9" disabled>
+                                    @else
+                                    <input type="text" class="form-control" placeholder="NIP" name="nip" id="nip" value="{{ $kaprodi->nip }}" maxlength="9" disabled>
+                                    @endif
                                 </div>
 
                                 <!-- <div class="form-group">

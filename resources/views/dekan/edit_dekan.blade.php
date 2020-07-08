@@ -58,7 +58,11 @@
 
                                 <div class="form-group">
                                     <label>NIP Dekan</label>
+                                    @if($dekan->nip_dekan == "")
                                     <input type="text" class="form-control" placeholder="NIP" name="nip_dekan" id="nip_dekan" value="{{ Auth::user()->nip }}" maxlength="9" disabled>
+                                    @else
+                                    <input type="text" class="form-control" placeholder="NIP" name="nip_dekan" id="nip_dekan" value="{{ $dekan->nip_dekan }}" maxlength="9" disabled>
+                                    @endif
                                 </div>
 
                                 <div class="form-group">

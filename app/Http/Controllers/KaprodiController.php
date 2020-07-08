@@ -71,6 +71,12 @@ class KaprodiController extends Controller
     public function edit($id)
     {
         $kaprodi = Kaprodi::where('idreq',$id)->get();
+        $kapnip = Kaprodi::find($id);
+        if($kapnip->nip == ""){
+            $kapnip->nip = Auth::user()->nip;
+            $kapnip->save();
+        }
+
         return view ('kaprodi.edit_kaprodi', ['kaprodi' => $kaprodi]);
     }
 
