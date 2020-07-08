@@ -82,11 +82,21 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group text-center mt-3">
+						            <button type="button" id='generate' class="btn btn-primary w-50" name="generate">Generate</button>
+					            </div>
+
+                                <div class="form-group">
+                                    <label>Hasil Output:</label>
+                                    <div class="border p-3" name="templateSurat" id='templateSurat'> -- PILIH TEMPLATE SURAT TERLEBIH DAHULU -- </div>
+                                </div>
+
+                                <input type='hidden' id='templateHasil' name='hasil' readonly>
                             </div>
                             <!-- Footer -->
                             <div class="card-footer">
                                     <div class="row">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                                        <button type="submit" class="btn btn-primary" id='buttonCetak'><i class="far fa-save"></i> Simpan</button>
                                         <a href="{{url('dekan')}}" class="btn btn-danger" style="margin-left: 20px;"><i class="fas fa-ban"></i> Batal</a>
                                     </div>
                             </div>
@@ -95,7 +105,67 @@
                         @endforeach
                     </div>
             </div>
-            
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+		    <script src="{{asset('ckeditor/custom.js')}}"></script>
+
+            <script>
+                $(document).ready(function(){
+
+                    // TAMPIL TEMPLATE SURAT JIKA DROPDOWN BERUBAH
+                    $("#templatesurat").change(function(){
+                        var idtemplate    = $(this).val();
+                        
+                        if(idtemplate) {
+                            $.ajax({
+                                url: "{{asset('ajaxRequest.php')}}",
+                                type: "POST",
+                                data : {"idtemplate":idtemplate},
+                                dataType: "json",
+                                success:function(data) {
+                                    $('#templateSurat').empty();
+                                    $('#templateSurat').append(data);
+                                },
+                                error:function(e) {
+                                    $('#templateSurat').empty();
+                                    $('#templateSurat').append(e.responseText);
+                                }
+                            });
+                        }
+                        else
+                        {
+                            $('#templateSurat').empty();
+                        }
+                    });
+                    
+                    // JIKA BUTTON GENERATE DI KLIK
+                    $('#generate').click(function() {
+                        
+                        // GET TEMPLATE SURAT
+                        $('#templateSurat').html();
+                        
+                        // MENGISI KOLOM DINAMIS PADA TEMPLATE SURAT DENGAN ISIAN DARI INPUT FIELD
+                        $('#templateSurat').find('#nomorSurat').html($('#nosk').val());
+
+                        $('#templateSurat').find('#tentangSurat').html($('#tentangsk').val());
+                        
+                        $('#templateSurat').find('#namaDekan').html($('#tujuan').val());
+                        
+                        $('#buttonCetak').removeClass('d-none');
+                    });
+
+                    // JIKA BUTTON CETAK DI KLIK
+                    $('#buttonCetak').click(function() {
+                        
+                        // MENGISI INPUT FIELD (ID: templateHasil) DENGAN ISIAN DARI ELEMENT (ID: templateSurat)
+                        $("#templateHasil").val($("#templateSurat").html());
+                        
+                        // SUBMIT FORM
+                        $("#formName").submit();
+                    });
+                });
+            </script>
     </section>
 {{-- End Edit--}}
 @endsection

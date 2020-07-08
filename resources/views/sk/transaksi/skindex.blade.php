@@ -78,7 +78,7 @@
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
                                 @if($sk->status == 'Diterima')
-                                    <button>Kirim</button>
+                                    <a href="#" class="btn btn-primary kirim"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</a>
                                 @else
                                     @if($sk->status == "Porposed")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
@@ -123,6 +123,36 @@
                         </div>
                     </div>
                     {{-- End Delete Modal --}}
+                </div>
+
+                <!-- Start Kirim Modal -->
+                <div class="modal fade" id="kirimModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Kirim Surat Keputusan</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form role="Insertform" action="/suratkeputusan" method="post" id="kirimForm" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <p>Apa yakin ingin menghapus data?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Ya, Hapus Data</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- End Kirim Modal --}}
                 </div>
 
                 <!-- Footer -->
