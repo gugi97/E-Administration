@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\SuratKeputusan;
 use App\Kaprodi;
 use App\User;
+use App\Dosen;
 
 class SuratKeputusanController extends Controller
 {
@@ -24,8 +25,9 @@ class SuratKeputusanController extends Controller
     public function index()
     {
         $sk = SuratKeputusan::all();
+        $dosen = Dosen::all();
 
-        return view('sk.transaksi.skindex', ['sk'=> $sk]);
+        return view('sk.transaksi.skindex', ['sk'=> $sk, 'dosen'=> $dosen]);
     }
 
     /**

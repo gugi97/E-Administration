@@ -130,22 +130,40 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Kirim Surat Keputusan</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Kirim Surat Keputusan : {{$sk->nosk}}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 
                                 <form role="Insertform" action="/suratkeputusan" method="post" id="kirimForm" enctype="multipart/form-data">
-                                    <div class="modal-body">
+                                    <div class="modal-body text-left">
                                         {{ csrf_field() }}
 
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <p>Apa yakin ingin menghapus data?</p>
+                                        <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                        <input type="hidden" name="idSurat" value="{{$sk->idsk}}">
+
+											<p>Berikan tanda check (&#10003;) untuk penerima Surat Keputusan :</p>
+												<div class="row border mx-1 p-1 rounded">
+									                @foreach($dosen as $dsn)
+										                <div class="col-md-8">
+														    <div class="form-check">
+																<input type="checkbox" class="form-check-input" name="dosen[]" value="{{$dsn->email}}">
+																<label class="form-check-label">{{$dsn->gelar_depan}} {{$dsn->name}} {{$dsn->gelar_belakang}}</label>
+															</div>
+														</div>
+                                                    @endforeach
+									            </div>																	
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Ya, Hapus Data</button>
+                                    <div class="modal-footer" style="padding: 9px !important;">
+                                        <div class="form-check" style="position: relative; right: 180px;">
+                                            <input type="checkbox" class="form-check-input select-all"  name="select-all" value="">
+                                            <label class="form-check-label">Pilih Semua</label>
+										</div>
+									    <div class="float-right">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button> &nbsp;
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Kirim</button>
+										</div>
                                     </div>
                                 </form>
                             </div>
@@ -191,6 +209,27 @@
                 $('#deleteModal').modal('show');
             });
             //End Delete Record
+
+            //Start kirim Record
+            table.on('click', '.kirim', function() {
+
+                $('.select-all').click(function(event) {   
+                    if(this.checked) {
+                        // Iterate each checkbox
+                        $(':checkbox').each(function() {
+                            this.checked = true;                        
+                        });
+                    } else {
+                        $(':checkbox').each(function() {
+                            this.checked = false;                       
+                        });
+                    }
+			    });
+
+                $('#kirimForm').attr('action', '/suratkeputusan/'+ $('#idsk').html());
+                $('#kirimModal').modal('show');
+            });
+            //End kirim Record
         });
     </script>
 @endsection
