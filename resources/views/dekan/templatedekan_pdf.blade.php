@@ -4,6 +4,6 @@
 	<title>Laporan PDF Surat Masuk</title>
 </head>
 <body>
-	{{$templatebaru}}
+	{!! $templatebaru !!}
 </body>
 </html>
