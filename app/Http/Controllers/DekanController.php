@@ -9,6 +9,7 @@ use App\Dekan;
 use App\Kaprodi;
 use App\SuratKeputusan;
 use PDF;
+use Storage;
 
 
 class DekanController extends Controller
@@ -104,7 +105,6 @@ class DekanController extends Controller
         $suratkeputusan = new SuratKeputusan;
         
         $dekan = Dekan::find($id);
-        
         $dekan->statusreq_dekan = $request->input('statusreq_dekan');
         $dekan->template = $request->input('hasil');
 
@@ -113,13 +113,10 @@ class DekanController extends Controller
             $suratkeputusan->status = "Disetujui";
             $suratkeputusan->save();
             $dekan->statusreq_dekan = "Disetujui";
-            $dekan->save();
 
-            $dekan->template = $request->input('hasil');
-            $templatebaru = $dekan->template;
-            $pdf = PDF::loadview('dekan.templatedekan_pdf',['templatebaru'=>$templatebaru]);
-            return $pdf->download('laporan-pdf.pdf');
-            
+            $pdf = PDF::loadview('dekan.templatedekan_pdf',['templatebaru'=>$request->input('hasil')]);
+            $namafile = time().'_';
+            Storage::put('public/suratkeputusan/'.$namafile.'.pdf', $pdf->output());
         }elseif($dekan->statusreq_dekan == "Tidak Disetujui"){
             $suratkeputusan = SuratKeputusan::find($id);
             $suratkeputusan->status = "Tidak Disetujui";

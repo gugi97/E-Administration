@@ -171,6 +171,10 @@ class SuratKeputusanController extends Controller
     {
         $sk = SuratKeputusan::where('idsk', $id)->first();
         $kaprodi = Kaprodi::where('idreq', $id)->first();
+        $dekan = dekan::where('id_dekan', $id)->first();
+        if($dekan != null){
+            $dekan->delete();
+        }
         $sk->delete();
         $kaprodi->delete();
 

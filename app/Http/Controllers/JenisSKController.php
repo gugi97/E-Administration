@@ -31,8 +31,13 @@ class JenisSKController extends Controller
      */
     public function create()
     {
+        $path = base_path().'/public/kop_surat.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        
         $jenis = JenisSK::all();
-        return view('sk.jenis_sk_create', ['jenis'=> $jenis]);
+        return view('sk.jenis_sk_create', ['jenis'=> $jenis, 'base64'=>$base64]);
     }
 
     /**
