@@ -17,7 +17,7 @@ class CreateJenisSkTable extends Migration
             $table->increments('idjenis_sk');
             $table->string('jenis_sk', 50);
             $table->string('nama_template', 50);
-            $table->text('template');
+            $table->longText('template');
         });
     }
 

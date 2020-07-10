@@ -19,7 +19,7 @@ class CreateDekanTable extends Migration
             $table->char('nip_dekan', 9)->nullable();
             $table->text('ttd_dekan')->nullable();
             $table->string('statusreq_dekan')->nullable();
-            $table->text('template');
+            $table->longText('template');
         });
     }
 

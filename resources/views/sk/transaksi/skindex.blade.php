@@ -54,7 +54,7 @@
                     <table id="datatable" class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr style="text-align: center;">
-                                <th scope="col">No</th>
+                                <th scope="col">No</th>    
                                 <th scope="col">Nomor SK</th>
                                 <th scope="col">Tanggal SK</th>
                                 <th scope="col">Staf</th>
@@ -68,8 +68,8 @@
                             @foreach ($sk as $sk)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}
-                                    <span style="display: none;" id='idsk'>{{$sk->idsk}}</span>
-                                </th>                                
+                                    <span class="idsk">{{ $sk->idsk }}</span>
+                                </th>   
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
                                 <td>{{ $sk->nip}}</td>
@@ -202,10 +202,17 @@
                     $tr = $tr.prev('.parent');
                 }
 
-                var data = table.row($tr).data();
-                console.log(data);
+                // var data = table.row($tr).data();
+                // var data = document.querySelectorAll('.idsk')[1].innerHTML
+                // console.log(data);
 
-                $('#deleteForm').attr('action', '/suratkeputusan/'+ $('#idsk').html());
+                var spans = document.getElementsByClassName('idsk');//returns node-list of spans
+                for (var i=0;i<spans.length;i++)
+                {
+                    console.log(spans[i].innerHTML);//logs 1 for i === 0, 2 for i === 1 etc
+                }
+
+                $('#deleteForm').attr('action', '/suratkeputusan/'+ spans[1].innerHTML);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record

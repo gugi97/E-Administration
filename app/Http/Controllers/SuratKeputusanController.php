@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\SuratKeputusan;
 use App\Kaprodi;
+use App\Dekan;
 use App\User;
 use App\Dosen;
 

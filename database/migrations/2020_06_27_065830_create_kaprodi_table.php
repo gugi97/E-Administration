@@ -18,7 +18,7 @@ class CreateKaprodiTable extends Migration
             $table->string('noreq', 30)->unique();
             $table->char('nip', 9)->nullable();
             $table->string('statusreq')->nullable();
-            $table->text('template');
+            $table->longText('template');
         });
     }
 
