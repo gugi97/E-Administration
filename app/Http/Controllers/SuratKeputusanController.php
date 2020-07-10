@@ -9,6 +9,8 @@ use App\Kaprodi;
 use App\Dekan;
 use App\User;
 use App\Dosen;
+use App\Mail\NotifSKDosen;
+
 
 class SuratKeputusanController extends Controller
 {
@@ -160,6 +162,22 @@ class SuratKeputusanController extends Controller
         $kaprodi->save();
 
         return redirect('suratkeputusan')->with('success', 'Data Saved');
+    }
+
+    public function kirim(Request $request, $id)
+    {
+        $dosen = new Dosen;
+        $dosen = array();
+        
+        if($dosen = $request->input('dosen')){
+			foreach($dosen as $email){
+                $dosen = $email;
+
+                \Mail::to($dosen)->send(new NotifSKDosen);
+            }
+        }
+
+        return redirect('suratkeputusan')->with('success', 'File Terkirim');
     }
 
     /**

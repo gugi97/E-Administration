@@ -15,7 +15,7 @@ class CreateDosenTable extends Migration
     {
         Schema::create('dosen', function (Blueprint $table) {
             $table->char('nip', 9)->primary();
-            $table->string('gelar_depan', 50);
+            $table->string('gelar_depan', 50)->nullable();
             $table->string('name');
             $table->string('gelar_belakang', 50);
             $table->string('no_hp', 15);

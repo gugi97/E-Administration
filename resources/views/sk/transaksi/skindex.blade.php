@@ -148,7 +148,7 @@
 									                @foreach($dosen as $dsn)
 										                <div class="col-md-8">
 														    <div class="form-check">
-																<input type="checkbox" class="form-check-input" name="dosen[]" value="{{$dsn->email}}">
+																<input type="checkbox" class="form-check-input" name="dosen[]" id="dosen" value="{{$dsn->email}}">
 																<label class="form-check-label">{{$dsn->gelar_depan}} {{$dsn->name}} {{$dsn->gelar_belakang}}</label>
 															</div>
 														</div>
@@ -233,7 +233,13 @@
                     }
 			    });
 
-                $('#kirimForm').attr('action', '/suratkeputusan/'+ $('#idsk').html());
+                var spans = document.getElementsByClassName('idsk');//returns node-list of spans
+                for (var i=0;i<spans.length;i++)
+                {
+                    console.log(spans[i].innerHTML);//logs 1 for i === 0, 2 for i === 1 etc
+                }
+
+                $('#kirimForm').attr('action', '/suratkeputusan/'+ spans[0].innerHTML);
                 $('#kirimModal').modal('show');
             });
             //End kirim Record

@@ -112,7 +112,7 @@ class DosenController extends Controller
 
         $this->validate($request,[
             'nip' => 'required|numeric|min:9',
-            'gelar_depan' => 'required',
+            'gelar_depan' => 'nullable',
             'name' => 'required',
             'gelar_belakang' => 'required',
             'no_hp' => 'required|numeric',

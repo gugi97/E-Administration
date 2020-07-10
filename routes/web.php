@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('agendasuratkeluar_pdf', 'AgendaSuratKeluarController@cetak_pdf');
 
     Route::resource('suratkeputusan', 'SuratKeputusanController');
+    Route::post('suratkeputusan/{id}', 'SuratKeputusanController@kirim');
 
     Route::resource('requestsurat', 'RequestSuratController');
     Route::get('requestsurat/diterima/{no_req}', 'RequestSuratController@diterima');
