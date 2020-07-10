@@ -111,7 +111,6 @@ class DekanController extends Controller
         if($dekan->statusreq_dekan == "Disetujui"){
             $suratkeputusan = SuratKeputusan::find($id);
             $suratkeputusan->status = "Disetujui";
-            $suratkeputusan->save();
             $dekan->statusreq_dekan = "Disetujui";
 
             $lokasifile = 'uploads/suratkeputusan/'.\Carbon\Carbon::now()->format('Y-m-d').'/';
@@ -123,6 +122,9 @@ class DekanController extends Controller
                 File::makeDirectory($lokasifile,0777,true);
                 file_put_contents('uploads/suratkeputusan/'.\Carbon\Carbon::now()->format('Y-m-d').'/'.$namafile.'.pdf' , $pdf->output());
             }
+            $suratkeputusan->file = $namafile.'.pdf';
+            $suratkeputusan->lokasifile = $lokasifile;
+            $suratkeputusan->save();
         }elseif($dekan->statusreq_dekan == "Tidak Disetujui"){
             $suratkeputusan = SuratKeputusan::find($id);
             $suratkeputusan->status = "Tidak Disetujui";
