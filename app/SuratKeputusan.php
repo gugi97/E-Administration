@@ -13,7 +13,7 @@ class SuratKeputusan extends Model
     public $timestamps = false;
 
     protected $attributes = [
-        'status' => "Porposed",
+        'status' => "Proposed",
      ];
      
     public function scopegetalltemplate(){
@@ -23,6 +23,11 @@ class SuratKeputusan extends Model
 
     public function scopegetallsuratkeputusan(){
         $result = DB::table('suratkeputusan')->get();
+        return $result;
+    }
+
+    public function scopegetalluser(){
+        $result = DB::table('users')->where('status', 'Ketua Program Studi')->get();
         return $result;
     }
 }

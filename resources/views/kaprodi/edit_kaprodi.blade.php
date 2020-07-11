@@ -65,17 +65,22 @@
                                     @endif
                                 </div>
 
-                                <!-- <div class="form-group">
-                                    <label for="exampleInputFile">Upload Tanda Tangan</label>
-                                    <div class="input-group control-group increment" >
-                                        <input type="file" class="form-control" style="padding:3px;" name="ttd" id="ttd" value="{{ $kaprodi->ttd }}">
-                                    </div>
-                                </div> -->
+                                <div class="form-group">
+                                    <label>Dituju</label>
+                                    <select class="form-control" name="tujuan" id="tujuan" required>
+                                        <option>--------</option>
+                                        @foreach ($dekan as  $tujuan)
+                                            <option value="{{ $tujuan->email }}" {{ $tujuan->name == $tujuan->name ? 'selected' : '' }}>
+                                                {{$tujuan->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
                                     <label>Status Sk</label>
                                     <select class="form-control" name="statusreq" id="statusreq" required>
-                                        @if($kaprodi->statusreq == "Porposed")
+                                        @if($kaprodi->statusreq == "Proposed")
                                             <option value="{{ $kaprodi->statusreq }}">{{$kaprodi->statusreq}}</option>
                                             <option value="Ditolak">Ditolak</option>
                                             <option value="Diterima">Diterima</option>

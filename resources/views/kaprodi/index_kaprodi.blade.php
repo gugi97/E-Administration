@@ -65,13 +65,10 @@
                             @foreach ($sk as $sk2)
                             @foreach ($kaprodi as $kaprodi2 )
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}
-                                    <span style="display: none;" id='idkaprodi'>{{$kaprodi2->idreq}}</span>
-                                </th>
+                                <th>{{ $loop->iteration }}</th>
                                 <td>{{ $kaprodi2->noreq }}</td>
                                 <td>{{ $sk2->tglsk }}</td>
                                 <td>{{ $sk2->nip }}</td>                            
-                                    {{-- <td>{{ $sk2->suratkeputusan }}</td> --}}
                                 <td> {{$kaprodi2->statusreq}} </td>
                                 <td>
                                     <a href="{{action('KaprodiController@edit', $kaprodi2->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
@@ -82,34 +79,6 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <!-- Start Delete Modal -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete Request Surat Keputusan</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form role="Insertform" action="/kaprodi" method="post" id="deleteForm" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <p>Apa yakin ingin menghapus data?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Batal</button>
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Ya, Hapus Data</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- End Delete Modal --}}
                 </div>
 
                 <!-- Footer -->
@@ -128,27 +97,4 @@
     <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js" defer></script>
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-            var table = $('#datatable').DataTable();
-
-            //Start Delete Record
-            table.on('click', '.delete', function() {
-
-                $tr = $(this).closest('tr');
-                if($($tr).hasClass('child'))
-                {
-                    $tr = $tr.prev('.parent');
-                }
-
-                var data = table.row($tr).data();
-                console.log(data);
-
-                $('#deleteForm').attr('action', '/kaprodi/'+ $('#idkaprodi').html());
-                $('#deleteModal').modal('show');
-            });
-            //End Delete Record
-        });
-    </script>
 @endsection

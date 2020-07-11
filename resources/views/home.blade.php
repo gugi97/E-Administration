@@ -163,23 +163,141 @@
                     </div>
                     @endif
 
+                    <!-- -------------KAPRODI------------ -->
                     @if(auth()->user()->status == 'Ketua Program Studi')
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{$req_kapreq}}</h3>
+                                <p>Request Verifikasi SK</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <a href="kaprodi" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{$req_kapreq_terima}}</h3>
+                                <p>SK Diterima</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <a href="kaprodi" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="col-lg-3 col-6">
                         <!-- small card -->
                         <div class="small-box" style="color: white !important; background-color: #FFC107;">
                             <div class="inner">
-                                <h3>0</h3>
-                                <p>Request SK</p>
+                                <h3>{{$req_kapreq_prop}}</h3>
+                                <p>SK Proposed</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-pen-square"></i>
                             </div>
-                            <a href="user" class="small-box-footer">
+                            <a href="kaprodi" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{$req_kapreq_tolak}}</h3>
+                                <p>SK Ditolak</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <a href="kaprodi" class="small-box-footer">
                                 More info <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>
                     @endif
+                    <!-- -------------END KAPRODI------------ -->
+
+                    <!-- -------------DEKAN------------ -->
+                    @if(auth()->user()->status == 'Dekan')
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{$req_dekreq}}</h3>
+                                <p>Request Persetujuan SK</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <a href="dekan" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{$req_dekreq_terima}}</h3>
+                                <p>SK Disetujui</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <a href="dekan" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box" style="color: white !important; background-color: #FFC107;">
+                            <div class="inner">
+                                <h3>{{$req_dekreq_prop}}</h3>
+                                <p>SK Proposed</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-pen-square"></i>
+                            </div>
+                            <a href="dekan" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{$req_dekreq_tolak}}</h3>
+                                <p>SK Tidak Disetujui</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <a href="dekan" class="small-box-footer">
+                                More info <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    @endif
+                    <!-- -------------END DEKAN------------ -->
 
                     @if(auth()->user()->status == 'Staf')
                     <div class="col-lg-3 col-6">

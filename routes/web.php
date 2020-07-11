@@ -65,11 +65,11 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('requestsurat/proses/{no_req}', 'RequestSuratController@proses');
 });
 
-Route::group(['middleware' => ['auth','checkStatus:Admin,Ketua Program Studi']],function(){
+Route::group(['middleware' => ['auth','checkStatus:Ketua Program Studi']],function(){
     Route::resource('kaprodi', 'KaprodiController');
 });
 
-Route::group(['middleware' => ['auth','checkStatus:Admin,Dekan']],function(){
+Route::group(['middleware' => ['auth','checkStatus:Dekan']],function(){
     Route::resource('dekan', 'DekanController');
 });
 

@@ -10,6 +10,7 @@ use App\Dekan;
 use App\User;
 use App\Dosen;
 use App\Mail\NotifSKDosen;
+use App\Mail\NotifSKKaprodi;
 
 
 class SuratKeputusanController extends Controller
@@ -41,10 +42,11 @@ class SuratKeputusanController extends Controller
     public function create()
     {
         $sk = SuratKeputusan::all();
+        $kaprodi = SuratKeputusan::getalluser();
         $alltemplate = SuratKeputusan::getalltemplate();
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
-        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip]);
+        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip, 'kaprodi' => $kaprodi]);
     }
 
     /**
@@ -65,6 +67,7 @@ class SuratKeputusanController extends Controller
             'tglsk' => 'required',
             'semester' => 'required',
             'tahunajar' => 'required',
+            'tujuan' => 'required',
             'hasil' => 'required'
         ]);
 
@@ -93,6 +96,8 @@ class SuratKeputusanController extends Controller
 
         $kaprodi->save();
 
+        \Mail::to($request->input('tujuan'))->send(new NotifSKKaprodi);
+
         return redirect('suratkeputusan')->with('success', 'Data Saved');
     }
 
@@ -117,8 +122,9 @@ class SuratKeputusanController extends Controller
     {
         $sk = SuratKeputusan::where('idsk',$id)->get();
         $alltemplate = SuratKeputusan::getalltemplate();
+        $kaprodi = SuratKeputusan::getalluser();
 
-        return view ('sk.transaksi.skedit', ['sk' => $sk, 'alltemplate' => $alltemplate,]);
+        return view ('sk.transaksi.skedit', ['sk' => $sk, 'alltemplate' => $alltemplate, 'kaprodi' => $kaprodi]);
     }
 
     /**
@@ -140,6 +146,7 @@ class SuratKeputusanController extends Controller
             'tglsk' => 'required',
             'semester' => 'required',
             'tahunajar' => 'required',
+            'tujuan' => 'required',
             'hasil' => 'required'
         ]);
 
@@ -160,6 +167,8 @@ class SuratKeputusanController extends Controller
 
         $sk->save();
         $kaprodi->save();
+
+        \Mail::to($request->input('tujuan'))->send(new NotifSKKaprodi);
 
         return redirect('suratkeputusan')->with('success', 'Data Saved');
     }

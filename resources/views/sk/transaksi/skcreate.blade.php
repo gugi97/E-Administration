@@ -66,6 +66,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Dituju</label>
+                                    <select class="form-control" name="tujuan" id="tujuan" required>
+                                        <option value="">--------</option>
+                                        @foreach ($kaprodi as  $tujuan)
+                                            <option value="{{ $tujuan->email }}">{{$tujuan->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Semester</label>
                                     <select class="form-control" name="semester" required>
                                         <option>--------</option>

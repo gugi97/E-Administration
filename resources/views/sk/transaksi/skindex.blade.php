@@ -77,18 +77,18 @@
                                 <td>{{ $sk->semester }}</td>
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
-                                    @if($sk->status == 'Disetujui')
+                                    @if($sk->status == 'Disetujui (Dekan)')
                                         <button class="btn btn-primary kirim" value="{{$sk->idsk}}"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</button>
-                                    @elseif($sk->status == "Porposed")
+                                    @elseif($sk->status == "Proposed")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                         <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
                                     @elseif($sk->status == "Diterima (Kaprodi)")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled" disabled><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
+                                        <button class="btn btn-danger delete disabled" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
                                     @elseif($sk->status == "Ditolak")
-                                        <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                        <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
                                     @elseif($sk->status == "Tidak Disetujui")
-                                        <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                        <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
                                     @endif
                                 </td>
                             </tr>
@@ -148,7 +148,7 @@
 																<input type="checkbox" class="form-check-input" name="dosen[]" id="dosen" value="{{$dsn->email}}">
 																<label class="form-check-label">{{$dsn->gelar_depan}} {{$dsn->name}} {{$dsn->gelar_belakang}}</label>
 															</div>
-														</div>                                                       
+														</div>                                                   
                                                     @endforeach
 									            </div>																	
                                     </div>
@@ -178,7 +178,6 @@
         </div>
     </section>
     <!-- /.content -->
-@endsection
 
     <script src="/adminlte/plugins/jquery/jquery.slim.min.js"></script>
     <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
@@ -227,3 +226,4 @@
             //End kirim Record
         });
     </script>
+@endsection

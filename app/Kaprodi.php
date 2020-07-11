@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Kaprodi extends Model
 {
@@ -13,4 +14,9 @@ class Kaprodi extends Model
     protected $fillable = ['nip', 'stattusreq', 'noreq'];
 
     public $timestamps = false;
+
+    public function scopegetalluser(){
+        $result = DB::table('users')->where('status', 'Dekan')->get();
+        return $result;
+    }
 }

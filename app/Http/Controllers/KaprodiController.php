@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Dekan;
 use App\Kaprodi;
 use App\SuratKeputusan;
+use App\Mail\NotifSKDekan;
 
 
 class KaprodiController extends Controller
@@ -72,12 +73,14 @@ class KaprodiController extends Controller
     {
         $kaprodi = Kaprodi::where('idreq',$id)->get();
         $kapnip = Kaprodi::find($id);
+        $dekan = Kaprodi::getalluser();
+
         if($kapnip->nip == ""){
             $kapnip->nip = Auth::user()->nip;
             $kapnip->save();
         }
 
-        return view ('kaprodi.edit_kaprodi', ['kaprodi' => $kaprodi]);
+        return view ('kaprodi.edit_kaprodi', ['kaprodi' => $kaprodi, 'dekan' => $dekan]);
     }
 
     /**
@@ -91,6 +94,7 @@ class KaprodiController extends Controller
     {
         $this->validate($request,[
             'statusreq' => 'required',
+            'tujuan' => 'required'
         ]);
 
         $dekan = new Dekan;
@@ -135,6 +139,8 @@ class KaprodiController extends Controller
         
         $kaprodi->save();
 
+        \Mail::to($request->input('tujuan'))->send(new NotifSKDekan);
+
         return redirect('kaprodi')->with('success', 'Data Update');
     }
 
@@ -146,9 +152,6 @@ class KaprodiController extends Controller
      */
     public function destroy($id)
     {
-        $kaprodi = Kaprodi::where('idreq',$id)->first();
-        $kaprodi->delete();
-
-        return redirect('kaprodi')->with('success', 'Data Deleted');
+        
     }
 }

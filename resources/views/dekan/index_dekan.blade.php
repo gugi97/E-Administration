@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Verifikasi Surat Keputusan Dekan</h1>
+                    <h1>Persetujuan Surat Keputusan Dekan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Verifikasi SK Dekan</li>
+                        <li class="breadcrumb-item active">Persetujuan SK Dekan</li>
                     </ol>
                 </div>
             </div>

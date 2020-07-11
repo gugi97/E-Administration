@@ -100,7 +100,7 @@
                     </div>
                 </div> -->
 
-                <!-- SEARCH FORM -->
+                <!-- SEARCH FORM
                 {{-- <form class="form-inline ml-3"> --}}
                     <div class="input-group input-group-sm mt-2 mb-2 d-flex" id="searchForm">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search"
@@ -111,7 +111,7 @@
                             </button>
                         </div>
                     </div>
-                {{-- </form> --}}
+                {{-- </form> --}} -->
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -147,7 +147,7 @@
                             </a>
                         </li>
                         @endif
-                        @if(auth()->user()->status == 'Ketua Program Studi' OR auth()->user()->status == 'Admin')
+                        @if(auth()->user()->status == 'Ketua Program Studi')
                         <li class="nav-item">
                             <a href="{{ url('/kaprodi') }}" class="nav-link {{ set_active('kaprodi.index') }}">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
@@ -157,12 +157,12 @@
                             </a>
                         </li>
                         @endif
-                        @if(auth()->user()->status == 'Dekan' OR auth()->user()->status == 'Admin')
+                        @if(auth()->user()->status == 'Dekan')
                         <li class="nav-item">
                             <a href="{{ url('/dekan') }}" class="nav-link {{ set_active('dekan.index') }}">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
                                 <p>
-                                    Verifikasi SK Dekan
+                                    Persetujuan SK Dekan
                                 </p>
                             </a>
                         </li>
