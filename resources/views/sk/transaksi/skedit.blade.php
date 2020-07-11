@@ -53,7 +53,7 @@
                                 
                                 <div class="form-group">
                                     <label>Nomor SK</label>
-                                    <input type="text" class="form-control" placeholder="Nomor SK" name="nosk" id="nosk" value="{{ $suratkeputusan->nosk }}">
+                                    <input type="text" class="form-control" placeholder="Nomor SK" name="nosk" id="nosk" value="{{ $suratkeputusan->nosk }}" disabled>
                                 </div>
 
                                 <div class="form-group">

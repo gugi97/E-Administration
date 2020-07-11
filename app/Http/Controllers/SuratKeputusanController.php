@@ -60,7 +60,7 @@ class SuratKeputusanController extends Controller
         ];
         
         $this->validate($request,[
-            'nosk' => 'required',
+            'nosk' => 'required|unique:suratkeputusan',
             'tentangsk' => 'required',
             'tglsk' => 'required',
             'semester' => 'required',
@@ -73,7 +73,6 @@ class SuratKeputusanController extends Controller
 
         $sk->nosk = $request->input('nosk');
         $sk->tentangsk = $request->input('tentangsk');
-
         
         $kaprodi->noreq = $request->input('nosk');
         $kaprodi->statusreq = $sk->status;
@@ -135,7 +134,6 @@ class SuratKeputusanController extends Controller
         ];
         
         $this->validate($request,[
-            'nosk' => 'required',
             'tentangsk' => 'required',
             'tglsk' => 'required',
             'semester' => 'required',
@@ -146,10 +144,7 @@ class SuratKeputusanController extends Controller
         $sk = SuratKeputusan::find($id);
         $kaprodi = Kaprodi::find($id);
 
-        $sk->nosk = $request->input('nosk');
         $sk->tentangsk = $request->input('tentangsk');
-
-        $kaprodi->noreq = $request->input('nosk');
 
         $sk->tglsk = $request->input('tglsk');
         $sk->semester = $request->input('semester');
