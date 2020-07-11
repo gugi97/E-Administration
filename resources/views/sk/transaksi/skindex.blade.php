@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                         <li class="breadcrumb-item active">Surat Keputusan</li>
                     </ol>
                 </div>
@@ -127,7 +127,7 @@
 
                 <!-- Start Kirim Modal -->
                 <div class="modal fade" id="kirimModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Kirim Surat Keputusan : {{$sk->nosk}}</h5>
@@ -137,21 +137,18 @@
                                 </div>
 
                                 <form role="Insertform" action="/suratkeputusan" method="post" id="kirimForm" enctype="multipart/form-data">
-                                    <div class="modal-body text-left">
+                                    <div class="modal-body text-left"  style="overflow-y: initial !important">
                                         {{ csrf_field() }}
 
-                                        <!-- <input type="hidden" name="_method" value="DELETE"> -->
-                                        <input type="hidden" name="idSurat" value="{{$sk->idsk}}">
-
 											<p>Berikan tanda check (&#10003;) untuk penerima Surat Keputusan :</p>
-												<div class="row border mx-1 p-1 rounded">
+                                                <div class="row border mx-1 p-1 rounded" style="max-height: 250px; overflow-y: auto;">
 									                @foreach($dosen as $dsn)
-										                <div class="col-md-8">
+										                <div class="col-md-6">
 														    <div class="form-check">
 																<input type="checkbox" class="form-check-input" name="dosen[]" id="dosen" value="{{$dsn->email}}">
 																<label class="form-check-label">{{$dsn->gelar_depan}} {{$dsn->name}} {{$dsn->gelar_belakang}}</label>
 															</div>
-														</div>
+														</div>                                                       
                                                     @endforeach
 									            </div>																	
                                     </div>
@@ -219,12 +216,6 @@
                         });
                     }
 			    });
-
-                // var spans = document.getElementsByClassName('idsk');//returns node-list of spans
-                // for (var i=0;i<spans.length;i++)
-                // {
-                //     console.log(spans[i].innerHTML);//logs 1 for i === 0, 2 for i === 1 etc
-                // }
 
                 let id_test = $(this).val();
                 console.log(id_test);

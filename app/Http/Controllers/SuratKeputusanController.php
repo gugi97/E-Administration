@@ -165,20 +165,16 @@ class SuratKeputusanController extends Controller
     }
 
     public function kirim(Request $request, $id)
-    {
-        $dosen = new Dosen;
-        $dosen = array();
-        
-        if($dosen = $request->input('dosen')){
-			foreach($dosen as $email){
-                $dosen = $email;
+    {   
+        $dosen = $request->input('dosen');
+		foreach($dosen as $email){
+            $dosen = $email;
 
-                $sk = SuratKeputusan::find($id);
-                $lokfiles = $sk->lokasifile;
-                $files  = $lokfiles.$sk->file;
+            $sk = SuratKeputusan::find($id);
+            $lokfiles = $sk->lokasifile;
+            $files  = $lokfiles.$sk->file;
                 
-                \Mail::to($dosen)->send(new NotifSKDosen($files));
-            }
+            \Mail::to($dosen)->send(new NotifSKDosen($files));
         }
 
         return redirect('suratkeputusan')->with('success', 'File Terkirim');
