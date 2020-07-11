@@ -68,7 +68,7 @@
                             @foreach ($sk as $sk)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}
-                                    <span class="idsk">{{ $sk->idsk }}</span>
+                                    <span style="display none" class="idsk">{{ $sk->idsk }}</span>
                                 </th>   
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
@@ -78,10 +78,10 @@
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
                                     @if($sk->status == 'Disetujui')
-                                        <a href="#" class="btn btn-primary kirim"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</a>
+                                        <button class="btn btn-primary kirim" value="{{$sk->idsk}}"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</button>
                                     @elseif($sk->status == "Porposed")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                        <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
                                     @elseif($sk->status == "Diterima (Kaprodi)")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled" disabled><i class="fas fa-edit"></i></a>
                                         <a href="#" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
@@ -196,23 +196,10 @@
             //Start Delete Record
             table.on('click', '.delete', function() {
 
-                $tr = $(this).closest('tr');
-                if($($tr).hasClass('child'))
-                {
-                    $tr = $tr.prev('.parent');
-                }
+                let id_test = $(this).val();
+                console.log(id_test);
 
-                // var data = table.row($tr).data();
-                // var data = document.querySelectorAll('.idsk')[1].innerHTML
-                // console.log(data);
-
-                var spans = document.getElementsByClassName('idsk');//returns node-list of spans
-                for (var i=0;i<spans.length;i++)
-                {
-                    console.log(spans[i].innerHTML);//logs 1 for i === 0, 2 for i === 1 etc
-                }
-
-                $('#deleteForm').attr('action', '/suratkeputusan/'+ spans[1].innerHTML);
+                $('#deleteForm').attr('action', '/suratkeputusan/'+ id_test);
                 $('#deleteModal').modal('show');
             });
             //End Delete Record
@@ -233,13 +220,16 @@
                     }
 			    });
 
-                var spans = document.getElementsByClassName('idsk');//returns node-list of spans
-                for (var i=0;i<spans.length;i++)
-                {
-                    console.log(spans[i].innerHTML);//logs 1 for i === 0, 2 for i === 1 etc
-                }
+                // var spans = document.getElementsByClassName('idsk');//returns node-list of spans
+                // for (var i=0;i<spans.length;i++)
+                // {
+                //     console.log(spans[i].innerHTML);//logs 1 for i === 0, 2 for i === 1 etc
+                // }
 
-                $('#kirimForm').attr('action', '/suratkeputusan/'+ spans[0].innerHTML);
+                let id_test = $(this).val();
+                console.log(id_test);
+
+                $('#kirimForm').attr('action', '/suratkeputusan/'+ id_test);
                 $('#kirimModal').modal('show');
             });
             //End kirim Record

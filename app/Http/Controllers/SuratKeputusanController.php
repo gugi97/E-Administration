@@ -173,7 +173,11 @@ class SuratKeputusanController extends Controller
 			foreach($dosen as $email){
                 $dosen = $email;
 
-                \Mail::to($dosen)->send(new NotifSKDosen);
+                $sk = SuratKeputusan::find($id);
+                $lokfiles = $sk->lokasifile;
+                $files  = $lokfiles.$sk->file;
+                
+                \Mail::to($dosen)->send(new NotifSKDosen($files));
             }
         }
 

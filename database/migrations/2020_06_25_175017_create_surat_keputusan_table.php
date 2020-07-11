@@ -21,7 +21,8 @@ class CreateSuratKeputusanTable extends Migration
             $table->string('status');
             $table->string('semester', 30);
             $table->string('tahunajar', 30);
-            $table->longtext('file');
+            $table->text('file')->nullable();
+            $table->string('lokasifile', 255)->nullable();
             $table->longText('template');
             $table->char('nip', 9)->nullable();
         });

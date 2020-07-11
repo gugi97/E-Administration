@@ -1,11 +1,7 @@
 @component('mail::message')
 # Surat Keputusan Dosen
 
-Berikut adalah file Surat Keputusan Dosen :
-
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+Berikut adalah file edaran Surat Keputusan Dosen yang telah dikeluarkan oleh Sekretariat FTI Budi Luhur
 
 Thanks,<br>
 {{ config('app.name') }}
