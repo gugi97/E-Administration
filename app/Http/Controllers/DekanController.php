@@ -98,6 +98,7 @@ class DekanController extends Controller
 
         $this->validate($request,[
             'statusreq_dekan' => 'required',
+            'ttd' => 'image|mimes:jpeg,png',
             'hasil' => 'required'
         ]);
 

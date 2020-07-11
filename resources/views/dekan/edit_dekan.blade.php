@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputFile">Upload Tanda Tangan</label>
                                     <div class="input-group control-group increment" >
-                                        <input type="file" class="form-control" style="padding:3px;" id="ttd">
+                                        <input type="file" class="form-control" style="padding:3px;" id="ttd" name="ttd">
                                     </div>
                                 </div>
 
