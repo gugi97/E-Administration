@@ -130,10 +130,6 @@
     
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-		    <script src="{{asset('ckeditor/custom.js')}}"></script>
-            <script>
-                CKEDITOR.replace( 'templatesk' );
-            </script>
 
             <script>
 			$(document).ready(function(){

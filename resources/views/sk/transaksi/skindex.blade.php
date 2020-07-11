@@ -130,7 +130,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Kirim Surat Keputusan : {{$sk->nosk}}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Kirim Surat Keputusan Dosen</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -165,7 +165,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                </div>
                     {{-- End Kirim Modal --}}
 
                 <!-- Footer -->
@@ -173,7 +173,6 @@
 
                 </div>
                 <!-- End Footer -->
-                </div>
             </div>
         </div>
     </section>

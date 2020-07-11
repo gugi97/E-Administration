@@ -70,7 +70,7 @@
                                     <select class="form-control" name="tujuan" id="tujuan" required>
                                         <option>--------</option>
                                         @foreach ($dekan as  $tujuan)
-                                            <option value="{{ $tujuan->email }}" {{ $tujuan->name == $tujuan->name ? 'selected' : '' }}>
+                                            <option value="{{ $tujuan->email }}" >
                                                 {{$tujuan->name}}
                                             </option>
                                         @endforeach

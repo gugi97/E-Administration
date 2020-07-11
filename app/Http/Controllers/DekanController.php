@@ -112,7 +112,7 @@ class DekanController extends Controller
         if($dekan->statusreq_dekan == "Disetujui"){
             $suratkeputusan = SuratKeputusan::find($id);
             $suratkeputusan->status = "Disetujui (Dekan)";
-            $dekan->statusreq_dekan = "Disetujui (Dekan)";
+            $dekan->statusreq_dekan = "Disetujui";
 
             $lokasifile = 'uploads/suratkeputusan/'.\Carbon\Carbon::now()->format('Y-m-d').'/';
             $pdf = PDF::loadview('dekan.templatedekan_pdf',['templatebaru'=>$request->input('hasil')]);

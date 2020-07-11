@@ -139,7 +139,9 @@ class KaprodiController extends Controller
         
         $kaprodi->save();
 
-        \Mail::to($request->input('tujuan'))->send(new NotifSKDekan);
+        if($kaprodi->statusreq == "Diterima"){
+            \Mail::to($request->input('tujuan'))->send(new NotifSKDekan);
+        }
 
         return redirect('kaprodi')->with('success', 'Data Update');
     }
