@@ -68,7 +68,7 @@
                             @foreach ($sk as $sk)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}
-                                    <span style="display none" class="idsk">{{ $sk->idsk }}</span>
+                                    <span class="idsk d-none">{{ $sk->idsk }}</span>
                                 </th>   
                                 <td>{{ $sk->nosk }}</td>
                                 <td>{{ $sk->tglsk }}</td>
