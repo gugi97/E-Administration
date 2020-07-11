@@ -129,7 +129,7 @@
                         </li>
                         @if(auth()->user()->status == 'Dosen')
                         <li class="nav-item">
-                            <a href="{{ url('/dosenrequest') }}" class="nav-link">
+                            <a href="{{ url('/dosenrequest') }}" class="nav-link {{ set_active('dosenrequest.index') }}">
                                 <i class="nav-icon fas fa-list-alt"></i>
                                 <p>
                                     Form Request
@@ -139,7 +139,7 @@
                         @endif
                         @if(auth()->user()->status == 'Staf' OR auth()->user()->status == 'Admin')
                         <li class="nav-item">
-                            <a href="{{ url('/requestsurat') }}" class="nav-link">
+                            <a href="{{ url('/requestsurat') }}" class="nav-link {{ set_active('requestsurat.index') }}">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>
                                     Request Surat
@@ -149,7 +149,7 @@
                         @endif
                         @if(auth()->user()->status == 'Ketua Program Studi' OR auth()->user()->status == 'Admin')
                         <li class="nav-item">
-                            <a href="{{ url('/kaprodi') }}" class="nav-link">
+                            <a href="{{ url('/kaprodi') }}" class="nav-link {{ set_active('kaprodi.index') }}">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
                                 <p>
                                     Verifikasi SK Kaprodi
@@ -159,7 +159,7 @@
                         @endif
                         @if(auth()->user()->status == 'Dekan' OR auth()->user()->status == 'Admin')
                         <li class="nav-item">
-                            <a href="{{ url('/dekan') }}" class="nav-link">
+                            <a href="{{ url('/dekan') }}" class="nav-link {{ set_active('dekan.index') }}">
                                 <i class="nav-icon fas fa-clipboard-check"></i>
                                 <p>
                                     Verifikasi SK Dekan
@@ -269,7 +269,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/suratkeputusan') }}" class="nav-link">
+                                    <a href="{{ url('/suratkeputusan') }}" class="nav-link {{ set_active('suratkeputusan.index') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keputusan</p>
                                     </a>
@@ -289,19 +289,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/agendasuratmasuk') }}" class="nav-link">
+                                    <a href="{{ url('/agendasuratmasuk') }}" class="nav-link {{ set_active('agendasuratmasuk') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Masuk</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/agendasuratkeluar') }}" class="nav-link">
+                                    <a href="{{ url('/agendasuratkeluar') }}" class="nav-link {{ set_active('agendasuratkeluar') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keluar</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
+                                    <a href="{{ url('/agendasuratkeputusan') }}" class="nav-link {{ set_active('agendasuratkeputusan') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keputusan</p>
                                     </a>
@@ -355,7 +355,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
+                                    <a href="{{ url('/arsipfilesuratkeputusan') }}" class="nav-link {{ set_active('arsipfilesuratkeputusan') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>Surat Keputusan</p>
                                     </a>

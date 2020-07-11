@@ -53,6 +53,11 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
 
     Route::resource('suratkeputusan', 'SuratKeputusanController');
     Route::post('suratkeputusan/{id}', 'SuratKeputusanController@kirim');
+    Route::get('arsipfilesuratkeputusan', 'ArsipSuratKeputusanController@indexfile')->name('arsipfilesuratkeputusan');
+
+    Route::get('agendasuratkeputusan', 'AgendaSuratKeputusanController@index')->name('agendasuratkeputusan');
+    Route::get('agendasuratkeputusan/pencarian', 'AgendaSuratKeputusanController@cari');
+    Route::get('agendasuratkeputusan_pdf', 'AgendaSuratKeputusanController@cetak_pdf');
 
     Route::resource('requestsurat', 'RequestSuratController');
     Route::get('requestsurat/diterima/{no_req}', 'RequestSuratController@diterima');

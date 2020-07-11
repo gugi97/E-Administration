@@ -20,4 +20,9 @@ class SuratKeputusan extends Model
         $result = DB::table('jenis_sk')->get();
         return $result;
     }
+
+    public function scopegetallsuratkeputusan(){
+        $result = DB::table('suratkeputusan')->get();
+        return $result;
+    }
 }
