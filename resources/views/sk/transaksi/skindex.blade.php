@@ -167,17 +167,18 @@
                         </div>
                     </div>
                     {{-- End Kirim Modal --}}
-                </div>
 
                 <!-- Footer -->
                 <div class="card-footer">
 
                 </div>
                 <!-- End Footer -->
+                </div>
             </div>
         </div>
     </section>
     <!-- /.content -->
+@endsection
 
     <script src="/adminlte/plugins/jquery/jquery.slim.min.js"></script>
     <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
@@ -226,4 +227,3 @@
             //End kirim Record
         });
     </script>
-@endsection
