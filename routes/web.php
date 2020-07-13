@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('requestsurat/diterima/{no_req}', 'RequestSuratController@diterima');
     Route::get('requestsurat/ditolak/{no_req}', 'RequestSuratController@ditolak');
     Route::get('requestsurat/proses/{no_req}', 'RequestSuratController@proses');
+    Route::get('requestsurat/selesai/{no_req}', 'RequestSuratController@selesai');
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Ketua Program Studi']],function(){

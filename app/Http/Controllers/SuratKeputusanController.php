@@ -177,8 +177,9 @@ class SuratKeputusanController extends Controller
             $sk = SuratKeputusan::find($id);
             $lokfiles = $sk->lokasifile;
             $files  = $lokfiles.$sk->file;
+            $namafiles = $sk->file;
                 
-            \Mail::to($dosen)->send(new NotifSKDosen($files));
+            \Mail::to($dosen)->send(new NotifSKDosen($files, $namafiles));
         }
 
         return redirect('suratkeputusan')->with('success', 'File Terkirim');

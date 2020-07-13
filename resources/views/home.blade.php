@@ -132,9 +132,9 @@
                         <!-- small card -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{$req_terima}}</h3>
+                                <h3>{{$req_selesai}}</h3>
 
-                                <p>Request Diterima</p>
+                                <p>Request Selesai</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-envelope-open-text"></i>
@@ -153,7 +153,7 @@
                                 <p>Request Diproses</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-pen-square"></i>
                             </div>
                             <a href="dosenrequest" class="small-box-footer">
                                 More info <i class="fas fa-arrow-circle-right"></i>

@@ -76,10 +76,41 @@
                                 <td>{{ $reqdosen->kebutuhan }}</td>
                                 <td>{{ $reqdosen->detail_surat }}</td>
                                 <td>{{ $reqdosen->tgl_maxsurat }}</td>
-                                <td>{{ $reqdosen->statusreq}}</td>
+                                <td>
+                                    @if($reqdosen->statusreq == "Proposed")
+                                        <span class="bg-info p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                    @elseif($reqdosen->statusreq == "Proses")
+                                        <span class="bg-warning p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="#" data-toggle="modal" class="btn btn-success edit disabled"><i class="fas fa-edit"></i></a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                    @elseif($reqdosen->statusreq == "Diterima")
+                                        <span class="bg-success p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="#" data-toggle="modal" class="btn btn-success edit disabled"><i class="fas fa-edit"></i></a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                    @elseif($reqdosen->statusreq == "Ditolak")
+                                        <span class="bg-danger p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                    @elseif($reqdosen->statusreq == "Selesai")
+                                        <span class="bg-primary p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

@@ -16,9 +16,10 @@ class NotifSKDosen extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($files, $namafiles)
     {
-        $this->data    = $data;
+        $this->data    = $files;
+        $this->namafile    = $namafiles;
     }
 
     /**
@@ -31,7 +32,7 @@ class NotifSKDosen extends Mailable
         return $this->markdown('emails.sites.sendsk')
                     ->subject('Surat Keputusan')
                     ->attach($this->data, [
-                        'as' => 'Surat Keputusan.pdf',
+                        'as' => $this->namafile,
                         'mime' => 'application/pdf',
                     ]);
     }

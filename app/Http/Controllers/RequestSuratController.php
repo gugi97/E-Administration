@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\RequestSurat;
+use App\Mail\NotifRequest;
+use App\User;
 
 class RequestSuratController extends Controller
 {
@@ -99,6 +101,19 @@ class RequestSuratController extends Controller
         $req->statusreq = "Proses";
         $req->save();
         return redirect('requestsurat')->with('success', 'Data Diproses');
+    }
+
+    public function selesai(Request $request,$no_req){
+        $req = RequestSurat::find($no_req);
+        $req->statusreq = "Selesai";
+        $req->save();
+
+        $nip = User::where('nip', $req->nip)->first();
+        $email = $nip->email;
+
+        \Mail::to($email)->send(new NotifRequest);
+
+        return redirect('requestsurat')->with('success', 'Request Selsai Dibuat');
     }
 
     /**

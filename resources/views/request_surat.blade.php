@@ -87,19 +87,27 @@
                                     <span class="bg-success p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
-                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-primary">Proses</a>
+                                    <a href="requestsurat/proses/{{$reqdosen->no_req}}" class="btn btn-warning">Proses</a>
                                 </td>
                                 
                                     @elseif($reqdosen->statusreq == "Proses")
                                     <span class="bg-warning p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
-                                    <a href="requestsurat/diterima/{{$reqdosen->no_req}}" class="btn btn-success">Diterima</a>
                                     <a href="requestsurat/ditolak/{{$reqdosen->no_req}}" class="btn btn-danger">Ditolak</a>
+                                    <a href="requestsurat/selesai/{{$reqdosen->no_req}}" class="btn btn-primary">Selesai</a>
                                 </td>
                                 
                                     @elseif($reqdosen->statusreq == "Ditolak")
                                     <span class="bg-danger p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
+                                </td>
+                                <td>
+                                    <a href="requestsurat/diterima/{{$reqdosen->no_req}}" class="btn btn-success">Diterima</a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+
+                                    @elseif($reqdosen->statusreq == "Selesai")
+                                    <span class="bg-primary p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
