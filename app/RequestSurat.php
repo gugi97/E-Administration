@@ -11,7 +11,7 @@ class RequestSurat extends Model
     protected $primaryKey = "no_req";
 
     protected $attributes = [
-        'statusreq' => 'Porposed',
+        'statusreq' => 'Proposed',
     ];
 
     public function updateterima($id){

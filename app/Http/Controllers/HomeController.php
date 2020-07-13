@@ -31,6 +31,7 @@ class HomeController extends Controller
 
         $req_count = DB::table('request_surat')->count();
         $req_terima = DB::table('request_surat')->where('statusreq', 'Diterima')->count();
+        $req_proses = DB::table('request_surat')->where('statusreq', 'Proses')->count();
         $req_tolak = DB::table('request_surat')->where('statusreq', 'Ditolak')->count();
 
         $req_kapreq = DB::table('kaprodi')->count();
@@ -47,6 +48,7 @@ class HomeController extends Controller
         
         return view('home', ['req_count' => $req_count,
                              'req_terima' => $req_terima,
+                             'req_proses' => $req_proses,
                              'req_tolak' => $req_tolak, 
                              'sm_count' => $sm_count, 
                              'sk_count' => $sk_count, 

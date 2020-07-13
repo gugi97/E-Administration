@@ -16,9 +16,10 @@ class NotifSKDekan extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email, $nama)
     {
-        //
+        $this->email    = $email;
+        $this->name    = $nama;
     }
 
     /**
@@ -29,6 +30,7 @@ class NotifSKDekan extends Mailable
     public function build()
     {
         return $this->markdown('emails.sites.notifdekan')
+                    ->from($this->email, $this->name)
                     ->subject('Persetujuan Surat Keputusan');
     }
 }

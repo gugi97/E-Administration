@@ -75,7 +75,7 @@
                                 <td>{{ $reqdosen->nip }}</td>
                                 <td>{{ $reqdosen->kebutuhan }}</td>
                                 <td>{{ $reqdosen->detail_surat }}</td>
-                                <td>@if($reqdosen->statusreq == "Porposed")
+                                <td>@if($reqdosen->statusreq == "Proposed")
                                     <span class="bg-info p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>

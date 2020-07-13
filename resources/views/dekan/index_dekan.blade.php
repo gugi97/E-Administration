@@ -71,6 +71,9 @@
                                         <td>{{ $dekan2->noreq_dekan }}</td>
                                         @foreach ($sk as $sk2 )
                                         <td>{{ $sk2->tglsk }}</td>
+                                        @php
+                                            dd($sk2->tglsk[1]);
+                                        @endphp
                                         @break
                                         @endforeach
                                         <td>{{ $kaprodi2->nip }}</td>                            

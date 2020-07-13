@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Dekan;
 use App\Kaprodi;
 use App\SuratKeputusan;
@@ -139,8 +140,12 @@ class KaprodiController extends Controller
         
         $kaprodi->save();
 
+        $nip = User::where('nip', $kaprodi->nip)->first();
+        $email = $nip->email;
+        $nama = $nip->name;        
+
         if($kaprodi->statusreq == "Diterima"){
-            \Mail::to($request->input('tujuan'))->send(new NotifSKDekan);
+            \Mail::to($request->input('tujuan'))->send(new NotifSKDekan($email, $nama));
         }
 
         return redirect('kaprodi')->with('success', 'Data Update');
