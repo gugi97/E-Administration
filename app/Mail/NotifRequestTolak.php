@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotifRequest extends Mailable
+class NotifRequestTolak extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +28,7 @@ class NotifRequest extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.sites.notifrequest')
+        return $this->markdown('emails.sites.notifrequesttolak')
                     ->subject('Request Surat Keluar');
     }
 }
