@@ -9,6 +9,7 @@ use App\Dekan;
 use App\Kaprodi;
 use App\SuratKeputusan;
 use App\Mail\NotifSKDekan;
+use Illuminate\Support\Facades\DB;
 
 
 class KaprodiController extends Controller
@@ -26,10 +27,15 @@ class KaprodiController extends Controller
      */
     public function index()
     {
-        $sk = SuratKeputusan::all();
-        $kaprodi = Kaprodi::all();
+        // $sk = SuratKeputusan::all();
+        // $kaprodi = Kaprodi::all();
 
-        return view('kaprodi.index_kaprodi', ['sk'=> $sk, 'kaprodi'=> $kaprodi]);
+        $skdankaprodi = DB::table('kaprodi')
+            ->join('suratkeputusan', 'kaprodi.idreq', '=', 'suratkeputusan.idsk')
+            ->select('kaprodi.*', 'suratkeputusan.*')
+            ->get();
+
+        return view('kaprodi.index_kaprodi', ['skdankaprodi'=> $skdankaprodi]);
     }
 
     /**

@@ -171,8 +171,6 @@
 
                     $('#templateSurat').find('#tentangSurat').html($('#tentangsk').val());
 					
-					$('#templateSurat').find('#namaDekan').html($('#tujuan').val());
-					
                     $('#buttonCetak').removeClass('d-none');
 				});
 

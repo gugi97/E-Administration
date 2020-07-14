@@ -62,29 +62,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kaprodi as $kaprodi2)
-                                @foreach ($dekan as $dekan2 )
-                                    <tr style="text-align: center;">
-                                        <th>{{ $loop->iteration }}
-                                            <span style="display: none;" id='iddekan'>{{$dekan2->id_dekan}}</span>
-                                        </th>
-                                        <td>{{ $dekan2->noreq_dekan }}</td>
-                                        @foreach ($sk as $sk2 )
-                                        <td>{{ $sk2->tglsk }}</td>
-                                        @break
-                                        @endforeach
-                                        <td>{{ $kaprodi2->nip }}</td>                            
-                                        <td>{{ $dekan2->statusreq_dekan }}</td>
-                                        <td>
-                                            <a href="{{action('DekanController@edit', $dekan2->id_dekan)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                            @if($dekan2->statusreq_dekan == 'Ditolak')
-                                            <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
-                                            @endif
-                                        </td>
-                                @endforeach
-                                @break
-                            @endforeach
-                                    </tr>
+                        @foreach ($skdankaprodidandekan as $skprodekan)
+                            <tr style="text-align: center;">
+                                <th>{{ $loop->iteration }}
+                                    <span style="display: none;" id='iddekan'>{{$skprodekan->id_dekan}}</span>
+                                </th>
+                                <td>{{ $skprodekan->noreq_dekan }}</td>
+                                <td>{{ $skprodekan->tglsk }}</td>
+                                <td>{{ $skprodekan->nip }}</td>                            
+                                <td>{{ $skprodekan->statusreq_dekan }}</td>
+                                <td>
+                                    <a href="{{action('DekanController@edit', $skprodekan->id_dekan)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    @if($skprodekan->statusreq_dekan == 'Ditolak')
+                                    <a href="#" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
+                                    @endif
+                                </td>
+                        @endforeach
+                            </tr>
                         </tbody>
                     </table>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Dekan;
 use App\Kaprodi;
@@ -26,11 +27,17 @@ class DekanController extends Controller
      */
     public function index()
     {
-        $dekan = Dekan::all();
-        $kaprodi = Kaprodi::all();
-        $sk = SuratKeputusan::all();
+        // $dekan = Dekan::all();
+        // $kaprodi = Kaprodi::all();
+        // $sk = SuratKeputusan::all();
 
-        return view('dekan.index_dekan', ['dekan'=> $dekan, 'sk'=> $sk, 'kaprodi'=> $kaprodi]);
+        $skdankaprodidandekan = DB::table('dekan')
+            ->join('suratkeputusan', 'dekan.id_dekan', '=', 'suratkeputusan.idsk')
+            ->join('kaprodi', 'dekan.id_dekan', '=', 'kaprodi.idreq')
+            ->select('dekan.id_dekan', 'dekan.noreq_dekan', 'dekan.statusreq_dekan', 'suratkeputusan.tglsk', 'kaprodi.nip')
+            ->get();
+
+        return view('dekan.index_dekan', ['skdankaprodidandekan'=> $skdankaprodidandekan]);
     }
 
     /**

@@ -62,19 +62,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sk as $sk2)
-                            @foreach ($kaprodi as $kaprodi2 )
+                            @foreach ($skdankaprodi as $skdankp)
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $kaprodi2->noreq }}</td>
-                                <td>{{ $sk2->tglsk }}</td>
-                                <td>{{ $sk2->nip }}</td>                            
-                                <td> {{$kaprodi2->statusreq}} </td>
+                                <td>{{ $skdankp->noreq }}</td>
+                                <td>{{ $skdankp->tglsk }}</td>
+                                <td>{{ $skdankp->nip }}</td>                            
+                                <td> {{$skdankp->statusreq}} </td>
                                 <td>
-                                    <a href="{{action('KaprodiController@edit', $kaprodi2->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    <a href="{{action('KaprodiController@edit', $skdankp->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                 </td>
-                            @endforeach
-                            @break
                             @endforeach
                             </tr>
                         </tbody>
