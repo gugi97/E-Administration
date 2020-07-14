@@ -123,6 +123,7 @@ class DekanController extends Controller
 
             $lokasifile = 'uploads/suratkeputusan/'.\Carbon\Carbon::now()->format('Y-m-d').'/';
             $pdf = PDF::loadview('dekan.templatedekan_pdf',['templatebaru'=>$request->input('hasil')]);
+            //->setPaper('Legal', 'portrait');
             $namafile = 'SURATKEPUTUSAN'.'-'.time().'-'.$suratkeputusan->tglsk;
             if(file_exists($lokasifile)) {
                 file_put_contents('uploads/suratkeputusan/'.\Carbon\Carbon::now()->format('Y-m-d').'/'.$namafile.'.pdf', $pdf->output());   

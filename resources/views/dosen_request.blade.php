@@ -61,6 +61,7 @@
                             <tr style="text-align: center;">
                                 <th scope="col">No</th>
                                 <th scope="col">Nomor Request</th>
+                                <th scope="col">NIP</th>
                                 <th scope="col">Kebutuhan</th>
                                 <th scope="col">Detail Surat</th>
                                 <th scope="col">Tanggal Maksimum</th>
@@ -73,6 +74,7 @@
                             <tr style="text-align: center;">
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $reqdosen->no_req }}</td>
+                                <td>{{ $reqdosen->nip }}</td>
                                 <td>{{ $reqdosen->kebutuhan }}</td>
                                 <td>{{ $reqdosen->detail_surat }}</td>
                                 <td>{{ $reqdosen->tgl_maxsurat }}</td>
@@ -81,9 +83,13 @@
                                         <span class="bg-info p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
+                                    @if($reqdosen->nip == Auth::user()->nip )
                                     <a href="#" data-toggle="modal" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
                                     <a href="#" data-toggle="modal" class="btn btn-danger delete"><i class="fas fa-trash-alt"></i></a>
-                                </td>
+                                    @else
+                                    <a href="#" data-toggle="modal" class="btn btn-success edit disabled"><i class="fas fa-edit"></i></a>
+                                    <a href="#" data-toggle="modal" class="btn btn-danger delete disabled"><i class="fas fa-trash-alt"></i></a>
+                                    @endif
                                     @elseif($reqdosen->statusreq == "Proses")
                                         <span class="bg-warning p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>

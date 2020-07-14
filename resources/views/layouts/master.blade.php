@@ -167,7 +167,7 @@
                             </a>
                         </li>
                         @endif
-                        @if(auth()->user()->status == 'Admin')
+                        @if(auth()->user()->status == 'Admin' OR auth()->user()->status == 'Staf')
                         {{-- Klasifikasi --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -218,6 +218,8 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
+                        @if(auth()->user()->status == 'Admin')
                         {{-- END Klasifikasi --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -244,6 +246,7 @@
                             </ul>
                         </li>
                         @endif
+                        
 
                         @if(auth()->user()->status == 'Admin' OR auth()->user()->status == 'Staf')
                         <li class="nav-header">TRANSAKSI</li>

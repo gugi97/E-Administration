@@ -6,12 +6,6 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::group(['middleware' => ['auth','checkStatus:Admin']],function(){
-    Route::resource('jenissurat', 'JenisSuratController');
-    Route::resource('unitinduk', 'UnitIndukController');
-    Route::resource('unitsurat', 'UnitSuratController');
-    Route::resource('jenjangjabatan', 'JenjangJabatanController');
-    Route::resource('jenissk', 'JenisSKController');
-
     Route::resource('dosen', 'DosenController');
 
     Route::get('user', 'UserController@index')->name('user');
@@ -25,6 +19,12 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf,Dosen,Dekan,Ketua 
 });
 
 Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
+    Route::resource('jenissurat', 'JenisSuratController');
+    Route::resource('unitinduk', 'UnitIndukController');
+    Route::resource('unitsurat', 'UnitSuratController');
+    Route::resource('jenjangjabatan', 'JenjangJabatanController');
+    Route::resource('jenissk', 'JenisSKController');
+
     Route::get('suratmasuk', 'SuratMasukController@index')->name('suratmasuk');
     Route::get('arsipsuratmasuk', 'ArsipSuratMasukController@index')->name('arsipsuratmasuk');
     Route::get('arsipfilesuratmasuk', 'ArsipSuratMasukController@indexfile')->name('arsipfilesuratmasuk');

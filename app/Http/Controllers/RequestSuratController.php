@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\RequestSurat;
 use App\Mail\NotifRequestTolak;
+use App\Mail\NotifRequest;
 use App\User;
 
 class RequestSuratController extends Controller

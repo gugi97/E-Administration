@@ -102,7 +102,7 @@
 
                                         <div class="form-group">
                                             <label>NIP Dosen</label>
-                                            <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" value="{{ old('nip') }}" maxlength="9">
+                                            <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" value="{{ old('nip') }}" onkeypress="return angkaSaja(event)" maxlength="9">
                                         </div>
 
                                         <div class="form-group">
@@ -158,7 +158,7 @@
 
                                             <div class="form-group">
                                                 <label>NIP Dosen</label>
-                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" id="nip" value="{{ old('nip') }}" maxlength="9">
+                                                <input type="text" class="form-control" placeholder="NIP Dosen" name="nip" id="nip" onkeypress="return angkaSaja(event)" value="{{ old('nip') }}" maxlength="9">
                                             </div>
 
                                             <div class="form-group">
@@ -243,6 +243,13 @@
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>
 
     <script type="text/javascript">
+
+        function angkaSaja(evt){
+            var charCode=(evt.which) ? evt.which: event.keyCode;
+            if(charCode>31 && (charCode<48 || charCode>57))
+            return false;
+            return true;
+        }
 
         $(document).ready(function() {
 

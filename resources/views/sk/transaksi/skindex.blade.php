@@ -78,17 +78,34 @@
                                 <td>{{ $sk->tahunajar }}</td>
                                 <td>
                                     @if($sk->status == 'Disetujui (Dekan)')
-                                        <button class="btn btn-primary kirim" value="{{$sk->idsk}}"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</button>
+                                        @if($sk->nip == Auth::user()->nip )
+                                            <button class="btn btn-primary kirim" value="{{$sk->idsk}}"><i class="fas fa-paper-plane">&nbsp;</i> Kirim</button>
+                                        @else
+                                            <button class="btn btn-primary kirim" value="{{$sk->idsk}}" disabled><i class="fas fa-paper-plane">&nbsp;</i> Kirim</button>
+                                        @endif
                                     @elseif($sk->status == "Proposed")
-                                        <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                        @if($sk->nip == Auth::user()->nip )
+                                            <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                        @else
+                                            <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled"><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}" disabled><i class="fas fa-trash-alt"></i></button>
+                                        @endif
                                     @elseif($sk->status == "Diterima (Kaprodi)")
                                         <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled" disabled><i class="fas fa-edit"></i></a>
                                         <button class="btn btn-danger delete disabled" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
                                     @elseif($sk->status == "Ditolak")
-                                        <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                        @if($sk->nip == Auth::user()->nip )
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                        @else
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}" disabled><i class="fas fa-trash-alt"></i></button>
+                                        @endif
                                     @elseif($sk->status == "Tidak Disetujui")
-                                        <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                        @if($sk->nip == Auth::user()->nip )
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                        @else
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}" disabled><i class="fas fa-trash-alt"></i></button>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>

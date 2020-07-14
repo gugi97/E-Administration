@@ -127,7 +127,7 @@ class KaprodiController extends Controller
             $dekan = Dekan::find($id);
             if($dekan != null){  
                 if($dekan->id_dekan == $kaprodi->idreq){
-                $dekan->statusreq_dekan = "Diterima";
+                $dekan->statusreq_dekan = "Menunggu Persetujuan";
                 $dekan->save();
                 }
             }else{

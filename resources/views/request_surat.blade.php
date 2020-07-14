@@ -94,7 +94,6 @@
                                     <span class="bg-warning p-1 rounded" style="vertical-align:sub;">{{ $reqdosen->statusreq }}</span>
                                 </td>
                                 <td>
-                                    <a href="requestsurat/ditolak/{{$reqdosen->no_req}}" class="btn btn-danger">Ditolak</a>
                                     <a href="requestsurat/selesai/{{$reqdosen->no_req}}" class="btn btn-primary">Selesai</a>
                                 </td>
                                 
