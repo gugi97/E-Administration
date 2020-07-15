@@ -146,6 +146,8 @@
                                     // MEMBUAT TAG IMG UNTUK GAMBAR TTD
                                     $('#templateSurat').find('#ttdDekan').empty();
                                     $('#templateSurat').find('#ttdDekan').html('<img class="m-2" id="ttdcoba" src="" height="100px">');
+                                    $('#templateSurat').find('#QRCode').empty();
+                                    $('#templateSurat').find('#QRCode').html('<img id="qrcoba" src="data:image/png;base64, {{ $qrcode }}" height="100px">');
 
                                     // MENGISI DENGAN GAMBAR
                                     var preview = document.querySelector('#ttdcoba');

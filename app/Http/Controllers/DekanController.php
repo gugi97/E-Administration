@@ -11,6 +11,7 @@ use App\Kaprodi;
 use App\SuratKeputusan;
 use PDF;
 use Storage;
+use QrCode;
 
 
 class DekanController extends Controller
@@ -82,12 +83,16 @@ class DekanController extends Controller
     {
         $dekan = Dekan::where('id_dekan',$id)->get();
         $dekan_nip = Dekan::find($id);
+
+        $dekan2 = Dekan::find($id);
+        $lokasifile = 'uploads/qrcodeSK/'.\Carbon\Carbon::now()->format('Y-m-d').'/';
+        $qrcode = base64_encode(QrCode::format('png')->merge('logo-bl.png', 0.3, true)->size(100)->errorCorrection('H')->generate($dekan2->noreq_dekan));
         if($dekan_nip->nip_dekan == ""){
             $dekan_nip->nip_dekan = Auth::user()->nip;
             $dekan_nip->save();
         }
 
-        return view ('dekan.edit_dekan', ['dekan' => $dekan]);
+        return view ('dekan.edit_dekan', ['dekan' => $dekan, 'qrcode' => $qrcode]);
     }
 
     /**
