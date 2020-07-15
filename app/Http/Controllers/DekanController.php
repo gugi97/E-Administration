@@ -85,7 +85,6 @@ class DekanController extends Controller
         $dekan_nip = Dekan::find($id);
 
         $dekan2 = Dekan::find($id);
-        $lokasifile = 'uploads/qrcodeSK/'.\Carbon\Carbon::now()->format('Y-m-d').'/';
         $qrcode = base64_encode(QrCode::format('png')->merge('logo-bl.png', 0.3, true)->size(100)->errorCorrection('H')->generate($dekan2->noreq_dekan));
         if($dekan_nip->nip_dekan == ""){
             $dekan_nip->nip_dekan = Auth::user()->nip;
