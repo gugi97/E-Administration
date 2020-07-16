@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('suratmasuk', 'SuratMasukController@index')->name('suratmasuk');
     Route::get('arsipsuratmasuk', 'ArsipSuratMasukController@index')->name('arsipsuratmasuk');
     Route::get('arsipfilesuratmasuk', 'ArsipSuratMasukController@indexfile')->name('arsipfilesuratmasuk');
+    Route::get('arsipfilesuratmasuk/{id_suratmasuk}', 'ArsipSuratMasukController@show')->name('arsipfilesuratmasuk');
     Route::get('suratmasuk/tambah', 'SuratMasukController@tambah');
     Route::post('suratmasuk/store', 'SuratMasukController@store');
     Route::get('suratmasuk/edit/{id_suratmasuk}', 'SuratMasukController@edit');
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('suratkeluar', 'SuratKeluarController@index')->name('suratkeluar');
     Route::get('arsipsuratkeluar', 'ArsipSuratKeluarController@index')->name('arsipsuratkeluar');
     Route::get('arsipfilesuratkeluar', 'ArsipSuratKeluarController@indexfile')->name('arsipfilesuratkeluar');
+    Route::get('arsipfilesuratkeluar/{id_suratkeluar}', 'ArsipSuratKeluarController@show')->name('arsipfilesuratkeluar');
     Route::get('suratkeluar/tambah', 'SuratKeluarController@tambah');
     Route::post('suratkeluar/store', 'SuratKeluarController@store');
     Route::get('suratkeluar/edit/{id_suratkeluar}', 'SuratKeluarController@edit');
@@ -54,6 +56,7 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::resource('suratkeputusan', 'SuratKeputusanController');
     Route::post('suratkeputusan/{id}', 'SuratKeputusanController@kirim');
     Route::get('arsipfilesuratkeputusan', 'ArsipSuratKeputusanController@indexfile')->name('arsipfilesuratkeputusan');
+    Route::get('arsipfilesuratkeputusan/{idsk}', 'ArsipSuratKeputusanController@show')->name('arsipfilesuratkeputusan');
 
     Route::get('agendasuratkeputusan', 'AgendaSuratKeputusanController@index')->name('agendasuratkeputusan');
     Route::get('agendasuratkeputusan/pencarian', 'AgendaSuratKeputusanController@cari');

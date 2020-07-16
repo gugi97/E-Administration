@@ -31,5 +31,12 @@ class ArsipSuratKeputusanController extends Controller
         
     	// mengirim data suratkeputusan ke view index
 		return view('arsipfilesuratkeputusan',['arsipfilesuratkeputusan' => $arsipfilesuratkeputusan]);
+    }
+    
+    public function show($idsk)
+    {
+        $data = SuratKeputusan::find($idsk);
+        
+		return view('arsipfilesuratkeluarview',['data' => $data]);
 	}
 }

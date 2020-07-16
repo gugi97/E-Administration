@@ -31,5 +31,12 @@ class ArsipSuratMasukController extends Controller
         
     	// mengirim data suratmasuk ke view index
 		return view('arsipfilesuratmasuk',['arsipfilesuratmasuk' => $arsipfilesuratmasuk]);
+    }
+    
+    public function show($id_suratmasuk)
+    {
+        $data = SuratMasuk::find($id_suratmasuk);
+        
+		return view('arsipfilesuratmasukview',['data' => $data]);
 	}
 }

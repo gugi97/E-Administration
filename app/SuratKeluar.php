@@ -11,6 +11,8 @@ class SuratKeluar extends Model
 
     protected $fillable = ['no_suratkeluar','tgl_suratkeluar','perihal','lampiran','tujuan_surat','keterangan','gambar','file','nip','kode_jenissurat','kode_jenjang','lokasi','lokasifile'];
     
+    protected $primaryKey = 'id_suratkeluar';
+
     public $timestamps = false;
 
     public function scopegetallsuratkeluar(){

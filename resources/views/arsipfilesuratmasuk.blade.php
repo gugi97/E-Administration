@@ -48,7 +48,7 @@
                             <td>{{ $sms->tgl_surat }}</td>
                             <?php if($sms->file != null){
                             ?>
-                                <td>File Tersimpan di {{$sms->lokasifile}}/{{$sms->file}}</td>
+                                <td><a href="arsipfilesuratmasuk/{{$sms->id_suratmasuk}}">Lihat File</a></td>
                             <?php
                             }else{
                             ?>

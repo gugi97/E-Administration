@@ -48,7 +48,7 @@
                             <td>{{ $ske->tgl_suratkeluar }}</td>
                             <?php if($ske->file != null){
                             ?>
-                                <td>File Tersimpan di {{$ske->lokasifile}}/{{$ske->file}}</td>
+                                <td><a href="arsipfilesuratkeluar/{{$ske->id_suratkeluar}}">Lihat File</a></td>
                             <?php
                             }else{
                             ?>

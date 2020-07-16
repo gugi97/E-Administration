@@ -48,7 +48,7 @@
                             <td>{{ $ske->tglsk }}</td>
                             <?php if($ske->file != null){
                             ?>
-                                <td>File Tersimpan di {{$ske->lokasifile}}/{{$ske->file}}</td>
+                                <td><a href="arsipfilesuratkeputusan/{{$ske->idsk}}">Lihat File</a></td>
                             <?php
                             }else{
                             ?>
