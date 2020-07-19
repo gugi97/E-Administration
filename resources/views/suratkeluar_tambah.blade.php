@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label>Tahun</label>
-                            <input type="text" class="form-control" placeholder="Dua Digit Terakhir, ex : 2020(20)" name="tahun" value="{{ old('tahun') }}" id="tahun" maxlength="2">
+                            <input type="text" class="form-control" placeholder="Dua Digit Terakhir, ex : 2020(20)" onkeypress="return angkaSaja(event)" name="tahun" value="{{ $date }}" id="tahun" maxlength="2">
                         </div>
                         <div class="form-group">
                             <label>Tanggal Surat Keluar</label>
@@ -140,4 +140,12 @@
     {{-- End General Form --}}
     </section>
     <!-- /.content -->
+    <script>
+        function angkaSaja(evt){
+            var charCode=(evt.which) ? evt.which: event.keyCode;
+            if(charCode>31 && (charCode<48 || charCode>57))
+            return false;
+            return true;
+        }
+    </script>
 @endsection

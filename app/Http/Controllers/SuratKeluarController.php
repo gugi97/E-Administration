@@ -32,11 +32,12 @@ class SuratKeluarController extends Controller
 		$alljenis = Jenis::getalluser();
 		$alljabatan = JenjangJabatan::getalluser();
 		$sk_count = DB::table('suratkeluar')->count();
+		$date = date("y");
 		$no_urut = $sk_count + 1;
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
 
-        return view('suratkeluar_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip, 'no_urut' => $no_urut]);
+        return view('suratkeluar_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip, 'no_urut' => $no_urut, 'date' => $date]);
 	}
 
 	public function store(Request $request)

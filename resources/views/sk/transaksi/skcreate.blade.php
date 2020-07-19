@@ -52,7 +52,7 @@
                                 {{-- END TEST PENGGUNA --}}
                                 <div class="form-group">
                                     <label>Nomor SK</label>
-                                    <input type="text" class="form-control" placeholder="Nomor SK" name="nosk" id="nosk" value="{{ old('nosk') }}">
+                                    <input type="text" class="form-control" placeholder="Nomor SK" name="nosk" id="nosk" value="K/UBL/FTI/000/{{$nomor_sk}}">
                                 </div>
 
                                 <div class="form-group">

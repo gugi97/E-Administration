@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\SuratKeputusan;
 use App\Kaprodi;
 use App\Dekan;
@@ -44,9 +45,20 @@ class SuratKeputusanController extends Controller
         $sk = SuratKeputusan::all();
         $kaprodi = SuratKeputusan::getalluser();
         $alltemplate = SuratKeputusan::getalltemplate();
+        $sk_count = DB::table('suratkeputusan')->count();
+        $sk_count2 = $sk_count + 1;
+        $year = date("0y");
+        $month = date("0m");
+        if($sk_count < 10){
+            $sk_count3 = "00"."$sk_count2";
+        }else{
+            $sk_count3 = "0"."$sk_count2";
+        }
+
+        $nomor_sk = "$sk_count3"."/"."$month"."/"."$year";
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
-        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip, 'kaprodi' => $kaprodi]);
+        return view('sk.transaksi.skcreate', ['sk'=> $sk, 'alltemplate' => $alltemplate, 'nama' => $nama, 'nip' => $nip, 'kaprodi' => $kaprodi, 'nomor_sk' => $nomor_sk]);
     }
 
     /**

@@ -33,10 +33,11 @@ class SuratMasukController extends Controller
         $alljabatan = JenjangJabatan::getalluser();
         $sm_count = DB::table('suratmasuk')->count();
 		$no_urut = $sm_count + 1;
+		$date = date("y");
         $nama = Auth::user()->name;
         $nip = User::where('name',$nama)->first();
 
-        return view('suratmasuk_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip, 'no_urut' => $no_urut]);
+        return view('suratmasuk_tambah', ['alljenis' => $alljenis, 'alljabatan' => $alljabatan, 'nama' => $nama, 'nip' => $nip, 'no_urut' => $no_urut, 'date' => $date]);
     }
 
     public function store(Request $request)
