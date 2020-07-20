@@ -324,7 +324,7 @@
                                 <p>Request Surat</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-mail-bulk"></i>
                             </div>
                             <a href="requestsurat" class="small-box-footer">
                                 More info <i class="fas fa-arrow-circle-right"></i>

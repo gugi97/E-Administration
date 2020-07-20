@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{url('/kaprodi')}}">Request SK</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/kaprodi')}}">Verifikasi SK Kaprodi</a></li>
                         <li class="breadcrumb-item active">Update Request Surat Keputusan</li>
                     </ol>
                 </div>
