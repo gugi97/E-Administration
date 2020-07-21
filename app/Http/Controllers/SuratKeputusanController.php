@@ -85,6 +85,10 @@ class SuratKeputusanController extends Controller
             'hasil' => 'required'
         ]);
 
+        $emailkaprodi = $request->input('tujuan');
+        $nipkaprodi = DB::table('users')->where('email', $emailkaprodi)->get()->first();
+        $nipkaprodinip = $nipkaprodi->nip;
+
         $sk = new SuratKeputusan;
         $kaprodi = new Kaprodi;
 
@@ -100,6 +104,7 @@ class SuratKeputusanController extends Controller
         $sk->template = $request->input('hasil');
 
         $kaprodi->template = $request->input('hasil');
+        $kaprodi->nip = $nipkaprodinip;
         
         $sk->nip = $request->input('nip');
 

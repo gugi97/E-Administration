@@ -67,10 +67,14 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $skdankp->noreq }}</td>
                                 <td>{{ $skdankp->tglsk }}</td>
-                                <td>{{ $skdankp->nip }}</td>                            
-                                <td> {{$skdankp->statusreq}} </td>
+                                <td>{{ $skdankp->nipstaf }}</td>                            
+                                <td>{{ $skdankp->statusreq }} </td>
                                 <td>
-                                    <a href="{{action('KaprodiController@edit', $skdankp->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    @if($skdankp->nipkaprodi == Auth::user()->nip )
+                                        <a href="{{action('KaprodiController@edit', $skdankp->idreq)}}" class="btn btn-success edit"><i class="fas fa-edit"></i></a>
+                                    @else
+                                        <a href="{{action('KaprodiController@edit', $skdankp->idreq)}}" class="btn btn-success edit disabled"><i class="fas fa-edit"></i></a>
+                                    @endif
                                 </td>
                             @endforeach
                             </tr>

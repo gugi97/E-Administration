@@ -32,7 +32,7 @@ class KaprodiController extends Controller
 
         $skdankaprodi = DB::table('kaprodi')
             ->join('suratkeputusan', 'kaprodi.idreq', '=', 'suratkeputusan.idsk')
-            ->select('kaprodi.*', 'suratkeputusan.*')
+            ->select('kaprodi.nip as nipkaprodi', 'kaprodi.noreq', 'kaprodi.statusreq', 'kaprodi.idreq', 'suratkeputusan.tglsk' , 'suratkeputusan.nip as nipstaf')
             ->get();
 
         return view('kaprodi.index_kaprodi', ['skdankaprodi'=> $skdankaprodi]);
@@ -79,14 +79,8 @@ class KaprodiController extends Controller
     public function edit($id)
     {
         $kaprodi = Kaprodi::where('idreq',$id)->get();
-        $kapnip = Kaprodi::find($id);
         $dekan = Kaprodi::getalluser();
-
-        if($kapnip->nip == ""){
-            $kapnip->nip = Auth::user()->nip;
-            $kapnip->save();
-        }
-
+        
         return view ('kaprodi.edit_kaprodi', ['kaprodi' => $kaprodi, 'dekan' => $dekan]);
     }
 
