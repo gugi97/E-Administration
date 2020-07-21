@@ -49,7 +49,9 @@ class SuratKeputusanController extends Controller
         $sk_count2 = $sk_count + 1;
         $year = date("0y");
         $month = date("0m");
-        if($sk_count < 10){
+        if($sk_count == 9){
+            $sk_count3 = "0"."$sk_count2";
+        }elseif($sk_count < 9){
             $sk_count3 = "00"."$sk_count2";
         }else{
             $sk_count3 = "0"."$sk_count2";
