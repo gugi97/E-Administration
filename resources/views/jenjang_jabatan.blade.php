@@ -44,7 +44,7 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Input Jenjang Jabatan</h3>
+                    <h3 align="center">Input Jenjang Jabatan</h3>
                 </div>
                 <!-- End Card Header -->
 

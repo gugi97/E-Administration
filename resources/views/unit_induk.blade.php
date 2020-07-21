@@ -44,7 +44,8 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Input Unit Induk</h3>
+                    <h3 align="center">Input Unit Induk</h3>
+                    
                 </div>
                 <!-- End Card Header -->
 
@@ -68,7 +69,7 @@
                         <tbody>
                             @foreach ($induk as $untinduk)
                             <tr style="text-align: center;">    
-                                <th>{{ $loop->iteration }}</th>
+                                <th></th>
                                 <td>{{ $untinduk->kd_unit }}</td>
                                 <td>{{ $untinduk->nama_unit }}</td>
                                 <td>
@@ -200,6 +201,22 @@
 
         $(document).ready(function() {
             
+                var t = $('#datatable').DataTable( {
+                    "columnDefs": [ {
+                        "searchable": false,
+                        "orderable": false,
+                        "targets": 0
+                    } ],
+                    "order": [[ 1, 'asc' ]]
+                } );
+                            
+                t.on('order.dt search.dt', function () {
+                    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                        cell.innerHTML = i+1;
+                        t.cell(cell).invalidate('dom');
+                    });
+                }).draw();
+
             var table = $('#datatable').DataTable();
 
             //Start Edit Record

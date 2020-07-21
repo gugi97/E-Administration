@@ -65,7 +65,7 @@
                         <tbody>
                             @foreach ($jenis as $jenissk)
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
+                                <th></th>
                                 <td>{{ $jenissk->idjenis_sk }}</td>
                                 <td>{{ $jenissk->jenis_sk }}</td>
                                 <td>{{ $jenissk->nama_template }}</td>
@@ -126,6 +126,22 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+            var t = $('#datatable').DataTable( {
+                    "columnDefs": [ {
+                        "searchable": false,
+                        "orderable": false,
+                        "targets": 0
+                    } ],
+                    "order": [[ 1, 'asc' ]]
+                } );
+                            
+                t.on('order.dt search.dt', function () {
+                    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                        cell.innerHTML = i+1;
+                        t.cell(cell).invalidate('dom');
+                    });
+                }).draw();
 
             var table = $('#datatable').DataTable();
 

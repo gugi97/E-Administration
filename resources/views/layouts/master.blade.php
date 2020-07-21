@@ -137,7 +137,7 @@
                             </a>
                         </li>
                         @endif
-                        @if(auth()->user()->status == 'Staf' OR auth()->user()->status == 'Admin')
+                        @if(auth()->user()->status == 'Staf')
                         <li class="nav-item">
                             <a href="{{ url('/requestsurat') }}" class="nav-link {{ set_active('requestsurat.index') }}">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
@@ -230,7 +230,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('/user')}}" class="nav-link {{ set_active('user.index') }}">
+                                    <a href="{{url('/user')}}" class="nav-link {{ set_active('user') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>User</p>
                                     </a>

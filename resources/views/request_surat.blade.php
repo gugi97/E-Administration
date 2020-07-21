@@ -69,7 +69,7 @@
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             <tr style="text-align: center;">
-                                <th>{{ $loop->iteration }}</th>
+                                <th></th>
                                 <td>{{ $reqdosen->no_req }}</td>
                                 <td>{{ $reqdosen->tgl_maxsurat }}</td>
                                 <td>{{ $reqdosen->nip }}</td>
@@ -164,6 +164,22 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+                var t = $('#datatable').DataTable( {
+                    "columnDefs": [ {
+                        "searchable": false,
+                        "orderable": false,
+                        "targets": 0
+                    } ],
+                    "order": [[ 1, 'asc' ]]
+                } );
+                            
+                t.on('order.dt search.dt', function () {
+                    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                        cell.innerHTML = i+1;
+                        t.cell(cell).invalidate('dom');
+                    });
+                }).draw();
 
             var table = $('#datatable').DataTable();
 
