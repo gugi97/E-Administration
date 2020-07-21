@@ -137,7 +137,7 @@
                             </a>
                         </li>
                         @endif
-                        @if(auth()->user()->status == 'Staf' OR auth()->user()->status == 'Admin')
+                        @if(auth()->user()->status == 'Staf')
                         <li class="nav-item">
                             <a href="{{ url('/requestsurat') }}" class="nav-link {{ set_active('requestsurat.index') }}">
                                 <i class="nav-icon fas fa-clipboard-list"></i>

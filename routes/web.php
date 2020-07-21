@@ -61,7 +61,9 @@ Route::group(['middleware' => ['auth','checkStatus:Admin,Staf']],function(){
     Route::get('agendasuratkeputusan', 'AgendaSuratKeputusanController@index')->name('agendasuratkeputusan');
     Route::get('agendasuratkeputusan/pencarian', 'AgendaSuratKeputusanController@cari');
     Route::get('agendasuratkeputusan_pdf', 'AgendaSuratKeputusanController@cetak_pdf');
+});
 
+Route::group(['middleware' => ['auth','checkStatus:Staf']],function(){
     Route::resource('requestsurat', 'RequestSuratController');
     Route::get('requestsurat/diterima/{no_req}', 'RequestSuratController@diterima');
     Route::get('requestsurat/ditolak/{no_req}', 'RequestSuratController@ditolak');

@@ -94,4 +94,25 @@
     <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js" defer></script>
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" defer></script>
 
+    <script>
+    $(document).ready(function() {
+
+        var t = $('#datatable').DataTable( {
+            "columnDefs": [ {
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            } ],
+            "order": [[ 1, 'asc' ]]
+        } );
+                    
+        t.on('order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+                t.cell(cell).invalidate('dom');
+            });
+        }).draw();
+    });
+    </script>
+
 @endsection
