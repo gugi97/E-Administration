@@ -92,8 +92,8 @@
                                             <button class="btn btn-danger delete" value="{{$sk->idsk}}" disabled><i class="fas fa-trash-alt"></i></button>
                                         @endif
                                     @elseif($sk->status == "Diterima (Kaprodi)")
-                                        <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled" disabled><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger delete disabled" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
+                                            <a href="{{action('SuratKeputusanController@edit', $sk->idsk)}}" class="btn btn-success edit disabled" disabled><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-danger delete" value="{{$sk->idsk}}" disabled><i class="fas fa-trash-alt"></i></button>
                                     @elseif($sk->status == "Ditolak")
                                         @if($sk->nip == Auth::user()->nip )
                                             <button class="btn btn-danger delete" value="{{$sk->idsk}}"><i class="fas fa-trash-alt"></i></button>
