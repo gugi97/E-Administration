@@ -230,7 +230,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('/user')}}" class="nav-link {{ set_active('user.index') }}">
+                                    <a href="{{url('/user')}}" class="nav-link {{ set_active('user') }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>User</p>
                                     </a>
