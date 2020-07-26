@@ -284,9 +284,9 @@
                 console.log(data);
 
                 $('#nip').val(data[1]);
-                $('#gelar_depan').val($('#fieldGelarDepan').html());
-                $('#name').val($('#fieldNama').html());
-                $('#gelar_belakang').val($('#fieldGelarBelakang').html());
+                $('#gelar_depan').val($(data[2]).html());
+                $('#name').val($(data[2]).next().html());
+                $('#gelar_belakang').val($(data[2]).next().next().html());
                 $('#no_hp').val(data[3]);
                 $('#email').val(data[4]);
 
